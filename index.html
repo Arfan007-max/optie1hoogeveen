@@ -68,15 +68,40 @@
 <main id="hoofd">
 
   <section class="hero">
-    <div class="container">
-      <h1>Uw telecomwinkel in Hoogeveen</h1>
-      <p>Smartphones, tablets, abonnementen en reparaties. Geen wachtrij aan de telefoon en geen keuzemenu: gewoon een winkel waar iemand meedenkt en het meteen voor u regelt.</p>
-      <div class="knoppen">
-        <a class="knop knop-whatsapp" href="https://wa.me/31528235734">Stuur een WhatsApp</a>
-        <a class="knop knop-primair" href="tel:+31528235734">Bel 0528 - 23 57 34</a>
+    <div class="container hero-raster">
+      <div>
+        <h1>Telefoon kapot of toe aan een nieuwe?</h1>
+        <p>Loop binnen in de Hoofdstraat. Smartphones, tablets, abonnementen en reparaties — geen keuzemenu en geen wachtrij, gewoon iemand die meedenkt en het voor u regelt.</p>
+        <div class="knoppen">
+          <a class="knop knop-whatsapp" href="https://wa.me/31528235734">Stuur een WhatsApp</a>
+          <a class="knop knop-primair" href="tel:+31528235734">Bel 0528 - 23 57 34</a>
+        </div>
       </div>
+
+      <aside class="info-kaart">
+        <!-- De statusregel wordt door een klein script gevuld. Zonder JavaScript
+             blijft hij leeg: dan staat er liever niets dan een onjuiste bewering
+             over of de winkel open is. -->
+        <p class="status" id="winkelstatus" hidden></p>
+        <h2>Vandaag</h2>
+        <div class="info-regel vandaag"><span id="vandaag-dag">Openingstijden</span><span id="vandaag-tijd">ma 12:00–17:00 · di t/m za 10:00–17:00</span></div>
+        <div class="info-regel"><span>Adres</span><span>Hoofdstraat 96</span></div>
+        <div class="info-regel"><span>Telefoon</span><span><a href="tel:+31528235734">0528 - 23 57 34</a></span></div>
+        <a class="knop knop-secundair" href="contact.html">Openingstijden en route</a>
+      </aside>
     </div>
   </section>
+
+  <div class="providerbalk">
+    <div class="container">
+      <p>Abonnementen van:</p>
+      <span class="provider">KPN</span>
+      <span class="provider">Vodafone</span>
+      <span class="provider">Odido</span>
+      <span class="provider">Ben</span>
+      <span class="provider">Lebara</span>
+    </div>
+  </div>
 
   <section class="sectie sectie-wit">
     <div class="container">
@@ -109,6 +134,26 @@
           <p>Kapot scherm, batterij die leegloopt of een toestel dat niet meer oplaadt. Veel reparaties doen we vakkundig en snel.</p>
           <p><a href="reparaties.html">Naar reparaties →</a></p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container kolommen">
+      <div>
+        <h2>Scherm kapot? Vaak dezelfde dag klaar</h2>
+        <p>Een gebroken scherm of een batterij die 's middags al leeg is — dat hoeft geen nieuw toestel te betekenen. Breng hem langs, dan kijken we ernaar en hoort u wat het kost voordat we beginnen.</p>
+        <div class="knoppen">
+          <a class="knop knop-whatsapp" href="https://wa.me/31528235734">Vraag een prijsindicatie</a>
+          <a class="knop knop-primair" href="reparaties.html">Alles over reparaties</a>
+        </div>
+      </div>
+      <div>
+        <ol class="stappen">
+          <li><strong>App ons merk en model.</strong> Of loop gewoon binnen, dat mag ook.</li>
+          <li><strong>U hoort de prijs vooraf.</strong> Geen akkoord betekent geen kosten.</li>
+          <li><strong>Wij repareren.</strong> Veelvoorkomende reparaties gaan snel.</li>
+        </ol>
       </div>
     </div>
   </section>
@@ -188,6 +233,67 @@
     <p class="copyright">© 2026 Optie1 Hoogeveen · KvK <span class="invullen">KVK-NUMMER INVULLEN</span></p>
   </div>
 </footer>
+
+<script>
+/* Toont in de infokaart of de winkel nu open is.
+   Staat hier los onderaan zodat de pagina ook zonder dit script volledig werkt.
+   Let op: dit gebruikt de klok van de bezoeker. Wie zijn apparaat op een andere
+   tijdzone heeft staan, ziet mogelijk een afwijkende status.
+   Wijzigen de openingstijden? Pas ze hieronder én in de tabel op deze pagina,
+   op contact.html en in de JSON-LD bovenaan dit bestand aan. */
+(function () {
+  var dagen = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
+  // Per dag [openen, sluiten] in minuten na middernacht; null is gesloten.
+  var tijden = [
+    null,          // zondag
+    [720, 1020],   // maandag  12:00 - 17:00
+    [600, 1020],   // dinsdag  10:00 - 17:00
+    [600, 1020],   // woensdag
+    [600, 1020],   // donderdag
+    [600, 1020],   // vrijdag
+    [600, 1020]    // zaterdag
+  ];
+
+  function alsTijd(m) {
+    var u = Math.floor(m / 60), r = m % 60;
+    return (u < 10 ? '0' : '') + u + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  var nu = new Date();
+  var dag = nu.getDay();
+  var minuten = nu.getHours() * 60 + nu.getMinutes();
+  var vandaag = tijden[dag];
+
+  var status = document.getElementById('winkelstatus');
+  var dagVeld = document.getElementById('vandaag-dag');
+  var tijdVeld = document.getElementById('vandaag-tijd');
+  if (!status || !dagVeld || !tijdVeld) return;
+
+  dagVeld.textContent = dagen[dag].charAt(0).toUpperCase() + dagen[dag].slice(1);
+  tijdVeld.textContent = vandaag ? alsTijd(vandaag[0]) + ' – ' + alsTijd(vandaag[1]) : 'Gesloten';
+
+  var open = vandaag && minuten >= vandaag[0] && minuten < vandaag[1];
+  var tekst;
+
+  if (open) {
+    tekst = 'Nu geopend — tot ' + alsTijd(vandaag[1]);
+  } else if (vandaag && minuten < vandaag[0]) {
+    tekst = 'Gesloten — vandaag open vanaf ' + alsTijd(vandaag[0]);
+  } else {
+    var d = dag;
+    for (var i = 1; i <= 7; i++) {
+      d = (dag + i) % 7;
+      if (tijden[d]) break;
+    }
+    var wanneer = (d === (dag + 1) % 7) ? 'morgen' : dagen[d];
+    tekst = 'Gesloten — ' + wanneer + ' open vanaf ' + alsTijd(tijden[d][0]);
+  }
+
+  status.className = 'status ' + (open ? 'status-open' : 'status-dicht');
+  status.innerHTML = '<span class="status-stip" aria-hidden="true"></span>' + tekst;
+  status.hidden = false;
+})();
+</script>
 
 </body>
 </html>

@@ -293,8 +293,138 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: .9em;
 }
 
+/* --- Hero met infokaart ernaast --- */
+.hero-raster {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+.hero-raster > div:first-child > *:first-child { margin-top: 0; }
+
+.info-kaart {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: 12px;
+  padding: 26px;
+  box-shadow: 0 4px 20px rgba(0, 90, 135, 0.10);
+}
+.info-kaart h2 { font-size: 1.15rem; margin-bottom: .6em; }
+.info-kaart p { margin-bottom: .6em; }
+.info-kaart .knop { width: 100%; text-align: center; margin-top: 6px; }
+
+/* Statusregel "nu geopend / gesloten". De kleuren zijn donker genoeg voor
+   voldoende contrast op wit; groen en rood alleen zijn niet genoeg, daarom
+   staat de status er ook in woorden bij. */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.status-stip {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+/* Dubbele klasse: anders wint de algemenere regel .hero p op specificiteit
+   en verliest de statusregel zijn groen of rood. */
+.status.status-open { color: #1a7f37; }
+.status.status-dicht { color: #b3261e; }
+
+.info-regel {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--lijn);
+  font-size: .95rem;
+}
+.info-regel:last-of-type { border-bottom: 0; }
+.info-regel span:last-child { color: var(--tekst-zacht); }
+.info-regel.vandaag { font-weight: 700; }
+.info-regel.vandaag span:last-child { color: var(--tekst); }
+
+/* --- Providerbalk --- */
+.providerbalk {
+  background: var(--wit);
+  border-bottom: 1px solid var(--lijn);
+  padding-block: 22px;
+}
+.providerbalk .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 16px;
+}
+.providerbalk p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--tekst-zacht);
+}
+.provider {
+  background: var(--blauw-zacht);
+  border: 1px solid #cfe9f7;
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-weight: 700;
+  color: var(--blauw-kop-klein);
+  font-size: .95rem;
+}
+
+/* --- Uitgelichte band (donkere sectie voor ritme in de pagina) --- */
+.band {
+  background: var(--blauw-donker);
+  color: #dbeef8;
+  padding-block: clamp(40px, 6vw, 64px);
+}
+.band h2, .band h3 { color: var(--wit); }
+.band .kaart {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .18);
+  box-shadow: none;
+  color: #dbeef8;
+}
+.band .kaart h3 { color: var(--wit); }
+
+.stappen {
+  list-style: none;
+  counter-reset: stap;
+  padding: 0;
+  margin: 0;
+}
+.stappen li {
+  counter-increment: stap;
+  position: relative;
+  padding-left: 46px;
+  margin-bottom: 18px;
+}
+.stappen li::before {
+  content: counter(stap);
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--blauw-accent);
+  color: #04283a;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 860px) {
+  .hero-raster { grid-template-columns: 1fr; gap: 32px; }
+}
+
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .site-header .container { justify-content: center; }
   .knoppen .knop { flex: 1 1 auto; text-align: center; }
+  .providerbalk p { width: 100%; text-align: center; }
 }
