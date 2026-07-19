@@ -170,9 +170,12 @@ img { max-width: 100%; height: auto; display: block; }
   border-bottom: 1px solid var(--lijn);
   padding-block: clamp(48px, 8vw, 88px);
 }
-.hero h1 { color: var(--blauw-kop); max-width: 18ch; }
-.hero p { font-size: 1.12rem; max-width: 55ch; color: var(--tekst-zacht); }
-.hero .knoppen { margin-top: 28px; }
+/* Gecentreerd: zonder afbeelding ernaast leest links uitgelijnde tekst als
+   een halfleeg vlak. Gecentreerd vult de hero zichzelf optisch op. */
+.hero { text-align: center; }
+.hero h1 { color: var(--blauw-kop); max-width: 20ch; margin-inline: auto; }
+.hero p { font-size: 1.12rem; max-width: 55ch; color: var(--tekst-zacht); margin-inline: auto; }
+.hero .knoppen { margin-top: 28px; justify-content: center; }
 
 /* --- Secties --- */
 .sectie { padding-block: clamp(40px, 6vw, 72px); }
