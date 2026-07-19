@@ -18,7 +18,11 @@
       <img src="assets/img/optie1-logo.png" alt="Optie1 — jouw eerste keus in telecom" width="646" height="220">
       <span class="logo-plaats">Hoogeveen</span>
     </a>
-    <nav class="site-nav" aria-label="Hoofdmenu">
+    <button class="menu-knop" type="button" aria-expanded="false" aria-controls="hoofdmenu" hidden>
+      <span class="menu-streepjes" aria-hidden="true"><span></span><span></span><span></span></span>
+      Menu
+    </button>
+    <nav class="site-nav" id="hoofdmenu" aria-label="Hoofdmenu">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="diensten.html">Abonnementen</a></li>
@@ -135,6 +139,8 @@
     <p class="copyright">© 2026 Optie1 Hoogeveen · KvK <span class="invullen">KVK-NUMMER INVULLEN</span></p>
   </div>
 </footer>
+
+<script src="assets/js/site.js" defer></script>
 
 </body>
 </html>

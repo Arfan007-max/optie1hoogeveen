@@ -53,7 +53,11 @@
       <img src="assets/img/optie1-logo.png" alt="Optie1 — jouw eerste keus in telecom" width="646" height="220">
       <span class="logo-plaats">Hoogeveen</span>
     </a>
-    <nav class="site-nav" aria-label="Hoofdmenu">
+    <button class="menu-knop" type="button" aria-expanded="false" aria-controls="hoofdmenu" hidden>
+      <span class="menu-streepjes" aria-hidden="true"><span></span><span></span><span></span></span>
+      Menu
+    </button>
+    <nav class="site-nav" id="hoofdmenu" aria-label="Hoofdmenu">
       <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="diensten.html">Abonnementen</a></li>
@@ -114,7 +118,7 @@
           <div class="kaart-icoon" aria-hidden="true">📱</div>
           <h3>Smartphones</h3>
           <p>Een nieuw toestel met of zonder abonnement, inclusief het overzetten van uw gegevens. U loopt de winkel uit met een telefoon die klaar is voor gebruik.</p>
-          <p><a href="diensten.html">Bekijk onze diensten →</a></p>
+          <p><a href="diensten.html">Bekijk onze smartphones →</a></p>
         </article>
         <article class="kaart">
           <div class="kaart-icoon" aria-hidden="true">📲</div>
@@ -234,66 +238,7 @@
   </div>
 </footer>
 
-<script>
-/* Toont in de infokaart of de winkel nu open is.
-   Staat hier los onderaan zodat de pagina ook zonder dit script volledig werkt.
-   Let op: dit gebruikt de klok van de bezoeker. Wie zijn apparaat op een andere
-   tijdzone heeft staan, ziet mogelijk een afwijkende status.
-   Wijzigen de openingstijden? Pas ze hieronder én in de tabel op deze pagina,
-   op contact.html en in de JSON-LD bovenaan dit bestand aan. */
-(function () {
-  var dagen = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
-  // Per dag [openen, sluiten] in minuten na middernacht; null is gesloten.
-  var tijden = [
-    null,          // zondag
-    [720, 1020],   // maandag  12:00 - 17:00
-    [600, 1020],   // dinsdag  10:00 - 17:00
-    [600, 1020],   // woensdag
-    [600, 1020],   // donderdag
-    [600, 1020],   // vrijdag
-    [600, 1020]    // zaterdag
-  ];
-
-  function alsTijd(m) {
-    var u = Math.floor(m / 60), r = m % 60;
-    return (u < 10 ? '0' : '') + u + ':' + (r < 10 ? '0' : '') + r;
-  }
-
-  var nu = new Date();
-  var dag = nu.getDay();
-  var minuten = nu.getHours() * 60 + nu.getMinutes();
-  var vandaag = tijden[dag];
-
-  var status = document.getElementById('winkelstatus');
-  var dagVeld = document.getElementById('vandaag-dag');
-  var tijdVeld = document.getElementById('vandaag-tijd');
-  if (!status || !dagVeld || !tijdVeld) return;
-
-  dagVeld.textContent = dagen[dag].charAt(0).toUpperCase() + dagen[dag].slice(1);
-  tijdVeld.textContent = vandaag ? alsTijd(vandaag[0]) + ' – ' + alsTijd(vandaag[1]) : 'Gesloten';
-
-  var open = vandaag && minuten >= vandaag[0] && minuten < vandaag[1];
-  var tekst;
-
-  if (open) {
-    tekst = 'Nu geopend — tot ' + alsTijd(vandaag[1]);
-  } else if (vandaag && minuten < vandaag[0]) {
-    tekst = 'Gesloten — vandaag open vanaf ' + alsTijd(vandaag[0]);
-  } else {
-    var d = dag;
-    for (var i = 1; i <= 7; i++) {
-      d = (dag + i) % 7;
-      if (tijden[d]) break;
-    }
-    var wanneer = (d === (dag + 1) % 7) ? 'morgen' : dagen[d];
-    tekst = 'Gesloten — ' + wanneer + ' open vanaf ' + alsTijd(tijden[d][0]);
-  }
-
-  status.className = 'status ' + (open ? 'status-open' : 'status-dicht');
-  status.innerHTML = '<span class="status-stip" aria-hidden="true"></span>' + tekst;
-  status.hidden = false;
-})();
-</script>
+<script src="assets/js/site.js" defer></script>
 
 </body>
 </html>

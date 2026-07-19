@@ -418,13 +418,97 @@ img { max-width: 100%; height: auto; display: block; }
   place-items: center;
 }
 
+/* --- Menuknop voor smalle schermen ---
+   De knop staat in de HTML op hidden en wordt pas door site.js zichtbaar
+   gemaakt. Zo blijft het menu zonder JavaScript gewoon volledig zichtbaar
+   in plaats van onbereikbaar achter een knop die niets doet. */
+.menu-knop {
+  display: none;
+  align-items: center;
+  gap: 9px;
+  background: var(--wit);
+  border: 2px solid var(--blauw-knop);
+  color: var(--blauw-knop);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 700;
+  font-size: .9rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  cursor: pointer;
+  /* Minimaal 44px hoog: kleiner is lastig te raken met een vinger. */
+  min-height: 44px;
+}
+.menu-knop:hover { background: var(--blauw-knop); color: var(--wit); }
+.menu-streepjes { display: grid; gap: 4px; }
+.menu-streepjes span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+}
+
 @media (max-width: 860px) {
   .hero-raster { grid-template-columns: 1fr; gap: 32px; }
+
+  .site-header .container {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .menu-knop[hidden] { display: none; }
+  .menu-knop { display: inline-flex; }
+
+  /* Alleen inklappen als het script draait; anders blijft het menu staan. */
+  .js-menu .site-nav {
+    display: none;
+    width: 100%;
+    order: 3;
+  }
+  .js-menu .site-nav.is-open { display: block; }
+  .js-menu .site-nav ul {
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 10px;
+    border-top: 1px solid var(--lijn);
+    margin-top: 12px;
+  }
+  .js-menu .site-nav a {
+    padding: 13px 14px;
+    font-size: .95rem;
+  }
+
+  .logo img { height: 52px; }
+  .logo-plaats { font-size: .95rem; padding-left: 10px; }
+
+  /* Links in de kaartjes zijn als tekstregel maar ~22px hoog. Met extra
+     ruimte eromheen worden ze 44px en dus met een vinger te raken. */
+  .kaart a {
+    display: inline-block;
+    padding-block: 11px;
+  }
 }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .site-header .container { justify-content: center; }
   .knoppen .knop { flex: 1 1 auto; text-align: center; }
   .providerbalk p { width: 100%; text-align: center; }
+
+  .logo img { height: 42px; }
+  .logo { gap: 8px; }
+  .logo-plaats { font-size: .88rem; padding-left: 8px; }
+
+  .kaart { padding: 20px; }
+  .info-kaart { padding: 20px; }
+  .oproep { padding: 22px; }
+  .stappen li { padding-left: 42px; }
+
+  /* Tabellen mogen nooit de pagina breder maken dan het scherm. */
+  .tijden, .prijzen { display: block; overflow-x: auto; }
+}
+
+@media (max-width: 380px) {
+  /* Op de smalste toestellen wordt "Hoogeveen" naast het logo te krap. */
+  .logo-plaats { display: none; }
 }
