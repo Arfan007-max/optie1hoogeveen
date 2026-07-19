@@ -1,0 +1,280 @@
+/* Optie1 Hoogeveen — basisstijl
+   Geen externe afhankelijkheden: geen webfonts, geen CDN, geen tracking. */
+
+:root {
+  --blauw: #0b3d91;
+  --blauw-licht: #1456c7;
+  --blauw-zacht: #eef3fc;
+  --oranje: #e8730c;
+  --tekst: #1a1d23;
+  --tekst-zacht: #555c69;
+  --lijn: #dde2ea;
+  --wit: #ffffff;
+  --achtergrond: #f7f9fc;
+  --radius: 10px;
+  --max: 1100px;
+  --schaduw: 0 2px 12px rgba(11, 61, 145, 0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--tekst);
+  background: var(--achtergrond);
+}
+
+h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; font-weight: 700; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); }
+h3 { font-size: 1.15rem; }
+p { margin: 0 0 1em; }
+
+a { color: var(--blauw-licht); }
+a:hover { color: var(--blauw); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* --- Toegankelijkheid: skiplink --- */
+.skiplink {
+  position: absolute;
+  left: -9999px;
+  background: var(--blauw);
+  color: var(--wit);
+  padding: 12px 18px;
+  z-index: 100;
+}
+.skiplink:focus { left: 12px; top: 12px; }
+
+:focus-visible {
+  outline: 3px solid var(--oranje);
+  outline-offset: 2px;
+}
+
+/* --- Topbalk --- */
+.topbalk {
+  background: var(--blauw);
+  color: var(--wit);
+  font-size: .92rem;
+}
+.topbalk .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  justify-content: space-between;
+  padding-block: 8px;
+}
+.topbalk a { color: var(--wit); text-decoration: none; }
+.topbalk a:hover { text-decoration: underline; color: var(--wit); }
+
+/* --- Header / navigatie --- */
+.site-header {
+  background: var(--wit);
+  border-bottom: 1px solid var(--lijn);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--blauw);
+  text-decoration: none;
+  letter-spacing: -.02em;
+}
+.logo span { color: var(--oranje); }
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-nav a {
+  display: block;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  color: var(--tekst);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .97rem;
+}
+.site-nav a:hover { background: var(--blauw-zacht); color: var(--blauw); }
+.site-nav a[aria-current="page"] { background: var(--blauw); color: var(--wit); }
+
+/* --- Knoppen --- */
+.knop {
+  display: inline-block;
+  padding: 13px 24px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: background .15s ease, color .15s ease;
+}
+.knop-primair { background: var(--oranje); color: var(--wit); }
+.knop-primair:hover { background: #cf6408; color: var(--wit); }
+.knop-secundair { background: var(--wit); color: var(--blauw); border-color: var(--blauw); }
+.knop-secundair:hover { background: var(--blauw); color: var(--wit); }
+.knop-whatsapp { background: #25d366; color: #05331a; }
+.knop-whatsapp:hover { background: #1eb455; color: #05331a; }
+
+.knoppen { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* --- Hero --- */
+.hero {
+  background: linear-gradient(150deg, var(--blauw) 0%, #061f4d 100%);
+  color: var(--wit);
+  padding-block: clamp(48px, 8vw, 88px);
+}
+.hero h1 { color: var(--wit); max-width: 18ch; }
+.hero p { font-size: 1.12rem; max-width: 55ch; color: #dbe4f5; }
+.hero .knoppen { margin-top: 28px; }
+
+/* --- Secties --- */
+.sectie { padding-block: clamp(40px, 6vw, 72px); }
+.sectie-wit { background: var(--wit); }
+.sectie-kop { max-width: 60ch; margin-bottom: 32px; }
+.sectie-kop p { color: var(--tekst-zacht); }
+
+/* --- Kaartenraster --- */
+.raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+.kaart {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--schaduw);
+}
+.sectie-wit .kaart { background: var(--achtergrond); }
+.kaart h3 { color: var(--blauw); }
+.kaart p:last-child { margin-bottom: 0; }
+.kaart-icoon {
+  font-size: 1.7rem;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+/* --- Openingstijden --- */
+.tijden {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 420px;
+}
+.tijden th, .tijden td {
+  text-align: left;
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--lijn);
+}
+.tijden th { font-weight: 600; }
+.tijden td { text-align: right; color: var(--tekst-zacht); }
+.tijden .gesloten { color: #b3261e; }
+
+/* --- Lijst met vinkjes --- */
+.vinklijst { list-style: none; padding: 0; margin: 0 0 1em; }
+.vinklijst li {
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.vinklijst li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--oranje);
+  font-weight: 800;
+}
+
+/* --- Twee kolommen --- */
+.kolommen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 36px;
+  align-items: start;
+}
+
+/* --- Oproepblok --- */
+.oproep {
+  background: var(--blauw-zacht);
+  border-left: 5px solid var(--oranje);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.oproep h2 { margin-top: 0; }
+
+/* --- Prijstabel --- */
+.prijzen { width: 100%; border-collapse: collapse; }
+.prijzen th, .prijzen td {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--lijn);
+}
+.prijzen thead th { background: var(--blauw-zacht); color: var(--blauw); }
+
+/* --- Footer --- */
+.site-footer {
+  background: #0a1a33;
+  color: #c4cfe2;
+  padding-block: 44px 24px;
+  margin-top: 40px;
+  font-size: .95rem;
+}
+.site-footer h3 { color: var(--wit); font-size: 1rem; }
+.site-footer a { color: #9fc0f5; }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: 7px; }
+.footer-raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+.copyright {
+  border-top: 1px solid #1d3050;
+  margin-top: 32px;
+  padding-top: 18px;
+  font-size: .88rem;
+  color: #8296b5;
+}
+
+/* --- Invulmarkering: MOET vervangen worden voor livegang --- */
+.invullen {
+  background: #fff3cd;
+  color: #7a5b00;
+  border: 1px dashed #b58900;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: .9em;
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .site-header .container { justify-content: center; }
+  .knoppen .knop { flex: 1 1 auto; text-align: center; }
+}
