@@ -2,9 +2,11 @@
    Geen externe afhankelijkheden: geen webfonts, geen CDN, geen tracking. */
 
 :root {
-  --blauw: #0b3d91;
-  --blauw-licht: #1456c7;
-  --blauw-zacht: #eef3fc;
+  /* Blauwtinten afgeleid van het Optie1-logo (#008fd5), zodat de site en het
+     logo dezelfde kleurfamilie delen. */
+  --blauw: #0a6ea3;
+  --blauw-licht: #008fd5;
+  --blauw-zacht: #e6f4fb;
   --oranje: #e8730c;
   --tekst: #1a1d23;
   --tekst-zacht: #555c69;
@@ -80,13 +82,25 @@ img { max-width: 100%; height: auto; display: block; }
   flex-wrap: wrap;
 }
 .logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--blauw);
+  display: flex;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
-  letter-spacing: -.02em;
 }
-.logo span { color: var(--oranje); }
+/* Hoogte stuurt de weergave; width/height in de HTML voorkomen dat de pagina
+   verspringt terwijl het logo nog laadt. */
+.logo img {
+  height: 46px;
+  width: auto;
+}
+.logo-plaats {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tekst-zacht);
+  border-left: 2px solid var(--lijn);
+  padding-left: 12px;
+  white-space: nowrap;
+}
 
 .site-nav ul {
   display: flex;
@@ -129,12 +143,12 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Hero --- */
 .hero {
-  background: linear-gradient(150deg, var(--blauw) 0%, #061f4d 100%);
+  background: linear-gradient(150deg, var(--blauw) 0%, #05364f 100%);
   color: var(--wit);
   padding-block: clamp(48px, 8vw, 88px);
 }
 .hero h1 { color: var(--wit); max-width: 18ch; }
-.hero p { font-size: 1.12rem; max-width: 55ch; color: #dbe4f5; }
+.hero p { font-size: 1.12rem; max-width: 55ch; color: #d5e8f4; }
 .hero .knoppen { margin-top: 28px; }
 
 /* --- Secties --- */
@@ -223,14 +237,14 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Footer --- */
 .site-footer {
-  background: #0a1a33;
-  color: #c4cfe2;
+  background: #06293c;
+  color: #bdd3df;
   padding-block: 44px 24px;
   margin-top: 40px;
   font-size: .95rem;
 }
 .site-footer h3 { color: var(--wit); font-size: 1rem; }
-.site-footer a { color: #9fc0f5; }
+.site-footer a { color: #7fcdf2; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: 7px; }
 .footer-raster {
@@ -239,11 +253,11 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 32px;
 }
 .copyright {
-  border-top: 1px solid #1d3050;
+  border-top: 1px solid #12455f;
   margin-top: 32px;
   padding-top: 18px;
   font-size: .88rem;
-  color: #8296b5;
+  color: #7fa0b3;
 }
 
 /* --- Invulmarkering: MOET vervangen worden voor livegang --- */

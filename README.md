@@ -12,7 +12,14 @@ reparaties.html    Reparaties + tarieventabel
 over-ons.html      Over de winkel
 contact.html       Contactgegevens, openingstijden, route
 assets/css/style.css
+assets/img/optie1-logo.png    Logo in de header
 ```
+
+## Logo
+
+De header verwijst naar `assets/img/optie1-logo.png`. Dat bestand moet er zijn,
+anders tonen alle pagina's een gebroken afbeelding. Vervang je het logo ooit,
+houd dan dezelfde bestandsnaam aan — dan hoeft er geen HTML aangepast te worden.
 
 ## VOOR LIVEGANG INVULLEN
 
