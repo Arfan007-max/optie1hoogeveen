@@ -7,7 +7,7 @@ De bestanden die je hier ziet zijn precies de bestanden die op de server komen.
 
 ```
 index.html         Home
-diensten.html      Smartphones, internet/tv, smart home
+diensten.html      Smartphones, tablets, abonnementen
 reparaties.html    Reparaties + tarieventabel
 over-ons.html      Over de winkel
 contact.html       Contactgegevens, openingstijden, route
