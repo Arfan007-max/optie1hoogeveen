@@ -2,20 +2,29 @@
    Geen externe afhankelijkheden: geen webfonts, geen CDN, geen tracking. */
 
 :root {
-  /* Blauwtinten afgeleid van het Optie1-logo (#008fd5), zodat de site en het
-     logo dezelfde kleurfamilie delen. */
-  --blauw: #0a6ea3;
-  --blauw-licht: #008fd5;
-  --blauw-zacht: #e6f4fb;
-  --oranje: #e8730c;
-  --tekst: #1a1d23;
-  --tekst-zacht: #555c69;
-  --lijn: #dde2ea;
+  /* Huisstijlkleuren, overgenomen van de moedersite optie1.nl.
+     --blauw-accent en --blauw-kop komen daar letterlijk vandaan.
+     --blauw-knop is bewust een tint donkerder: op #00ADEF is witte tekst
+     onleesbaar (contrast 2,4:1). Deze tint haalt de toegankelijkheidsnorm. */
+  --blauw-accent: #00adef;
+  --blauw-kop:    #0193cf;
+  --blauw:        #008bcb;
+  --blauw-knop:   #0077b3;
+  /* Iets donkerder dan --blauw-knop: nodig om ook op de grijze kaartachtergrond
+     (#f4f5f5) de contrastnorm van 4,5:1 te halen voor kleine koppen. */
+  --blauw-kop-klein: #006e9e;
+  --blauw-donker: #005a87;
+  --blauw-zacht:  #effaff;
+  --grijs-zacht:  #f4f5f5;
+
+  --tekst: #333333;
+  --tekst-zacht: #5f5f5f;
+  --lijn: #d9e6ee;
   --wit: #ffffff;
-  --achtergrond: #f7f9fc;
+  --achtergrond: var(--grijs-zacht);
   --radius: 10px;
   --max: 1100px;
-  --schaduw: 0 2px 12px rgba(11, 61, 145, 0.08);
+  --schaduw: 0 2px 12px rgba(0, 139, 203, 0.10);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -24,20 +33,27 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* De moedersite gebruikt "Sinkin Sans" met "Open Sans" als terugval.
+     Sinkin Sans is licentieplichtig; vraag die op bij de franchiseorganisatie.
+     Zolang er geen lettertypebestanden zijn, valt de site terug op de
+     systeemletter — die lijkt er sterk op en kost geen laadtijd. */
+  font-family: "Sinkin Sans", "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-size: 17px;
   line-height: 1.65;
   color: var(--tekst);
   background: var(--achtergrond);
 }
 
-h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; font-weight: 700; }
-h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
-h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); }
-h3 { font-size: 1.15rem; }
+/* Koppen op gewicht 600 en in de huisstijlblauwe tint, net als op optie1.nl. */
+h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; font-weight: 600; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); color: var(--blauw-kop); }
+h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--blauw-kop); }
+/* h3 is te klein om als "grote tekst" te gelden en heeft daarom een donkerder
+   blauw nodig om leesbaar te blijven (contrast 4,5:1 in plaats van 3:1). */
+h3 { font-size: 1.15rem; color: var(--blauw-kop-klein); }
 p { margin: 0 0 1em; }
 
-a { color: var(--blauw-licht); }
+a { color: var(--blauw-knop); }
 a:hover { color: var(--blauw); }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -61,7 +77,7 @@ img { max-width: 100%; height: auto; display: block; }
 .skiplink:focus { left: 12px; top: 12px; }
 
 :focus-visible {
-  outline: 3px solid var(--oranje);
+  outline: 3px solid var(--blauw-accent);
   outline-offset: 2px;
 }
 
@@ -90,7 +106,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* Hoogte stuurt de weergave; width/height in de HTML voorkomen dat de pagina
    verspringt terwijl het logo nog laadt. */
 .logo img {
-  height: 46px;
+  height: 64px;
   width: auto;
 }
 .logo-plaats {
@@ -110,17 +126,20 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0;
   padding: 0;
 }
+/* Kapitalen in het menu, zoals op de moedersite. */
 .site-nav a {
   display: block;
-  padding: 8px 14px;
+  padding: 8px 13px;
   border-radius: var(--radius);
   color: var(--tekst);
   text-decoration: none;
   font-weight: 600;
-  font-size: .97rem;
+  font-size: .84rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
 }
-.site-nav a:hover { background: var(--blauw-zacht); color: var(--blauw); }
-.site-nav a[aria-current="page"] { background: var(--blauw); color: var(--wit); }
+.site-nav a:hover { background: var(--blauw-zacht); color: var(--blauw-knop); }
+.site-nav a[aria-current="page"] { background: var(--blauw-knop); color: var(--wit); }
 
 /* --- Knoppen --- */
 .knop {
@@ -132,8 +151,8 @@ img { max-width: 100%; height: auto; display: block; }
   border: 2px solid transparent;
   transition: background .15s ease, color .15s ease;
 }
-.knop-primair { background: var(--oranje); color: var(--wit); }
-.knop-primair:hover { background: #cf6408; color: var(--wit); }
+.knop-primair { background: var(--blauw-knop); color: var(--wit); }
+.knop-primair:hover { background: var(--blauw-donker); color: var(--wit); }
 .knop-secundair { background: var(--wit); color: var(--blauw); border-color: var(--blauw); }
 .knop-secundair:hover { background: var(--blauw); color: var(--wit); }
 .knop-whatsapp { background: #25d366; color: #05331a; }
@@ -143,12 +162,13 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Hero --- */
 .hero {
-  background: linear-gradient(150deg, var(--blauw) 0%, #05364f 100%);
-  color: var(--wit);
+  /* Licht en luchtig, zoals de moedersite. Geen donker vlak meer. */
+  background: var(--blauw-zacht);
+  border-bottom: 1px solid var(--lijn);
   padding-block: clamp(48px, 8vw, 88px);
 }
-.hero h1 { color: var(--wit); max-width: 18ch; }
-.hero p { font-size: 1.12rem; max-width: 55ch; color: #d5e8f4; }
+.hero h1 { color: var(--blauw-kop); max-width: 18ch; }
+.hero p { font-size: 1.12rem; max-width: 55ch; color: var(--tekst-zacht); }
 .hero .knoppen { margin-top: 28px; }
 
 /* --- Secties --- */
@@ -160,7 +180,9 @@ img { max-width: 100%; height: auto; display: block; }
 /* --- Kaartenraster --- */
 .raster {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* 230px zodat de vier dienstenkaartjes op een breed scherm op één rij passen
+     in plaats van dat er één alleen op de tweede rij achterblijft. */
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 22px;
 }
 .kaart {
@@ -171,7 +193,7 @@ img { max-width: 100%; height: auto; display: block; }
   box-shadow: var(--schaduw);
 }
 .sectie-wit .kaart { background: var(--achtergrond); }
-.kaart h3 { color: var(--blauw); }
+.kaart h3 { color: var(--blauw-kop-klein); }
 .kaart p:last-child { margin-bottom: 0; }
 .kaart-icoon {
   font-size: 1.7rem;
@@ -205,7 +227,7 @@ img { max-width: 100%; height: auto; display: block; }
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--oranje);
+  color: var(--blauw-accent);
   font-weight: 800;
 }
 
@@ -220,7 +242,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* --- Oproepblok --- */
 .oproep {
   background: var(--blauw-zacht);
-  border-left: 5px solid var(--oranje);
+  border-left: 5px solid var(--blauw-accent);
   border-radius: var(--radius);
   padding: 28px;
 }
@@ -237,14 +259,14 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Footer --- */
 .site-footer {
-  background: #06293c;
-  color: #bdd3df;
+  background: var(--blauw-donker);
+  color: #cfe6f2;
   padding-block: 44px 24px;
   margin-top: 40px;
   font-size: .95rem;
 }
 .site-footer h3 { color: var(--wit); font-size: 1rem; }
-.site-footer a { color: #7fcdf2; }
+.site-footer a { color: #a5dcf7; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: 7px; }
 .footer-raster {
@@ -253,11 +275,11 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 32px;
 }
 .copyright {
-  border-top: 1px solid #12455f;
+  border-top: 1px solid #14719e;
   margin-top: 32px;
   padding-top: 18px;
   font-size: .88rem;
-  color: #7fa0b3;
+  color: #9dc4d8;
 }
 
 /* --- Invulmarkering: MOET vervangen worden voor livegang --- */
