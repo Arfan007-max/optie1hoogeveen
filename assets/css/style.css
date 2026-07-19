@@ -63,22 +63,6 @@ img { max-width: 100%; height: auto; display: block; }
   outline-offset: 2px;
 }
 
-/* --- Topbalk --- */
-.topbalk {
-  background: var(--blauw);
-  color: var(--wit);
-  font-size: .92rem;
-}
-.topbalk .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-  justify-content: space-between;
-  padding-block: 8px;
-}
-.topbalk a { color: var(--wit); text-decoration: none; }
-.topbalk a:hover { text-decoration: underline; color: var(--wit); }
-
 /* --- Header / navigatie --- */
 .site-header {
   background: var(--wit);
