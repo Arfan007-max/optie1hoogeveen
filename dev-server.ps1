@@ -71,15 +71,21 @@ while ($listener.IsListening) {
 
       $bytes = [System.IO.File]::ReadAllBytes($volledig)
       $response.ContentLength64 = $bytes.Length
-      $response.OutputStream.Write($bytes, 0, $bytes.Length)
-      Write-Host "200  $pad"
+      # Bij een HEAD-verzoek vraagt de client alleen de headers op. Dan wel de
+      # lengte meesturen, maar geen inhoud wegschrijven: dat levert een fout op.
+      if ($request.HttpMethod -ne 'HEAD') {
+        $response.OutputStream.Write($bytes, 0, $bytes.Length)
+      }
+      Write-Host "200  $($request.HttpMethod)  $pad"
     } else {
       $response.StatusCode = 404
       $bericht = [System.Text.Encoding]::UTF8.GetBytes("404 - niet gevonden: $pad")
       $response.ContentType = 'text/plain; charset=utf-8'
       $response.ContentLength64 = $bericht.Length
-      $response.OutputStream.Write($bericht, 0, $bericht.Length)
-      Write-Host "404  $pad"
+      if ($request.HttpMethod -ne 'HEAD') {
+        $response.OutputStream.Write($bericht, 0, $bericht.Length)
+      }
+      Write-Host "404  $($request.HttpMethod)  $pad"
     }
 
     $response.Close()
