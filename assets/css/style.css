@@ -201,11 +201,6 @@ img { max-width: 100%; height: auto; display: block; }
 .sectie-wit .kaart { background: var(--achtergrond); }
 .kaart h3 { color: var(--blauw-kop-klein); }
 .kaart p:last-child { margin-bottom: 0; }
-.kaart-icoon {
-  font-size: 1.7rem;
-  line-height: 1;
-  margin-bottom: 12px;
-}
 
 /* --- Openingstijden --- */
 .tijden {
