@@ -228,10 +228,6 @@ img { max-width: 100%; height: auto; display: block; }
 /* Gecentreerd boven de iconenrij. Beide staan in dezelfde container en zijn
    allebei op het midden uitgelijnd, dus de kop komt precies boven de middelste
    knop uit — ook als de rij op een smal scherm afbreekt. */
-.contact-kop {
-  text-align: center;
-  margin-bottom: 28px;
-}
 .contact-iconen {
   display: flex;
   flex-wrap: wrap;
@@ -815,6 +811,25 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--blauw-kop-klein);
   font-size: .95rem;
 }
+
+/* Merken op de homepage: dezelfde pil-vorm als .provider, maar als lijst zodat
+   het ook zonder opmaak een nette opsomming blijft. */
+.merkenlijst {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Kaart die de seniorentoestellen apart licht uit. Witte kaart op het blauwe
+   vlak van deze sectie, zodat hij opvalt tussen de merken erboven. */
+.kaart-senioren {
+  background: var(--wit);
+}
+.kaart-senioren h3 { margin-bottom: .4em; }
+.kaart-senioren p:last-child { margin-bottom: 0; }
 
 /* --- Uitgelichte band (donkere sectie voor ritme in de pagina) --- */
 .band {
