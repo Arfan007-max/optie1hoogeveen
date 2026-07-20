@@ -548,6 +548,92 @@ img { max-width: 100%; height: auto; display: block; }
   cursor: not-allowed;
 }
 
+/* --- Toestelkaarten op de webshoppagina ---
+   Opbouw en verhoudingen zijn afgekeken van de moedersite optie1.nl: merk
+   groot en blauw, model kleiner en grijs eronder, dan de foto, dan de
+   gegevens, en onderaan de knop. De kleuren komen uit onze eigen variabelen
+   en niet uit hun stylesheet, zodat deze pagina bij de rest van de site blijft
+   passen en niet los gaat zweven.
+
+   Flexkolom zodat de reserveerknop onderaan uitlijnt, ook als de ene kaart een
+   langere modelnaam heeft dan de andere. Zonder dit zweeft elke knop op een
+   eigen hoogte en oogt de rij rommelig. */
+.kaart-toestel {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* Ruimere ronding dan de andere kaarten, zoals op optie1.nl. */
+  border-radius: 22px;
+}
+/* De laatste alinea bevat de knop. `margin-top: auto` duwt die naar beneden;
+   de ruimte die overblijft komt dus bóven de knop terecht. */
+.kaart-toestel > p:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 16px;
+}
+
+/* Merk en model staan samen in één h3: een kop hoort het product te benoemen,
+   en een schermlezer leest zo "Samsung Galaxy S26" in één keer voor. Het
+   verschil in grootte en kleur is puur opmaak. */
+.toestel-naam { margin-bottom: 14px; }
+.toestel-merk,
+.toestel-model { display: block; }
+.toestel-merk {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--blauw);
+  line-height: 1.2;
+}
+.toestel-model {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--tekst-zacht);
+  margin-top: 2px;
+}
+
+/* Vak waar de productfoto komt. Een vaste verhouding houdt de kaarten even
+   hoog zolang de foto's er nog niet zijn, zodat de rij nu al klopt. Zodra er
+   een <img> in staat, valt de stippellijn en de tekst vanzelf weg. */
+.toestel-foto {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  border: 2px dashed var(--lijn);
+  border-radius: var(--radius);
+  color: var(--tekst-zacht);
+  font-size: .85rem;
+}
+.toestel-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.toestel-foto:has(img) {
+  border: 0;
+}
+
+.toestel-specs {
+  font-size: .9rem;
+  color: var(--tekst-zacht);
+  margin-bottom: 10px;
+}
+.toestel-prijs {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--blauw-donker);
+  margin-bottom: 12px;
+}
+.toestel-vraag {
+  font-weight: 700;
+  color: var(--blauw-donker);
+  margin-bottom: 0;
+}
+/* De knop vult de kaart in de breedte: zes kaarten naast elkaar met elk een
+   even brede knop leest rustiger dan zes knoppen op modelnaamlengte. */
+.kaart-toestel .knop-reserveer { width: 100%; }
+
 /* De twee knoppen onder het afspraakformulier even breed, naast elkaar en
    samen gecentreerd. `flex: 1 1 12rem` doet het werk: gelijke basisbreedte
    plus gelijke groei betekent dat ze even breed eindigen, hoe lang de tekst

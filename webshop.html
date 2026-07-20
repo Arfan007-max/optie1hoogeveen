@@ -4,12 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Webshop — Optie1 Hoogeveen</title>
-<meta name="description" content="Binnenkort kunt u bij Optie1 Hoogeveen online een toestel reserveren en in de winkel ophalen. Nu al reserveren? Bel of app ons.">
+<meta name="description" content="Reserveer online een smartphone of tablet bij Optie1 Hoogeveen en haal hem op in de winkel. Wij maken het toestel gebruiksklaar en zetten uw gegevens over.">
 <link rel="canonical" href="https://www.optie1hoogeveen.nl/webshop.html">
 <link rel="stylesheet" href="assets/css/style.css">
 <meta name="theme-color" content="#0a6ea3">
-<!-- Deze pagina is nog niet af: er is nog geen catalogus en geen reserveersysteem.
-     Zolang dat zo is, stuurt de pagina bezoekers bewust naar telefoon en WhatsApp. -->
+<!--
+  LET OP — DE TOESTELLEN HIERONDER ZIJN NOG NIET INGEVULD.
+  Elke kaart heeft een geel gemarkeerd MODEL INVULLEN en PRIJS INVULLEN. Vul die
+  in met de toestellen die u werkelijk verkoopt, of haal de kaart weg. Er staan
+  nu zes kaarten als voorbeeld; meer of minder mag, de rij vult zichzelf op.
+
+  Zet nooit een toestel op de pagina dat u niet kunt leveren: iemand reserveert
+  het dan en staat voor niets in de winkel. Zie ook de uitleg in README.md.
+-->
 </head>
 <body>
 <a class="skiplink" href="#hoofd">Naar hoofdinhoud</a>
@@ -41,46 +48,139 @@
   <section class="hero">
     <div class="container">
       <h1>Online reserveren, in de winkel ophalen</h1>
-      <p>We werken aan een webshop waarin u een smartphone of tablet kunt reserveren en op een moment dat u uitkomt ophaalt in de Hoofdstraat. Betalen doet u gewoon in de winkel.</p>
-      <div class="knoppen">
-        <a class="knop knop-whatsapp" href="https://wa.me/31528235734">Reserveer via WhatsApp</a>
-        <a class="knop knop-primair" href="tel:+31528235734">Bel 0528 - 23 57 34</a>
+      <p>Reserveer een smartphone of tablet en haal hem op in de Hoofdstraat. Wij maken het toestel gebruiksklaar en zetten uw gegevens over, zodat u de winkel uit loopt met een telefoon die het meteen doet. Betalen doet u pas bij het ophalen.</p>
+    </div>
+  </section>
+
+  <!--
+    TOESTELLEN
+    Opbouw overgenomen van de moedersite optie1.nl: merk boven, model eronder,
+    dan de foto, dan kleuren en opslag, en onderaan de knop. Zo herkent een
+    klant die van optie1.nl komt de indeling meteen.
+
+    Elke kaart is één toestel. Kopiëren of weghalen mag; het raster vult zich
+    vanzelf op.
+
+    De knop onderaan gaat naar reserveren.html en geeft het model mee. U hoeft
+    daar niets voor in te stellen: het model wordt uit de kop van de kaart
+    gelezen. Verandert u de kop, dan verandert de knop vanzelf mee. Zolang de
+    kop nog op INVULLEN staat, geeft de knop niets door en komt de bezoeker op
+    een leeg formulier uit.
+
+    FOTO'S: de lege vakken hieronder wachten op een productfoto. Haal die bij
+    het dealerportaal of de fabrikant, net als de providerlogo's — het zijn
+    beschermde merkafbeeldingen, dus niet zomaar van optie1.nl of Google
+    plukken. Zet ze in assets/img/toestellen/ en vervang het vak door:
+        <img src="assets/img/toestellen/naam.png" alt="" width="300" height="300">
+    De alt-tekst mag leeg: het model staat al als tekst in de kop, en een
+    schermlezer zou het anders twee keer voorlezen.
+  -->
+  <section class="sectie sectie-wit">
+    <div class="container">
+      <div class="sectie-kop-midden">
+        <h2>Toestellen</h2>
+        <p>Wat er nu in de winkel ligt. Staat het toestel dat u zoekt er niet bij? Vraag het gerust — we bestellen ook.</p>
+      </div>
+
+      <div class="raster raster-drie">
+
+        <article class="kaart kaart-toestel">
+          <h3 class="toestel-naam">
+            <span class="toestel-merk"><span class="invullen">MERK</span></span>
+            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
+          </h3>
+          <div class="toestel-foto">Foto</div>
+          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
+          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
+          <p class="toestel-vraag">Weten wat bij u past?</p>
+          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
+        </article>
+
+        <article class="kaart kaart-toestel">
+          <h3 class="toestel-naam">
+            <span class="toestel-merk"><span class="invullen">MERK</span></span>
+            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
+          </h3>
+          <div class="toestel-foto">Foto</div>
+          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
+          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
+          <p class="toestel-vraag">Weten wat bij u past?</p>
+          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
+        </article>
+
+        <article class="kaart kaart-toestel">
+          <h3 class="toestel-naam">
+            <span class="toestel-merk"><span class="invullen">MERK</span></span>
+            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
+          </h3>
+          <div class="toestel-foto">Foto</div>
+          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
+          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
+          <p class="toestel-vraag">Weten wat bij u past?</p>
+          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
+        </article>
+
+        <article class="kaart kaart-toestel">
+          <h3 class="toestel-naam">
+            <span class="toestel-merk"><span class="invullen">MERK</span></span>
+            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
+          </h3>
+          <div class="toestel-foto">Foto</div>
+          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
+          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
+          <p class="toestel-vraag">Weten wat bij u past?</p>
+          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
+        </article>
+
+        <article class="kaart kaart-toestel">
+          <h3 class="toestel-naam">
+            <span class="toestel-merk"><span class="invullen">MERK</span></span>
+            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
+          </h3>
+          <div class="toestel-foto">Foto</div>
+          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
+          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
+          <p class="toestel-vraag">Weten wat bij u past?</p>
+          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
+        </article>
+
+        <article class="kaart kaart-toestel">
+          <h3 class="toestel-naam">
+            <span class="toestel-merk"><span class="invullen">MERK</span></span>
+            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
+          </h3>
+          <div class="toestel-foto">Foto</div>
+          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
+          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
+          <p class="toestel-vraag">Weten wat bij u past?</p>
+          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
+        </article>
+
       </div>
     </div>
   </section>
 
   <section class="sectie sectie-wit">
     <div class="container">
-      <div class="oproep">
-        <h2>Nu al een toestel reserveren?</h2>
-        <p>Dat kan vandaag ook al, alleen nog niet via een knop op deze pagina. Stuur ons het merk en model dat u zoekt via WhatsApp of bel even. We laten weten of het op voorraad is en leggen het voor u apart.</p>
-        <p>U zit nergens aan vast: past het toestel bij nader inzien toch niet, dan laat u het staan.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sectie">
-    <div class="container">
-      <div class="sectie-kop">
-        <h2>Wat u straks kunt verwachten</h2>
-        <p>Waar we op dit moment aan werken.</p>
+      <div class="sectie-kop-midden">
+        <h2>Hoe het werkt</h2>
       </div>
       <div class="raster">
         <article class="kaart">
-          <h3>Voorraad inzien</h3>
-          <p>Zien welke toestellen in de winkel liggen, zodat u niet voor niets langskomt.</p>
+          <h3>1. U reserveert</h3>
+          <p>Klik bij een toestel op Reserveren, dan opent WhatsApp met het model er al in. Bellen mag natuurlijk ook. Reserveren kost niets en u zit nergens aan vast.</p>
         </article>
         <article class="kaart">
-          <h3>Reserveren zonder betalen</h3>
-          <p>U legt een toestel vast en rekent pas af als u het in handen heeft.</p>
+          <h3>2. Wij bevestigen</h3>
+          <p>We kijken of het toestel er is en bellen u om af te spreken wanneer u langskomt.</p>
         </article>
         <article class="kaart">
-          <h3>Toestel met abonnement</h3>
-          <p>Een toestel combineren met een abonnement van KPN, Vodafone, Odido, Ben of Lebara.</p>
+          <h3>3. Wij maken hem klaar</h3>
+          <p>Uw gegevens van het oude toestel worden overgezet en het toestel wordt ingesteld. U hoeft thuis niets meer te doen.</p>
         </article>
         <article class="kaart">
-          <h3>Ophalen wanneer het u uitkomt</h3>
-          <p>U kiest een dag; wij zorgen dat het klaarligt en gebruiksklaar is.</p>
+          <h3>4. U haalt hem op</h3>
+          <p>Betalen doet u in de winkel. We lopen het toestel samen met u door voordat u weggaat.</p>
         </article>
       </div>
     </div>
@@ -95,6 +195,7 @@
 </footer>
 
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/reserveren.js" defer></script>
 
 </body>
 </html>

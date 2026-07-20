@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toestel reserveren — Optie1 Hoogeveen</title>
+<meta name="description" content="Reserveer een smartphone of tablet bij Optie1 Hoogeveen. Wij laten weten of het toestel op voorraad is en wanneer het klaarligt. Reserveren kost niets.">
+<link rel="canonical" href="https://www.optie1hoogeveen.nl/reserveren.html">
+<link rel="stylesheet" href="assets/css/style.css">
+<meta name="theme-color" content="#0a6ea3">
+<!-- Deze pagina hoort niet thuis in de zoekresultaten: hij heeft alleen zin
+     als je vanaf de webshoppagina komt, en los gevonden zegt een kaal
+     formulier een bezoeker niets. De webshoppagina zelf blijft wel vindbaar.
+     Zelfde afweging als bij afspraak.html. -->
+<meta name="robots" content="noindex, follow">
+</head>
+<body class="pagina-wit">
+<a class="skiplink" href="#hoofd">Naar hoofdinhoud</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <img src="assets/img/optie1-logo.png" alt="Optie1 — jouw eerste keus in telecom" width="646" height="220">
+      <span class="logo-plaats">Hoogeveen</span>
+    </a>
+    <button class="menu-knop" type="button" aria-expanded="false" aria-controls="hoofdmenu" hidden>
+      <span class="menu-streepjes" aria-hidden="true"><span></span><span></span><span></span></span>
+      Menu
+    </button>
+    <!-- Deze pagina staat bewust niet in het menu: hij is een vervolgstap vanaf
+         de webshop, geen eigen hoofdonderwerp. Daarom krijgt geen enkel
+         menu-item hier aria-current; dat zou onwaar zijn. -->
+    <nav class="site-nav" id="hoofdmenu" aria-label="Hoofdmenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="diensten.html">Abonnementen</a></li>
+        <li><a href="reparaties.html">Reparaties</a></li>
+        <li><a href="webshop.html">Webshop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="hoofd">
+
+  <section class="hero">
+    <div class="container">
+      <h1>Toestel reserveren</h1>
+      <p>Vul hieronder in welk toestel u wilt. We laten weten of het op voorraad is en wanneer het klaarligt. Reserveren kost niets en u zit nergens aan vast — past het toestel bij nader inzien toch niet, dan laat u het staan.</p>
+    </div>
+  </section>
+
+  <!--
+    RESERVEERFORMULIER
+    Verstuurt via Web3Forms, zie assets/js/reserveren.js. Werkt zonder eigen
+    server; de aanvraag komt binnen op optie1hoogeveen@gmail.com.
+
+    Het toestelveld wordt gevuld met wat er in de webadresregel staat, dus
+    reserveren.html?toestel=Samsung%20Galaxy%20S26. Dat zet de knop op de
+    webshoppagina er zelf in. Komt iemand hier zonder die toevoeging, dan is
+    het veld gewoon leeg en typt hij zelf.
+
+    Bewust géén keuze van ophaaldag, terwijl het afspraakformulier die wél
+    heeft. Bij een reservering moet eerst gekeken worden of het toestel er is;
+    een ophaalmoment kiezen vóór dat vaststaat zou een afspraak maken over iets
+    wat er misschien niet ligt. We bellen dus eerst, en spreken dan af.
+  -->
+  <section class="sectie sectie-wit" id="reserveren">
+    <div class="container">
+
+      <form class="formulier" id="reserveer-formulier" novalidate>
+
+        <div class="veld">
+          <label for="r-naam">Uw naam</label>
+          <input type="text" id="r-naam" name="naam" autocomplete="name" required>
+        </div>
+
+        <div class="veld">
+          <label for="r-telefoon">Uw telefoonnummer</label>
+          <input type="tel" id="r-telefoon" name="telefoon" autocomplete="tel" required>
+        </div>
+
+        <div class="veld">
+          <label for="r-email">Uw e-mailadres <span class="veld-optioneel">(niet verplicht)</span></label>
+          <input type="email" id="r-email" name="email" autocomplete="email">
+          <p class="veld-uitleg">Laat u dit leeg, dan bellen we u terug op het nummer hierboven.</p>
+        </div>
+
+        <div class="veld">
+          <label for="r-toestel">Welk toestel wilt u reserveren?</label>
+          <input type="text" id="r-toestel" name="toestel" placeholder="Bijvoorbeeld: Samsung Galaxy S26 of iPhone 17" required>
+          <p class="veld-uitleg">Klopt dit niet, of wilt u iets anders? Wijzig het gerust.</p>
+        </div>
+
+        <div class="veld">
+          <label for="r-abonnement">Wilt u er een abonnement bij? <span class="veld-optioneel">(niet verplicht)</span></label>
+          <select id="r-abonnement" name="abonnement">
+            <option value="">Nog niet beslist</option>
+            <option value="Nee, alleen het toestel">Nee, alleen het toestel</option>
+            <option value="Ja, graag advies">Ja, graag advies over welk abonnement past</option>
+            <option value="Ja, ik heb er al een">Ja, ik heb er al een en wil die houden</option>
+          </select>
+        </div>
+
+        <div class="veld">
+          <label for="r-opmerking">Vragen of opmerkingen <span class="veld-optioneel">(niet verplicht)</span></label>
+          <textarea id="r-opmerking" name="opmerking" rows="4" placeholder="Bijvoorbeeld: graag in het zwart, of ik wil mijn gegevens van mijn oude toestel laten overzetten"></textarea>
+        </div>
+
+        <!-- Honeypot: onzichtbaar voor bezoekers, ingevuld door spambots.
+             Is dit veld gevuld, dan versturen we niets. -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="r-website">Laat dit veld leeg</label>
+          <input type="text" id="r-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- role="alert" zorgt dat een schermlezer de melding voorleest zodra
+             die verschijnt; zonder dat blijft een foutmelding onopgemerkt. -->
+        <p class="formulier-fout" id="reserveer-fout" role="alert" hidden></p>
+
+        <div class="knoppen knoppen-formulier">
+          <button type="submit" class="knop knop-rood" id="reserveer-knop">Reservering aanvragen</button>
+          <button type="button" class="knop knop-whatsapp" id="reserveer-whatsapp">Verstuur met WhatsApp</button>
+        </div>
+
+        <p class="formulier-klein">Met de groene knop opent WhatsApp met uw gegevens er al in; u drukt daar zelf op verzenden. Reserveren verplicht u tot niets en betalen doet u pas in de winkel.</p>
+
+      </form>
+
+      <div class="formulier-gelukt" id="reserveer-gelukt" role="status" hidden>
+        <h2>Bedankt, uw reservering is aangevraagd</h2>
+        <p>We kijken of het toestel op voorraad is en nemen zo snel mogelijk contact met u op om af te spreken wanneer het klaarligt. Heeft u haast? Bel gerust <a href="tel:+31528235734">0528 - 23 57 34</a>.</p>
+        <p><a href="webshop.html">Terug naar de toestellen</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sectie sectie-wit">
+    <div class="container">
+      <p><a class="knop knop-blauw" href="webshop.html">&larr; Terug</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="copyright">www.optie1hoogeveen.nl</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/reserveren.js" defer></script>
+
+</body>
+</html>
