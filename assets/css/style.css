@@ -525,6 +525,7 @@ img { max-width: 100%; height: auto; display: block; }
    een invoerveld kleiner dan 16px scherpstelt, en dan springt de hele
    pagina scheef. */
 .veld input,
+.veld select,
 .veld textarea {
   width: 100%;
   font: inherit;
@@ -537,7 +538,64 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .veld textarea { resize: vertical; min-height: 120px; }
 .veld input:focus,
+.veld select:focus,
 .veld textarea:focus { border-color: var(--blauw); }
+/* Staat de lijst met tijden nog uit, dan hoort hij daar ook uit te zien.
+   Zonder dit verschil lijkt het veld gewoon leeg en gaan mensen erop klikken. */
+.veld select:disabled {
+  background: var(--achtergrond);
+  color: var(--tekst-zacht);
+  cursor: not-allowed;
+}
+
+/* De twee knoppen onder het afspraakformulier even breed, naast elkaar en
+   samen gecentreerd. `flex: 1 1 12rem` doet het werk: gelijke basisbreedte
+   plus gelijke groei betekent dat ze even breed eindigen, hoe lang de tekst
+   erin ook is. Anders wordt de knop met het langste opschrift de breedste en
+   staat het paar scheef onder het formulier.
+
+   De 12rem is ook de omslag naar onder elkaar: passen ze samen niet meer op
+   een regel, dan breekt de rij en neemt elke knop zijn eigen regel. Op een
+   telefoon hoeft daar dus geen media query voor. */
+.knoppen-formulier { justify-content: center; }
+.knoppen-formulier .knop {
+  flex: 1 1 12rem;
+  text-align: center;
+}
+
+/* --- Dag en tijd op het afspraakformulier ---
+   Een fieldset omdat de twee velden samen één vraag beantwoorden; een
+   schermlezer noemt de legend dan bij allebei. De browserstandaard voor
+   fieldset (rand, eigen marges) staat uit, zodat het blok er hetzelfde
+   uitziet als de andere velden eromheen. */
+.veld-groep {
+  border: 0;
+  padding: 0;
+  margin-inline: 0;
+  min-width: 0;
+}
+.veld-groep legend {
+  padding: 0;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--blauw-donker);
+}
+/* De twee velden naast elkaar, en onder elkaar zodra dat niet meer past.
+   Geen media query nodig: onder de 22rem valt de tweede kolom vanzelf weg. */
+.veld-duo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 14px;
+}
+/* Kleiner dan de legend erboven: dit zijn onderdelen van die ene vraag, geen
+   losse vragen. */
+.veld-duo label {
+  display: block;
+  font-weight: 400;
+  font-size: .9rem;
+  margin-bottom: 4px;
+  color: var(--tekst-zacht);
+}
 
 /* Buiten beeld maar wél invulbaar voor een bot. Bewust niet `display: none`
    of `hidden`: veel bots slaan velden over die echt verborgen zijn, en dan
