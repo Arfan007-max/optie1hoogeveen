@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Diensten — Optie1 Hoogeveen</title>
-<meta name="description" content="Smartphones, tablets en abonnementen van KPN, Vodafone, Odido, Ben en Lebara. Persoonlijk advies bij Optie1 in Hoogeveen.">
+<meta name="description" content="Smartphones, tablets en abonnementen van KPN, Vodafone, Odido, Ben, Lebara en hollandsnieuwe. Persoonlijk advies bij Optie1 in Hoogeveen.">
 <link rel="canonical" href="https://www.optie1hoogeveen.nl/diensten.html">
 <link rel="stylesheet" href="assets/css/style.css">
 <meta name="theme-color" content="#0a6ea3">
@@ -38,82 +38,61 @@
 
   <section class="hero">
     <div class="container">
-      <h1>Onze diensten</h1>
+      <h1><span class="kop-sterk">Abonnementen van alle providers</span><span class="kop-zacht">en wij zijn onafhankelijk</span></h1>
       <p>Van een nieuw toestel tot het juiste abonnement. We regelen het van begin tot eind, zodat u er verder geen omkijken naar heeft.</p>
     </div>
   </section>
 
-  <section class="sectie sectie-wit">
-    <div class="container kolommen">
-      <div>
-        <h2>Smartphones</h2>
-        <p>Een nieuwe telefoon uitzoeken is lastig als de verschillen op papier klein lijken. We vragen waar u het toestel vooral voor gebruikt en adviseren op basis daarvan — niet op basis van wat toevallig in de aanbieding is.</p>
-        <ul class="vinklijst">
-          <li>Toestellen met of zonder abonnement</li>
-          <li>Gegevens overzetten van uw oude naar uw nieuwe toestel</li>
-          <li>Instellen van e-mail, apps en back-up</li>
-          <li>Hoesjes, screenprotectors, opladers en kabels</li>
-        </ul>
-      </div>
-      <div>
-        <h2>Tablets</h2>
-        <p>Om op te lezen, te videobellen met de kleinkinderen of mee te werken. Een tablet hoeft niet duur te zijn om te doen wat u ervan verwacht — we kijken samen wat genoeg is.</p>
-        <ul class="vinklijst">
-          <li>Tablets met of zonder mobiel internet</li>
-          <li>Gebruiksklaar maken: accounts, e-mail en apps</li>
-          <li>Uitleg op uw tempo, ook als u er nog nooit mee gewerkt heeft</li>
-          <li>Hoezen, toetsenborden en screenprotectors</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <!-- De secties "Smartphones" en "Tablets" stonden hier. Weggehaald omdat deze
+       pagina alleen nog over abonnementen gaat. De tekst staat in de Git-
+       geschiedenis; terughalen kan met `git log -p diensten.html`. -->
 
-  <section class="sectie">
+  <section class="sectie sectie-wit">
     <div class="container">
-      <div class="sectie-kop">
+      <div class="sectie-kop-midden">
         <h2>Abonnementen</h2>
-        <p>We leveren abonnementen van vijf providers. Doordat we niet aan één merk vastzitten, kunnen we eerlijk vergelijken wat bij uw verbruik past.</p>
+        <p>We leveren abonnementen van zes providers. Doordat we niet aan één merk vastzitten, kunnen we eerlijk vergelijken wat bij uw verbruik past — en zeggen we het ook als een goedkoper abonnement volstaat.</p>
       </div>
-      <div class="raster">
-        <article class="kaart">
-          <h3>KPN</h3>
-          <p>Ruime dekking en veel keuze in bundels.</p>
-        </article>
-        <article class="kaart">
-          <h3>Vodafone</h3>
-          <p>Voordelig als er meerdere mensen in huis een abonnement hebben.</p>
-        </article>
-        <article class="kaart">
-          <h3>Odido</h3>
-          <p>Vaak scherp geprijsd bij veel databundels.</p>
-        </article>
-        <article class="kaart">
-          <h3>Ben</h3>
-          <p>Eenvoudige, voordelige bundels zonder poespas.</p>
-        </article>
-        <article class="kaart">
-          <h3>Lebara</h3>
-          <p>Aantrekkelijk als u regelmatig naar het buitenland belt.</p>
-        </article>
-        <article class="kaart">
-          <h3>Overstappen of verlengen</h3>
-          <p>We zetten uw nummer over en regelen de opzegging bij uw oude provider.</p>
-        </article>
-      </div>
-      <p style="margin-top:28px"><small>Welke provider het voordeligst is, hangt af van uw verbruik en dekking op uw adres. Loop binnen met uw huidige factuur, dan rekenen we het voor u door.</small></p>
-    </div>
-  </section>
 
-  <section class="sectie sectie-wit">
-    <div class="container">
-      <div class="oproep">
-        <h2>Niet zeker wat u nodig heeft?</h2>
-        <p>Dat hoeft ook niet. Beschrijf uw situatie, dan zoeken wij uit wat past.</p>
-        <div class="knoppen">
-          <a class="knop knop-whatsapp" href="https://wa.me/31528235734">WhatsApp ons</a>
-          <a class="knop knop-primair" href="tel:+31528235734">Bel 0528 - 23 57 34</a>
-        </div>
+      <!-- De bestandsnamen hieronder hebben hoofdletters (KPN.png, Ben.png ...).
+           Neem die exact over. De webserver van Yourhosting draait op Linux en
+           dat is hoofdlettergevoelig: "kpn.png" levert daar een gebroken
+           afbeelding op, terwijl het lokaal op Windows gewoon werkt.
+           Achtergrond en varianten: zie assets/img/providers/LEESMIJ.txt -->
+
+      <div class="raster raster-drie">
+        <article class="kaart kaart-provider">
+          <p class="provider-merk"><img src="assets/img/providers/KPN.png" alt="KPN" width="547" height="365"></p>
+          <p>Eigen netwerk met ruime dekking door heel Nederland. Veel keuze in bundels, en aantrekkelijk als u ook internet en tv thuis wilt combineren.</p>
+        </article>
+        <article class="kaart kaart-provider">
+          <p class="provider-merk"><img src="assets/img/providers/Vodafone.jpg" alt="Vodafone" width="614" height="499"></p>
+          <p>Eigen netwerk. Vaak voordelig als er meerdere mensen in huis een abonnement hebben, of als u het met internet thuis combineert.</p>
+        </article>
+        <article class="kaart kaart-provider">
+          <p class="provider-merk"><img src="assets/img/providers/Odido.jpg" alt="Odido" width="468" height="468"></p>
+          <p>Eigen netwerk, met ruime databundels. Een goede keuze als u veel onderweg streamt of werkt.</p>
+        </article>
+        <article class="kaart kaart-provider">
+          <p class="provider-merk"><img src="assets/img/providers/Ben.png" alt="Ben" width="225" height="225"></p>
+          <p>Sim only zonder poespas, voor een scherpe prijs. Prettig als u een eenvoudig abonnement wilt en zelf al een toestel heeft.</p>
+        </article>
+        <article class="kaart kaart-provider">
+          <p class="provider-merk"><img src="assets/img/providers/Lebara.jpg" alt="Lebara" width="447" height="447"></p>
+          <p>Rijdt op het netwerk van KPN. Lage prijzen voor sim only en prepaid, en gunstige tarieven als u naar het buitenland belt.</p>
+        </article>
+        <article class="kaart kaart-provider">
+          <p class="provider-merk"><img src="assets/img/providers/Hollandsnieuwe.jpg" alt="hollandsnieuwe" width="678" height="452"></p>
+          <p>Rijdt op het netwerk van Vodafone en Ziggo. Sim only waarbij u betaalt voor wat u werkelijk gebruikt, zonder franje.</p>
+        </article>
       </div>
+
+      <div class="kaart kaart-overstap">
+        <h3>Overstappen of verlengen</h3>
+        <p>U hoeft niets zelf te regelen. We zetten uw 06-nummer over, zeggen het oude abonnement op en zorgen dat u niet dubbel betaalt in de overgangsmaand. Uw nummer behouden bij een overstap is uw recht — dat kost u niets.</p>
+      </div>
+
+      <p style="margin-top:28px"><small>Welke provider het voordeligst is, hangt af van uw verbruik en van de dekking op uw adres. Loop binnen met uw huidige factuur, dan rekenen we het voor u door. Genoemde merken zijn eigendom van de betreffende providers.</small></p>
     </div>
   </section>
 
@@ -121,32 +100,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-raster">
-      <div>
-        <h3>Optie1 Hoogeveen</h3>
-        <p>Hoofdstraat 96<br>
-        7901 JT Hoogeveen</p>
-      </div>
-      <div>
-        <h3>Contact</h3>
-        <ul>
-          <li><a href="tel:+31528235734">0528 - 23 57 34</a></li>
-          <li><a href="https://wa.me/31528235734">WhatsApp</a></li>
-          <li><a href="mailto:hoogeveen@optie1.nl">hoogeveen@optie1.nl</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Pagina's</h3>
-        <ul>
-          <li><a href="diensten.html">Abonnementen</a></li>
-          <li><a href="reparaties.html">Reparaties</a></li>
-          <li><a href="webshop.html">Webshop</a></li>
-          <li><a href="over-ons.html">Over ons</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="copyright">© 2026 Optie1 Hoogeveen · KvK <span class="invullen">KVK-NUMMER INVULLEN</span></p>
+    <p class="copyright">www.optie1hoogeveen.nl</p>
   </div>
 </footer>
 

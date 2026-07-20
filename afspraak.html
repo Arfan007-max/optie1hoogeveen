@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Afspraak maken — Optie1 Hoogeveen</title>
+<meta name="description" content="Maak een afspraak voor de reparatie van uw telefoon of tablet. Vul uw toestel en de klacht in; wij nemen contact op om een moment af te spreken en wat het ongeveer gaat kosten.">
+<link rel="canonical" href="https://www.optie1hoogeveen.nl/afspraak.html">
+<link rel="stylesheet" href="assets/css/style.css">
+<meta name="theme-color" content="#0a6ea3">
+<!-- Deze pagina hoort niet thuis in de zoekresultaten: hij heeft alleen zin
+     als je vanaf de reparatiepagina komt, en los gevonden zegt een kaal
+     formulier een bezoeker niets. De reparatiepagina zelf blijft wel vindbaar. -->
+<meta name="robots" content="noindex, follow">
+</head>
+<body class="pagina-wit">
+<a class="skiplink" href="#hoofd">Naar hoofdinhoud</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">
+      <img src="assets/img/optie1-logo.png" alt="Optie1 — jouw eerste keus in telecom" width="646" height="220">
+      <span class="logo-plaats">Hoogeveen</span>
+    </a>
+    <button class="menu-knop" type="button" aria-expanded="false" aria-controls="hoofdmenu" hidden>
+      <span class="menu-streepjes" aria-hidden="true"><span></span><span></span><span></span></span>
+      Menu
+    </button>
+    <!-- Deze pagina staat bewust niet in het menu: hij is een vervolgstap vanaf
+         Reparaties, geen eigen hoofdonderwerp. Daarom krijgt geen enkel
+         menu-item hier aria-current; dat zou onwaar zijn. -->
+    <nav class="site-nav" id="hoofdmenu" aria-label="Hoofdmenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="diensten.html">Abonnementen</a></li>
+        <li><a href="reparaties.html">Reparaties</a></li>
+        <li><a href="webshop.html">Webshop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="hoofd">
+
+  <section class="hero">
+    <div class="container">
+      <h1>Maak een afspraak</h1>
+      <p>Vul hieronder in om wat voor toestel het gaat en wat eraan mankeert. Wij nemen contact met u op om een moment af te spreken, en zeggen er meteen bij wat de reparatie ongeveer gaat kosten. Hier zitten geen kosten aan vast.</p>
+    </div>
+  </section>
+
+  <!--
+    AFSPRAAKFORMULIER
+    Verstuurt via Web3Forms, zie assets/js/afspraak.js. Werkt zonder eigen
+    server; de aanvraag komt binnen op optie1hoogeveen@gmail.com.
+  -->
+  <section class="sectie sectie-wit" id="afspraak">
+    <div class="container">
+
+      <form class="formulier" id="afspraak-formulier" novalidate>
+
+        <div class="veld">
+          <label for="f-naam">Uw naam</label>
+          <input type="text" id="f-naam" name="naam" autocomplete="name" required>
+        </div>
+
+        <div class="veld">
+          <label for="f-telefoon">Uw telefoonnummer</label>
+          <input type="tel" id="f-telefoon" name="telefoon" autocomplete="tel" required>
+        </div>
+
+        <div class="veld">
+          <label for="f-email">Uw e-mailadres <span class="veld-optioneel">(niet verplicht)</span></label>
+          <input type="email" id="f-email" name="email" autocomplete="email">
+          <p class="veld-uitleg">Laat u dit leeg, dan bellen we u terug op het nummer hierboven.</p>
+        </div>
+
+        <div class="veld">
+          <label for="f-toestel">Merk en model van uw toestel</label>
+          <input type="text" id="f-toestel" name="toestel" placeholder="Bijvoorbeeld: iPhone 13 of Samsung Galaxy A54" required>
+        </div>
+
+        <div class="veld">
+          <label for="f-probleem">Wat is er met het toestel?</label>
+          <textarea id="f-probleem" name="probleem" rows="5" placeholder="Bijvoorbeeld: het scherm is gebarsten na een val, de telefoon doet het verder nog wel" required></textarea>
+        </div>
+
+        <!-- Bewust een vrij tekstveld en geen datumkiezer: de winkel werkt niet
+             met vaste tijdsloten, dus een kalender zou een tijd bevestigen die
+             niet gereserveerd is. Zo blijft het een voorkeur, geen belofte. -->
+        <div class="veld">
+          <label for="f-moment">Wanneer komt het u uit? <span class="veld-optioneel">(niet verplicht)</span></label>
+          <input type="text" id="f-moment" name="moment" placeholder="Bijvoorbeeld: liefst zaterdag, of doordeweeks 's middags">
+          <p class="veld-uitleg">We bevestigen het moment altijd even met u. De winkel is dinsdag t/m zaterdag open van 10:00 tot 17:00, maandag vanaf 12:00.</p>
+        </div>
+
+        <!-- Honeypot: onzichtbaar voor bezoekers, ingevuld door spambots.
+             Is dit veld gevuld, dan versturen we niets. -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="f-website">Laat dit veld leeg</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- role="alert" zorgt dat een schermlezer de melding voorleest zodra
+             die verschijnt; zonder dat blijft een foutmelding onopgemerkt. -->
+        <p class="formulier-fout" id="formulier-fout" role="alert" hidden></p>
+
+        <div class="knoppen">
+          <button type="submit" class="knop knop-rood" id="verstuur-knop">Afspraak aanvragen</button>
+        </div>
+
+        <p class="formulier-klein">We gebruiken uw gegevens alleen om uw aanvraag te beantwoorden.</p>
+
+      </form>
+
+      <div class="formulier-gelukt" id="formulier-gelukt" role="status" hidden>
+        <h2>Bedankt, uw aanvraag is verstuurd</h2>
+        <p>We nemen zo snel mogelijk contact met u op om de afspraak te bevestigen, en zeggen er meteen bij wat de reparatie ongeveer kost. Heeft u haast? Bel gerust <a href="tel:+31528235734">0528 - 23 57 34</a>.</p>
+        <p><a href="reparaties.html">Terug naar reparaties</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sectie sectie-wit">
+    <div class="container">
+      <p><a class="knop knop-blauw" href="reparaties.html">&larr; Terug</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="copyright">www.optie1hoogeveen.nl</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/afspraak.js" defer></script>
+
+</body>
+</html>

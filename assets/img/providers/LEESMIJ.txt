@@ -1,0 +1,52 @@
+PROVIDERLOGO'S
+==============
+
+Zet de logobestanden in deze map met exact deze namen (kleine letters):
+
+  kpn.svg
+  vodafone.svg
+  odido.svg
+  ben.svg
+  lebara.svg
+  hollandsnieuwe.svg
+
+Geen SVG beschikbaar? Dan .png met dezelfde naam, en pas in diensten.html de
+extensie aan. Lever een PNG aan op minimaal 2x de weergavegrootte (dus ruim
+240 px breed), anders oogt het logo wazig op een scherm met hoge resolutie.
+
+
+WELKE VARIANT
+-------------
+Vraag de variant met TRANSPARANTE achtergrond, niet de vierkante tegel die
+providers voor social media gebruiken. Die tegels hebben een eigen gekleurd
+vlak; naast elkaar in een rij levert dat een bonte lappendeken op.
+
+Staan er alleen tegels tot je beschikking, zeg dat dan even — dan passen we
+de opmaak aan zodat alle zes de kaarten een vol kleurvlak krijgen. Dat kan
+ook, maar het moet dan wel voor alle zes gelden.
+
+
+HERKOMST EN RECHTEN
+-------------------
+Haal de bestanden bij de bron: het dealerportaal van de provider of de
+franchiseorganisatie van Optie1. Daar staan ook de regels bij over hoe het
+logo gebruikt mag worden (minimale afmeting, vrije ruimte eromheen, wel of
+niet op een gekleurde ondergrond).
+
+Teken logo's nooit zelf na en pas ze niet aan: het zijn geregistreerde
+merken. Kleur, verhouding en vorm liggen vast.
+
+
+INBOUWEN
+--------
+Zodra de bestanden hier staan, vervang je in diensten.html per kaart de regel
+
+    <p class="provider-merk">KPN</p>
+
+door
+
+    <p class="provider-merk"><img src="assets/img/providers/kpn.svg"
+       alt="KPN" width="120" height="40"></p>
+
+De opmaak van het vlak verandert verder niet; de afbeelding schaalt mee
+binnen de bestaande hoogte van 52 px.

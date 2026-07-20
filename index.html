@@ -73,43 +73,65 @@
 
   <section class="hero">
     <div class="container">
-      <h1>Telefoon kapot of toe aan een nieuwe?</h1>
-      <p>Loop binnen in de Hoofdstraat. Smartphones, tablets, abonnementen en reparaties — geen keuzemenu en geen wachtrij, gewoon iemand die meedenkt en het voor u regelt.</p>
+      <h1><span class="kop-sterk">Uw eerste keus</span><span class="kop-zacht">in Telecom</span></h1>
+      <p>Persoonlijke aandacht, advies op maat. Voor een nieuwe smartphone, het juiste abonnement of een reparatie bent u bij Optie1 Hoogeveen aan het juiste adres.</p>
     </div>
   </section>
 
+  <!-- De balk blijft staan, de inhoud is er bewust uit gehaald. De oude inhoud
+       staat hieronder bewaard; plak hem terug tussen de container-div als je
+       de providers weer wilt tonen:
+
+       <p>Abonnementen van:</p>
+       <span class="provider">KPN</span>
+       <span class="provider">Vodafone</span>
+       <span class="provider">Odido</span>
+       <span class="provider">Ben</span>
+       <span class="provider">Lebara</span>
+  -->
   <div class="providerbalk">
-    <div class="container">
-      <p>Abonnementen van:</p>
-      <span class="provider">KPN</span>
-      <span class="provider">Vodafone</span>
-      <span class="provider">Odido</span>
-      <span class="provider">Ben</span>
-      <span class="provider">Lebara</span>
-    </div>
+    <div class="container"></div>
   </div>
 
-  <section class="band">
-    <div class="container kolommen">
-      <div>
-        <h2>Scherm kapot? Vaak dezelfde dag klaar</h2>
-        <p>Een gebroken scherm of een batterij die 's middags al leeg is — dat hoeft geen nieuw toestel te betekenen. Breng hem langs, dan kijken we ernaar en hoort u wat het kost voordat we beginnen.</p>
-        <div class="knoppen">
-          <a class="knop knop-whatsapp" href="https://wa.me/31528235734">Vraag een prijsindicatie</a>
-          <a class="knop knop-primair" href="reparaties.html">Alles over reparaties</a>
-        </div>
+  <section class="sectie sectie-wit">
+    <div class="container">
+      <div class="sectie-kop-midden">
+        <h2>Onze diensten</h2>
       </div>
-      <div>
-        <ol class="stappen">
-          <li><strong>App ons merk en model.</strong> Of loop gewoon binnen, dat mag ook.</li>
-          <li><strong>U hoort de prijs vooraf.</strong> Geen akkoord betekent geen kosten.</li>
-          <li><strong>Wij repareren.</strong> Veelvoorkomende reparaties gaan snel.</li>
-        </ol>
+      <div class="raster">
+
+        <article class="kaart kaart-dienst">
+          <span class="dienst-icoon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+          </span>
+          <h3>Smartphone of tablet kopen</h3>
+          <p>Een toestel dat bij u past, inclusief het overzetten van uw gegevens. U loopt de winkel uit met een telefoon die klaar is voor gebruik.</p>
+          <p><a href="diensten.html">Bekijk het aanbod</a></p>
+        </article>
+
+        <article class="kaart kaart-dienst">
+          <span class="dienst-icoon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M2 22h20V2L2 22z"/></svg>
+          </span>
+          <h3>Abonnement</h3>
+          <p>KPN, Vodafone, Odido, Ben en Lebara onder één dak. We vergelijken ze eerlijk en regelen het overzetten van uw nummer.</p>
+          <p><a href="diensten.html">Meer over abonnementen</a></p>
+        </article>
+
+        <article class="kaart kaart-dienst">
+          <span class="dienst-icoon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+          </span>
+          <h3>Reparatie</h3>
+          <p>Een kapot scherm of een batterij die halverwege de dag leeg is. U hoort vooraf wat het kost; pas na uw akkoord beginnen we.</p>
+          <p><a href="afspraak.html">Maak direct afspraak</a></p>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <section class="sectie">
+  <section class="sectie sectie-blauw">
     <div class="container kolommen">
       <div>
         <h2>Waarom Optie1 Hoogeveen?</h2>
@@ -123,7 +145,7 @@
         </ul>
       </div>
       <div>
-        <h2>Openingstijden</h2>
+        <h2 class="tijden-kop">Openingstijden</h2>
         <table class="tijden">
           <tbody>
             <tr><th scope="row">Maandag</th><td>12:00 – 17:00</td></tr>
@@ -141,13 +163,31 @@
 
   <section class="sectie sectie-wit">
     <div class="container">
-      <div class="oproep">
-        <h2>Even een vraag stellen?</h2>
-        <p>U hoeft geen afspraak te maken. Stuur een bericht via WhatsApp of bel ons tijdens openingstijden — vaak is het in één gesprek duidelijk.</p>
-        <div class="knoppen">
-          <a class="knop knop-whatsapp" href="https://wa.me/31528235734">WhatsApp ons</a>
-          <a class="knop knop-secundair" href="contact.html">Contactgegevens</a>
-        </div>
+      <h2 class="contact-kop">Contact</h2>
+
+      <div class="contact-iconen">
+
+        <a class="icoon-knop" href="https://wa.me/31528235734">
+          <span class="icoon-cirkel cirkel-whatsapp">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </span>
+          <span class="icoon-label">WhatsApp</span>
+        </a>
+
+        <a class="icoon-knop" href="tel:+31528235734">
+          <span class="icoon-cirkel cirkel-bellen">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </span>
+          <span class="icoon-label">Bellen</span>
+        </a>
+
+        <a class="icoon-knop" href="mailto:hoogeveen@optie1.nl">
+          <span class="icoon-cirkel cirkel-email">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </span>
+          <span class="icoon-label">E-mail</span>
+        </a>
+
       </div>
     </div>
   </section>
@@ -156,32 +196,7 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-raster">
-      <div>
-        <h3>Optie1 Hoogeveen</h3>
-        <p>Hoofdstraat 96<br>
-        7901 JT Hoogeveen</p>
-      </div>
-      <div>
-        <h3>Contact</h3>
-        <ul>
-          <li><a href="tel:+31528235734">0528 - 23 57 34</a></li>
-          <li><a href="https://wa.me/31528235734">WhatsApp</a></li>
-          <li><a href="mailto:hoogeveen@optie1.nl">hoogeveen@optie1.nl</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Pagina's</h3>
-        <ul>
-          <li><a href="diensten.html">Abonnementen</a></li>
-          <li><a href="reparaties.html">Reparaties</a></li>
-          <li><a href="webshop.html">Webshop</a></li>
-          <li><a href="over-ons.html">Over ons</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="copyright">© 2026 Optie1 Hoogeveen · KvK <span class="invullen">KVK-NUMMER INVULLEN</span></p>
+    <p class="copyright">www.optie1hoogeveen.nl</p>
   </div>
 </footer>
 

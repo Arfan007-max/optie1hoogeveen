@@ -1,7 +1,13 @@
 # Optie1 Hoogeveen — website
 
-Statische website. Geen build-stap, geen frameworks, geen externe scripts of lettertypen.
+Statische website. Geen build-stap, geen frameworks, geen externe scripts.
 De bestanden die je hier ziet zijn precies de bestanden die op de server komen.
+
+Het lettertype (Quicksand) wordt meegeleverd in `assets/fonts/` en bewust **niet**
+bij Google Fonts opgehaald: dan zou het IP-adres van elke bezoeker naar Google gaan.
+Quicksand valt onder de SIL Open Font License, zelf meeleveren mag dus.
+De grote koppen in de hero staan bewust *niet* op Quicksand maar op de systeemletter;
+dat is geregeld in `.hero h1` in `style.css`.
 
 ## Structuur
 
@@ -9,10 +15,14 @@ De bestanden die je hier ziet zijn precies de bestanden die op de server komen.
 index.html         Home
 diensten.html      Smartphones, tablets, abonnementen
 reparaties.html    Reparaties + tarieventabel
+webshop.html       Webshop
 over-ons.html      Over de winkel
 contact.html       Contactgegevens, openingstijden, route
 assets/css/style.css
-assets/img/optie1-logo.png    Logo in de header
+assets/js/site.js
+assets/img/optie1-logo.png                Logo in de header
+assets/fonts/quicksand-latin.woff2        Lettertype, gewone tekst
+assets/fonts/quicksand-latin-ext.woff2    Lettertype, accenttekens
 ```
 
 ## Logo
@@ -31,11 +41,14 @@ Zoek in alle bestanden op `INVULLEN` om ze te vinden. Te doen:
 1. **Adres en postcode** — staat in de footer van elke pagina, op `contact.html`, en in de
    JSON-LD in `index.html` (dat laatste is wat Google gebruikt — niet vergeten).
 2. **KvK-nummer** — in de footer van elke pagina.
-3. **Reparatieprijzen** — in de tabel op `reparaties.html`. Geen vaste prijzen? Verwijder
-   die hele sectie; er staat een HTML-commentaar bij waar die begint en eindigt.
-4. **Tekst "Over ons"** — nu een concept. Vervang door het echte verhaal van de winkel.
-5. **Google Maps-link** op `contact.html` — vervang `Optie1+Hoogeveen` in de URL door het
+3. **Tekst "Over ons"** — nu een concept. Vervang door het echte verhaal van de winkel.
+4. **Google Maps-link** op `contact.html` — vervang `Optie1+Hoogeveen` in de URL door het
    echte adres, anders klopt de routebeschrijving mogelijk niet.
+
+De tarievensectie op `reparaties.html` is verwijderd: de winkel werkt op aanvraag, niet
+met vaste bedragen. Klanten maken een afspraak via het formulier op `afspraak.html`.
+Wil je later toch een tarieventabel, dan staan de opmaakregels `.prijzen` en `.invullen`
+nog in `style.css` — de HTML eromheen is weg en staat in de Git-geschiedenis.
 
 Laat de gele markeringen nooit online staan; ze vallen bezoekers direct op.
 
@@ -46,8 +59,10 @@ Laat de gele markeringen nooit online staan; ze vallen bezoekers direct op.
 3. Open de map **`httpdocs`** — dat is de webmap van het domein.
 4. Verwijder of hernoem de bestaande "Coming Soon"-pagina (meestal `index.html`).
    Hernoemen naar `index-oud.html` is veiliger dan verwijderen: dan kun je terug.
-5. Upload `index.html`, `diensten.html`, `reparaties.html`, `over-ons.html`,
-   `contact.html` en de map `assets` naar `httpdocs`.
+5. Upload `index.html`, `diensten.html`, `reparaties.html`, `webshop.html`,
+   `over-ons.html`, `contact.html` en de map `assets` naar `httpdocs`.
+   Let op dat `assets` volledig meegaat, inclusief `fonts` — ontbreekt die map,
+   dan valt de site terug op de systeemletter en ziet hij er anders uit.
 6. Controleer https://www.optie1hoogeveen.nl in een privévenster (anders zie je
    mogelijk de oude pagina uit je browsercache).
 
