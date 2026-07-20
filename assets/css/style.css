@@ -52,6 +52,13 @@
      gebruikt voor menu-hover, de prijzentabel en twee secties — die moeten
      lichter blijven. */
   --hero-vlak:    #e2f3fc;
+  /* De merkkleur van optie1.nl: de volle blauwe balk die daar overal
+     terugkomt. Gemeten op de moedersite zelf. Gebruikt als vol vlak met witte
+     tekst (de hero). Voor kleine of lopende tekst op dit blauw is wit net te
+     licht (contrast 3,5:1); daarvoor is --merkblauw-diep, een tint donkerder
+     die met wit wél de leesnorm van 4,5:1 haalt. */
+  --merkblauw:      #0092cf;
+  --merkblauw-diep: #007ab5;
 
   --tekst: #333333;
   --tekst-zacht: #5f5f5f;
@@ -79,7 +86,7 @@ body {
   margin: 0;
   /* Dun balkje bovenaan elke pagina, in dezelfde tint als het herovlak. Als rand
      op de body in plaats van een extra element: scheelt opmaak in zes bestanden. */
-  border-top: 6px solid var(--hero-vlak);
+  border-top: 6px solid var(--merkblauw-diep);
   font-family: var(--letter);
   font-size: 17px;
   line-height: 1.65;
@@ -274,17 +281,22 @@ img { max-width: 100%; height: auto; display: block; }
 .hero {
   /* Licht en luchtig, zoals de moedersite. Geen donker vlak meer. */
   background: var(--hero-vlak);
-  border-bottom: 1px solid var(--lijn);
   padding-block: clamp(48px, 8vw, 88px);
 }
 /* Gecentreerd: zonder afbeelding ernaast leest links uitgelijnde tekst als
    een halfleeg vlak. Gecentreerd vult de hero zichzelf optisch op. */
 .hero { text-align: center; }
-/* Een tint donkerder dan de koppen elders: op --hero-vlak haalt --blauw-kop
-   (#0193cf) maar 3,0:1 — dat is de norm van 3:1 voor grote tekst zonder enige
-   marge. --blauw (#008bcb) haalt 3,3:1 en zit daar veilig boven. */
+/* De volle merkblauwe balk, zoals op optie1.nl. --merkblauw-diep en niet
+   --merkblauw: op de diepe tint haalt witte lopende tekst 4,7:1, ruim boven de
+   norm. Op de lichtere merkblauw zou de introtekst maar 3,5:1 halen. De koppen
+   zijn groot genoeg om ook op de lichtere tint te kunnen, maar één tint voor de
+   hele balk oogt rustiger dan een kop in een net iets ander blauw. */
+.hero {
+  background: var(--merkblauw-diep);
+  border-bottom: 0;
+}
 .hero h1 {
-  color: var(--blauw);
+  color: var(--wit);
   max-width: 20ch;
   margin-inline: auto;
   /* Bewust niet Quicksand: de hero-koppen houden de oude letter aan. De rest
@@ -298,10 +310,12 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.06;
   letter-spacing: -0.022em;
 }
-/* Tweekleurige kop op de homepage. Let op: --blauw-kop (#0193cf) haalt op
-   --hero-vlak de contrastnorm niet met marge; gebruik die tint hier niet. */
-.hero h1 .kop-sterk { color: var(--blauw-donker); }
-.hero h1 .kop-zacht { color: var(--blauw); }
+/* Tweekleurige kop op de homepage, nu op de blauwe balk: het sterke deel vol
+   wit, het zachte deel een lichte blauwtint zodat het onderscheid blijft
+   zonder de leesbaarheid te schaden. #cfe9f7 op --merkblauw-diep haalt 3,6:1,
+   ruim boven de 3:1 voor deze grote tekst. */
+.hero h1 .kop-sterk { color: var(--wit); }
+.hero h1 .kop-zacht { color: #cfe9f7; }
 /* De twee delen staan op eigen regels zonder <br>: dat laat de tussenruimte
    hieronder los instellen. Met een <br> zou die vastzitten aan line-height, en
    dan schuift de regelafstand bínnen een deel net zo hard mee. In em, zodat de
@@ -309,16 +323,12 @@ img { max-width: 100%; height: auto; display: block; }
 .hero h1 .kop-sterk,
 .hero h1 .kop-zacht { display: block; }
 .hero h1 .kop-zacht { margin-top: 0.28em; }
-.hero p { font-size: 1.12rem; max-width: 55ch; color: var(--tekst-zacht); margin-inline: auto; }
+.hero p { font-size: 1.12rem; max-width: 55ch; color: var(--wit); margin-inline: auto; }
 .hero .knoppen { margin-top: 28px; justify-content: center; }
 
 /* --- Secties --- */
 .sectie { padding-block: clamp(40px, 6vw, 72px); }
 .sectie-wit { background: var(--wit); }
-/* Sectie in de huisstijltint, dezelfde als het herovlak en de dienstkaarten.
-   Bewust een eigen modifier en niet `.sectie` zelf: die klasse zorgt op alle
-   pagina's voor de afwisseling grijs/wit en zou dan overal meekleuren. */
-.sectie-blauw { background: var(--hero-vlak); }
 .sectie-kop { max-width: 60ch; margin-bottom: 32px; }
 .sectie-kop p { color: var(--tekst-zacht); }
 
@@ -725,7 +735,11 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Oproepblok --- */
 .oproep {
-  background: var(--blauw-zacht);
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  /* De blauwe accentbalk links blijft; die houdt het blok bij de merkkleur.
+     Een dunne rand eromheen erbij, zodat het witte blok zich losmaakt van de
+     grijze sectie eronder. */
   border-left: 5px solid var(--blauw-accent);
   border-radius: var(--radius);
   padding: 28px;
@@ -747,16 +761,19 @@ img { max-width: 100%; height: auto; display: block; }
    alleen maar beter leesbaar. De randlijn scheidt de footer van de body: die
    twee kleuren liggen dicht bij elkaar en lopen anders in elkaar over. */
 .site-footer {
-  background: var(--hero-vlak);
-  border-top: 1px solid var(--lijn);
-  color: #05303f;
-  /* Smalle balk: er staat alleen nog het KvK-nummer in. */
+  /* Zelfde merkblauw als de hero en het balkje bovenaan, zodat de pagina
+     boven en onder in dezelfde kleur wordt afgesloten. Witte tekst haalt op
+     deze tint 4,7:1. */
+  background: var(--merkblauw-diep);
+  border-top: 0;
+  color: var(--wit);
+  /* Smalle balk: er staat alleen nog het webadres in. */
   padding-block: 10px;
   margin-top: 40px;
   font-size: .95rem;
 }
-.site-footer h3 { color: #022330; font-size: 1rem; }
-.site-footer a { color: #022330; }
+.site-footer h3 { color: var(--wit); font-size: 1rem; }
+.site-footer a { color: var(--wit); }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin-bottom: 7px; }
 .footer-raster {
@@ -764,13 +781,16 @@ img { max-width: 100%; height: auto; display: block; }
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 32px;
 }
-/* Alleen het webadres, rechts uitgelijnd. Geen scheidingslijn en geen marges:
-   er staat niets boven om van te scheiden, en de balk moet smal blijven. */
+/* Het webadres tot aan de echte rechterrand van de blauwe balk. De footer laat
+   daarvoor de contentbreedte van 1100px los: anders stopt de tekst bij die
+   grens en blijft er op brede schermen blauw naast staan. De padding van
+   .container (20px) houdt hem net van de rand af. */
+.site-footer .container { max-width: none; }
 .copyright {
   margin: 0;
   text-align: right;
   font-size: .88rem;
-  color: #05303f;
+  color: var(--wit);
 }
 
 /* --- Invulmarkering: MOET vervangen worden voor livegang --- */
@@ -823,11 +843,17 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 10px;
 }
 
-/* Kaart die de seniorentoestellen apart licht uit. Witte kaart op het blauwe
-   vlak van deze sectie, zodat hij opvalt tussen de merken erboven. */
-.kaart-senioren {
-  background: var(--wit);
+/* Kaart die de seniorentoestellen apart licht uit. Vol merkblauw met witte
+   tekst, zodat hij op de witte sectie eruit springt. --merkblauw-diep en niet
+   --merkblauw: op de diepe tint haalt de witte lopende tekst 4,7:1, ruim boven
+   de leesnorm. Met de sectie-prefix omdat `.sectie-wit .kaart` twee klassen
+   telt en die anders wint (net als bij .kaart-dienst en .kaart-provider). */
+.sectie-wit .kaart-senioren {
+  background: var(--merkblauw-diep);
+  border-color: var(--merkblauw-diep);
 }
+.kaart-senioren h3,
+.kaart-senioren p { color: var(--wit); }
 .kaart-senioren h3 { margin-bottom: .4em; }
 .kaart-senioren p:last-child { margin-bottom: 0; }
 
