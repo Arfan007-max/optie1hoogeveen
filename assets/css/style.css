@@ -352,7 +352,7 @@ img { max-width: 100%; height: auto; display: block; }
    rij aansluit op het vlak erboven. Staat ná `.sectie-wit .kaart` omdat die
    regel even specifiek is; de laatste wint dan. Tekstkleuren zijn nagemeten op
    deze ondergrond: de kopjes halen 5,0:1 en de lopende tekst 11:1. */
-.raster-klachten .kaart { background: var(--hero-vlak); }
+.raster-klachten .kaart { background: var(--hero-vlak); text-align: center; }
 .kaart h3 { color: var(--blauw-kop-klein); }
 .kaart p:last-child { margin-bottom: 0; }
 
