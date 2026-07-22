@@ -1335,3 +1335,23 @@ img { max-width: 100%; height: auto; display: block; }
   outline: 3px solid var(--blauw-accent);
   outline-offset: 2px;
 }
+
+/* --- Dienstkaarten in vol merkblauw (homepage) ---
+   Zelfde volle blauwe vlak als de seniorenkaart en de hero. --merkblauw-diep
+   omdat witte lopende tekst daarop 4,7:1 haalt, ruim boven de leesnorm.
+   Drie klassen (.sectie-wit .kaart-dienst.kaart-vol) omdat `.sectie-wit
+   .kaart-dienst` de kaart anders in de lichte tint houdt. */
+.sectie-wit .kaart-dienst.kaart-vol {
+  background: var(--merkblauw-diep);
+  border-color: var(--merkblauw-diep);
+}
+.kaart-vol h3,
+.kaart-vol p { color: var(--wit); }
+/* De link op de kaart wit en onderstreept, zodat hij ook op het blauw als
+   link herkenbaar blijft. */
+.kaart-vol a { color: var(--wit); }
+/* Het ronde icoon wordt wit met een blauw symbool: op het blauwe vlak zou het
+   oude blauwe rondje wegvallen. De inline `fill="white"` op de SVG wordt door
+   deze CSS-regel overschreven. */
+.kaart-vol .dienst-icoon { background: var(--wit); }
+.kaart-vol .dienst-icoon svg { fill: var(--merkblauw-diep); }
