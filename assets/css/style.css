@@ -412,8 +412,9 @@ img { max-width: 100%; height: auto; display: block; }
    `.sectie-wit .kaart` maakt kaarten daar juist grijs, maar dat werkt hier
    averechts: hollandsnieuwe is een JPG en heeft dus een witte achtergrond
    die je niet weg kunt maken. Op een grijze kaart tekent die zich af als een
-   wit blok. De rand en schaduw van .kaart houden de kaart op wit zichtbaar. */
-.sectie-wit .kaart-provider { background: var(--wit); }
+   wit blok. De schaduw van .kaart houdt de kaart op wit zichtbaar; de rand is
+   er bewust af (rustiger beeld). */
+.sectie-wit .kaart-provider { background: var(--wit); border: 0; }
 
 /* --- Providerkaarten (abonnementenpagina) ---
    Het merkvlak heeft een vaste hoogte, zodat de kaarten even hoog blijven of er
