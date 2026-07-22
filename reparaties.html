@@ -54,7 +54,7 @@
       <div class="hero-beeld" aria-hidden="true">
         <!-- Bewust een eigen illustratie in plaats van een stockfoto: dan blijft
              de site zonder externe bestanden werken, net als de rest. -->
-        <svg viewBox="0 0 280 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustratie van een gerepareerde smartphone">
+        <svg viewBox="0 0 280 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustratie van een smartphone met gebarsten scherm">
           <defs>
             <linearGradient id="scherm" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stop-color="#eaf7fe"/>
@@ -66,11 +66,24 @@
           <rect x="58" y="30" width="164" height="340" rx="22" fill="url(#scherm)"/>
           <rect x="120" y="40" width="40" height="9" rx="4.5" fill="#d3e9f6"/>
           <circle cx="169" cy="44.5" r="3" fill="#bcdcec"/>
-          <rect x="84" y="146" width="112" height="122" rx="18" fill="#ffffff"/>
-          <circle cx="140" cy="192" r="30" fill="#2da562"/>
-          <path d="M127 192l9 9 18-18" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="104" y="236" width="72" height="8" rx="4" fill="#e3eef5"/>
-          <rect x="116" y="250" width="48" height="8" rx="4" fill="#eef4f9"/>
+          <!-- Gebroken scherm: barsten die vanuit een inslagpunt uitwaaieren.
+               Donkere lijnen zodat ze op het lichte scherm zichtbaar zijn. -->
+          <g fill="none" stroke="#33566b" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+            <g stroke-width="2.2">
+              <path d="M138 192 L150 40"/>
+              <path d="M138 192 L82 58"/>
+              <path d="M138 192 L206 54"/>
+              <path d="M138 192 L60 150"/>
+              <path d="M138 192 L216 168"/>
+              <path d="M138 192 L64 300"/>
+              <path d="M138 192 L136 360"/>
+              <path d="M138 192 L206 322"/>
+            </g>
+            <g stroke-width="1.5">
+              <path d="M110 125 L144 116 L172 123 L177 180 L172 257 L137 276 L101 246 L99 171 Z"/>
+              <path d="M120 161 L142 146 L158 146 L161 185 L158 231 L137 242 L116 224 L114 179 Z"/>
+            </g>
+          </g>
           <circle cx="228" cy="300" r="42" fill="#00adef"/>
           <circle cx="228" cy="300" r="42" fill="none" stroke="#ffffff" stroke-width="4" opacity=".5"/>
           <g transform="translate(210 282) scale(1.5)">
