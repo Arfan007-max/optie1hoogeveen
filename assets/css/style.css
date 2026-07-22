@@ -1355,3 +1355,12 @@ img { max-width: 100%; height: auto; display: block; }
    deze CSS-regel overschreven. */
 .kaart-vol .dienst-icoon { background: var(--wit); }
 .kaart-vol .dienst-icoon svg { fill: var(--merkblauw-diep); }
+
+/* Merkpillen op de homepage in vol merkblauw met witte tekst. Alleen binnen
+   de merkenlijst; de providerbalk (dezelfde .provider-klasse) houdt zijn
+   lichte stijl. --merkblauw-diep: witte tekst haalt daarop 4,7:1. */
+.merkenlijst .provider {
+  background: var(--merkblauw-diep);
+  border-color: var(--merkblauw-diep);
+  color: var(--wit);
+}
