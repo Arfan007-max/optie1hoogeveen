@@ -997,3 +997,340 @@ img { max-width: 100%; height: auto; display: block; }
   /* Op de smalste toestellen wordt "Hoogeveen" naast het logo te krap. */
   .logo-plaats { display: none; }
 }
+
+/* ============================================================
+   Reparatiepagina — herontwerp
+   Een visuele, uitnodigende opzet bovenop de bestaande bouwstenen.
+   Alle kleuren komen uit de variabelen bovenin; er komt geen externe
+   afbeelding en geen script bij, in lijn met de rest van de site.
+   ============================================================ */
+
+/* Lichtblauwe sectie, dezelfde tint als het herovlak. Voor een rustig
+   gekleurd blok tussen twee witte secties, zodat de pagina ademt. */
+.sectie-tint { background: var(--hero-vlak); }
+
+/* --- 1. Hero met illustratie ernaast ---
+   De standaard-hero is gecentreerd (zie `.hero`). Hier staat links de
+   tekst en rechts de illustratie. Onder 760px klapt het naar één kolom
+   en centreert de tekst weer, zodat het op een telefoon net zo rustig
+   oogt als de hero's op de andere pagina's. */
+/* Links de tekst, rechts de illustratie, en de knop op een eigen rij
+   eronder die over de volle breedte loopt. Zo staat de knop gecentreerd
+   ten opzichte van de hele pagina, niet alleen onder de tekstkolom. */
+.hero-split .container {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  grid-template-areas:
+    "tekst beeld"
+    "knop  knop";
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+  text-align: left;
+}
+.hero-tekst { grid-area: tekst; }
+.hero-beeld { grid-area: beeld; }
+/* De algemene hero centreert h1 en p met auto-marges; hier moeten ze
+   juist links aansluiten. */
+.hero-split h1,
+.hero-split p { margin-inline: 0; max-width: 22ch; }
+.hero-split p { max-width: 46ch; }
+/* De knop over de volle breedte gecentreerd. `margin-top: 0` haalt de
+   standaardmarge van `.hero .knoppen` weg; de rij-gap zorgt al voor ruimte. */
+.hero-knoppen {
+  grid-area: knop;
+  justify-content: center;
+  margin-top: 0;
+}
+
+/* Vinklijst op de blauwe hero: witte tekst in plaats van de donkere
+   tekstkleur van de gewone `.vinklijst`, anders valt hij weg op het blauw.
+   Het vinkje krijgt een lichte tint; die is decoratief. */
+.hero-usp {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 4px;
+  display: grid;
+  gap: 9px;
+}
+.hero-usp li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--wit);
+  font-weight: 600;
+}
+.hero-usp li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #9fe3ff;
+  font-weight: 800;
+}
+.hero-beeld { display: flex; justify-content: center; }
+/* De illustratie schaalt mee maar wordt nooit onnodig groot. */
+.hero-beeld svg { width: 100%; max-width: 290px; height: auto; }
+
+@media (max-width: 760px) {
+  /* Eén kolom: eerst de tekst, dan de knop, dan de illustratie — zo staan de
+     titel en de belangrijkste actie als eerste in beeld op een telefoon. */
+  .hero-split .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "tekst"
+      "knop"
+      "beeld";
+    text-align: center;
+  }
+  .hero-split h1,
+  .hero-split p { margin-inline: auto; }
+  .hero-usp { justify-items: center; }
+  /* De illustratie blijft bescheiden van maat onder de knop. */
+  .hero-beeld svg { max-width: 210px; }
+}
+
+/* --- 2. Merkkaarten ---
+   Grote, klikbare kaarten met een gekleurd rond vlakje en de merknaam.
+   Zelfde optillende hover als `.kaart-dienst`, zodat ze bij de rest van
+   de site passen. */
+.merkraster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
+}
+.merkkaart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  text-decoration: none;
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 26px 18px;
+  box-shadow: var(--schaduw);
+  color: var(--blauw-donker);
+  font-weight: 700;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.merkkaart:hover,
+.merkkaart:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 139, 203, .22);
+}
+@media (prefers-reduced-motion: reduce) {
+  .merkkaart { transition: box-shadow .15s ease; }
+  .merkkaart:hover,
+  .merkkaart:focus-visible { transform: none; }
+}
+/* Het ronde vlakje met de eerste letter van het merk. De achtergrondkleur
+   staat inline in de HTML per merk; deze regels bepalen alleen de vorm en
+   de witte letter. De tinten zijn bewust wat donker gekozen, zodat de witte
+   letter ook op de gekleurde vlakken goed leesbaar blijft. */
+.merk-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--blauw);
+  color: var(--wit);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* --- 4. Tijdlijn "Zo werkt het" ---
+   Vijf stappen naast elkaar, met een verbindingslijn ertussen. Onder 720px
+   kantelt de rij naar een verticale lijst met de cirkels links. */
+.tijdlijn {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+.tijdlijn li {
+  position: relative;
+  text-align: center;
+}
+.tijd-cirkel {
+  position: relative;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--blauw);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+}
+/* De lijn loopt vanaf de vorige cirkel naar deze; hij ligt op de hoogte van
+   het midden van de cirkels (30px) en onder de cirkels (z-index 0). */
+.tijdlijn li:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: -50%;
+  width: 100%;
+  height: 3px;
+  background: var(--lijn);
+  z-index: 0;
+}
+.tijd-stap {
+  display: block;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 700;
+  color: var(--tekst-zacht);
+}
+.tijd-titel {
+  display: block;
+  font-weight: 600;
+  color: var(--blauw-kop-klein);
+  line-height: 1.3;
+}
+
+@media (max-width: 720px) {
+  .tijdlijn {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+  .tijdlijn li {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 18px;
+    text-align: left;
+    padding-bottom: 26px;
+  }
+  .tijd-cirkel { margin: 0; }
+  /* De verbindingslijn wordt verticaal: van deze cirkel omhoog naar de vorige. */
+  .tijdlijn li:not(:first-child)::before {
+    top: -26px;
+    left: 29px;
+    width: 3px;
+    height: 26px;
+  }
+  .tijd-inhoud { align-self: center; }
+}
+
+/* --- 5. Waarom kiezen voor Optie1 ---
+   Icoon links, tekst rechts. Geen kaart eromheen: dat houdt de sectie licht
+   naast de twee kaartenrasters erboven. De ronde iconen hergebruiken
+   `.dienst-icoon`. */
+.usp-raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 28px;
+}
+.usp {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+/* Het icoon staat hier links en niet gecentreerd, dus de auto-marge van
+   `.dienst-icoon` moet eraf. */
+.usp .dienst-icoon {
+  width: 52px;
+  height: 52px;
+  margin: 0;
+}
+.usp h3 { margin-bottom: .25em; }
+.usp p { margin: 0; color: var(--tekst-zacht); }
+
+/* --- 6. Reviews ---
+   Sterbeoordeling boven een kort citaat. De kaart zelf is de bestaande
+   `.kaart`; hier alleen de sterren en het citaat. */
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+.review { margin: 0; }
+.sterren {
+  color: #f5a623;
+  letter-spacing: 3px;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+.review blockquote {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--tekst);
+}
+.review figcaption {
+  margin-top: 12px;
+  font-size: .9rem;
+  color: var(--tekst-zacht);
+}
+
+/* --- 7. Grote CTA ---
+   Vol merkblauw vlak met witte tekst en de rode knop, zodat de oproep om
+   aan te melden er duidelijk uitspringt. --merkblauw-diep omdat witte
+   lopende tekst daarop 4,7:1 haalt, ruim boven de leesnorm. */
+.cta-blok {
+  background: var(--merkblauw-diep);
+  color: var(--wit);
+  border-radius: 22px;
+  padding: clamp(32px, 6vw, 56px);
+  text-align: center;
+  box-shadow: var(--schaduw);
+}
+.cta-blok h2 { color: var(--wit); margin-top: 0; }
+.cta-blok p {
+  color: #dbeef8;
+  max-width: 48ch;
+  margin: 0 auto 4px;
+}
+.cta-blok .knoppen { justify-content: center; margin-top: 22px; }
+
+/* --- 8. FAQ ---
+   Native <details>/<summary>: klapt open en dicht zonder JavaScript, zodat
+   de vragen ook zonder script gewoon te lezen zijn. */
+.faq {
+  max-width: 760px;
+  margin-inline: auto;
+  display: grid;
+  gap: 12px;
+}
+.faq details {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  box-shadow: var(--schaduw);
+}
+.faq summary {
+  cursor: pointer;
+  padding: 18px 22px;
+  font-weight: 600;
+  color: var(--blauw-kop-klein);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  /* De standaard-driehoek weg; we tonen zelf een + / – rechts. */
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--blauw);
+  line-height: 1;
+}
+.faq details[open] summary::after { content: "\2013"; }
+.faq details > p {
+  margin: 0;
+  padding: 0 22px 20px;
+  color: var(--tekst-zacht);
+}
+.faq summary:focus-visible {
+  outline: 3px solid var(--blauw-accent);
+  outline-offset: 2px;
+}
