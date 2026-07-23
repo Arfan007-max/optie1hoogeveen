@@ -176,15 +176,18 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0;
   padding: 0;
 }
-/* Kapitalen in het menu, zoals op de moedersite. */
+/* Kapitalen in het menu, zoals op de moedersite. Kapitalen lezen kleiner dan
+   gewone letters, dus staat de maat hier hoger dan je zou verwachten. De
+   ruimere padding is geen versiering: zo wordt elk menu-item ruim 44px hoog en
+   dus goed raakbaar op een telefoon. */
 .site-nav a {
   display: block;
-  padding: 8px 13px;
+  padding: 10px 15px;
   border-radius: var(--radius);
   color: var(--tekst);
   text-decoration: none;
   font-weight: 600;
-  font-size: .84rem;
+  font-size: .95rem;
   text-transform: uppercase;
   letter-spacing: .04em;
 }
