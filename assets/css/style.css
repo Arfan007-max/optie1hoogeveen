@@ -361,15 +361,15 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero-knoppen { justify-content: center; margin-top: 26px; }
 
-/* Witte knop op het blauwe vlak. --blauw-knop als tekstkleur en niet --blauw:
-   op wit haalt die 4,9:1 tegen 3,5:1. Zie de opmerking bij .knop-blauw. */
+/* Witte knop op het blauwe vlak, met zwarte tekst: 21:1, het hoogste contrast
+   dat er te halen valt. Stond eerder op --blauw-knop (4,9:1). */
 .knop-op-blauw {
   background: var(--wit);
-  color: var(--blauw-knop);
+  color: #000000;
 }
 .knop-op-blauw:hover {
   background: var(--hero-vlak);
-  color: var(--blauw-donker);
+  color: #000000;
 }
 
 /* --- Bediening onder de dia's --- */
