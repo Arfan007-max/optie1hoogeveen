@@ -4,30 +4,36 @@
    IP-adres van elke bezoeker naar een derde partij. */
 
 /* --- Lettertype ---
-   Quicksand, onder de SIL Open Font License, zelf meegeleverd. Dit is een
-   variabel lettertype: één bestand dekt alle gewichten van 400 tot 700, vandaar
-   het bereik in font-weight hieronder in plaats van drie losse @font-face-regels.
+   Atkinson Hyperlegible Next, onder de SIL Open Font License, zelf meegeleverd.
+   Getekend door het Braille Institute voor mensen die slecht zien: elke letter
+   is bewust onderscheidend, zodat I/l/1 en b/d niet te verwarren zijn. Dat is
+   waarom deze letter hier staat en niet een mooiere-maar-vagere.
+   Dit is een variabel lettertype: één bestand dekt alle gewichten van 400 tot
+   700, vandaar het bereik in font-weight hieronder in plaats van losse regels.
    Twee subsets: latin voor gewone tekst, latin-ext voor accenttekens.
    De unicode-range zorgt dat latin-ext alleen wordt opgehaald als een pagina
-   zo'n teken bevat — anders blijft het bij één bestand van 28 kB.
+   zo'n teken bevat — anders blijft het bij één bestand van 34 kB.
+   Er is bewust geen cursieve snede meegeleverd: de site gebruikt nergens
+   cursief. Komt dat er ooit, haal dan ook de italic-bestanden op, anders maakt
+   de browser er zelf een scheve variant van en dat oogt slordig.
    font-display: swap toont direct de systeemletter en wisselt daarna om, zodat
    tekst nooit onzichtbaar is tijdens het laden. */
 @font-face {
-  font-family: "Quicksand";
+  font-family: "Atkinson Hyperlegible Next";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("../fonts/quicksand-latin.woff2") format("woff2");
+  src: url("../fonts/atkinson-hyperlegible-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Quicksand";
+  font-family: "Atkinson Hyperlegible Next";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url("../fonts/quicksand-latin-ext.woff2") format("woff2");
+  src: url("../fonts/atkinson-hyperlegible-latin-ext.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -67,11 +73,16 @@
   --achtergrond: var(--grijs-zacht);
   --radius: 10px;
   --max: 1100px;
-  /* Twee lettertypestapels. De site staat op Quicksand; alleen de hero-koppen
-     houden bewust de oude letter aan (zie `.hero h1` verderop). De systeem-
-     letters staan in beide als terugval, voor als een bestand niet laadt. */
-  --letter: "Quicksand", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --letter-hero: "Sinkin Sans", "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Twee lettertypestapels, nu allebei Atkinson Hyperlegible Next.
+     Ze blijven gescheiden zodat de hero later weer een eigen letter kan
+     krijgen zonder de rest van de site aan te raken.
+     --letter-hero wees eerder naar "Sinkin Sans" en "Open Sans", maar geen van
+     beide werd met de site meegeleverd: bezoekers kregen dus de systeemletter,
+     en die verschilt per apparaat. De grootste tekst van de site zag er
+     daardoor bij iedereen anders uit. Nu staat er een letter die wél meegaat.
+     De systeemletters blijven als terugval, voor als een bestand niet laadt. */
+  --letter: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --letter-hero: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   /* Breedte van de openingstijdentabel. Staat hier zodat de tabel en de kop
      erboven niet uit elkaar kunnen lopen. */
   --tijden-max: 420px;
@@ -302,8 +313,9 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--wit);
   max-width: 20ch;
   margin-inline: auto;
-  /* Bewust niet Quicksand: de hero-koppen houden de oude letter aan. De rest
-     van de site staat wel op Quicksand (zie --letter). */
+  /* Eigen variabele, al staat daar nu dezelfde letter in als in --letter.
+     Zo blijft het één plek om aan te draaien als de hero ooit een eigen
+     letter moet krijgen. */
   font-family: var(--letter-hero);
   /* Displayformaat, alleen in de hero — de h1 op de andere pagina's blijft de
      maat van regel 56. Regelafstand en letterafstand gaan mee omlaag: op 70px
