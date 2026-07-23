@@ -237,6 +237,32 @@ img { max-width: 100%; height: auto; display: block; }
 .knop-rood { background: #b3261e; color: var(--wit); }
 .knop-rood:hover { background: #8f1e18; color: var(--wit); }
 
+/* Zwevende contactknop, rechtsonder in beeld. Blijft staan tijdens het
+   scrollen, als vaste snelkoppeling naar de contactpagina. Kleur en hover
+   komen van .knop-rood; deze regels doen alleen de plaatsing, de pilvorm en
+   de schaduw die hem van de pagina laat loskomen. Staat alleen op de
+   homepage. */
+.knop-zwevend {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
+}
+.knop-zwevend:hover,
+.knop-zwevend:focus-visible { transform: translateY(-2px); }
+.knop-zwevend:focus-visible { outline: 3px solid var(--wit); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .knop-zwevend:hover,
+  .knop-zwevend:focus-visible { transform: none; }
+}
+/* Op smalle schermen iets compacter, zodat hij niet te veel van het scherm
+   inneemt en geen invoerveld of knop onder zich bedekt. */
+@media (max-width: 480px) {
+  .knop-zwevend { right: 12px; bottom: 12px; padding: 12px 18px; }
+}
+
 /* --- Ronde contactknoppen ---
    Overgenomen van de coming soon-pagina. De iconen zijn inline SVG: geen
    iconenlettertype en geen extra bestanden, zodat de site zonder externe
