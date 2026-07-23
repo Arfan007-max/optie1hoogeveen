@@ -1308,7 +1308,11 @@ img { max-width: 100%; height: auto; display: block; }
   place-items: center;
   background: var(--blauw);
   color: var(--wit);
-  font-size: 2.1rem;
+  /* Fors, en dat moet ook: een plusteken heeft veel minder inkt dan zijn
+     lettergrootte doet vermoeden. Op 2,1rem was het beeldje 18px breed, naast
+     een Apple-logo van 44px — dat oogde als een vergissing. Op deze maat is het
+     plusje ongeveer 37px en staat het gelijk met de twee merktekens ernaast. */
+  font-size: 4.25rem;
   font-weight: 800;
   line-height: 1;
 }
