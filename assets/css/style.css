@@ -212,8 +212,8 @@ img { max-width: 100%; height: auto; display: block; }
 .knop-primair:hover { background: var(--blauw); color: var(--wit); border-color: var(--blauw); }
 .knop-secundair { background: var(--wit); color: var(--blauw); border-color: var(--blauw); }
 .knop-secundair:hover { background: var(--blauw); color: var(--wit); }
-.knop-whatsapp { background: #25d366; color: #05331a; }
-.knop-whatsapp:hover { background: #1eb455; color: #05331a; }
+.knop-whatsapp { background: #25d366; color: var(--wit); }
+.knop-whatsapp:hover { background: #1eb455; color: var(--wit); }
 /* Vol blauw vlak met witte tekst — dezelfde look als `.knop-secundair` in
    hover, maar dan als vaste staat. Bewust --blauw-knop (#0077b3) en niet
    --blauw (#008bcb): wit op --blauw haalt maar 3,8:1 en dat is te weinig voor
