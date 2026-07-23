@@ -99,7 +99,10 @@ body {
      op de body in plaats van een extra element: scheelt opmaak in zes bestanden. */
   border-top: 6px solid var(--merkblauw-diep);
   font-family: var(--letter);
-  font-size: 17px;
+  /* Basis-leesgrootte. Bewust ruim gekozen: de site is op leesbaarheid gebouwd
+     (seniorvriendelijk, Atkinson-lettertype). Lopende tekst en de intro-
+     paragrafen erven deze maat; koppen staan in rem en blijven ongemoeid. */
+  font-size: 18px;
   line-height: 1.65;
   color: var(--tekst);
   background: var(--achtergrond);
@@ -1170,7 +1173,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 640px) {
-  body { font-size: 16px; }
+  body { font-size: 17px; }
   .knoppen .knop { flex: 1 1 auto; text-align: center; }
   .providerbalk p { width: 100%; text-align: center; }
 
