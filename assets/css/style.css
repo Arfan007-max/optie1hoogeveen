@@ -757,7 +757,19 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 1.15rem;
   line-height: 1.7;
   margin-bottom: 1.5em;
+  /* Zwart in plaats van de --tekst-grijs (#333) van de rest van de site.
+     Op wit is dat 21:1 contrast, het maximum dat er te halen valt. */
+  color: #000000;
 }
+/* Ook de links zwart. Ze blijven onderstreept, en dat is wat een link
+   herkenbaar maakt — kleur alleen is nooit genoeg, want daar heeft iemand die
+   kleuren slecht onderscheidt niets aan. Let op: dit geldt alleen binnen dit
+   blok; elders op de site blijven links blauw. */
+.gegevens a {
+  color: #000000;
+  text-decoration: underline;
+}
+.gegevens a:hover { color: var(--blauw-knop); }
 /* Het label op een eigen regel, met lucht eronder. Zo vallen de vier blokjes
    uit elkaar in plaats van één grijze massa te vormen. De <br> die hier eerst
    achter stond is uit de HTML gehaald; die zou nu een lege regel geven. */
