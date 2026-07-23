@@ -90,12 +90,16 @@ Deel die gegevens niet in een chat of e-mail.
 
 ## Versiebeheer
 
-Deze map is een lokale Git-repository. Na elke wijziging:
+Deze map is een Git-repository. Na elke wijziging:
 
 ```
 git add -A
 git commit -m "korte omschrijving van de wijziging"
+git push
 ```
 
-Er is bewust nog geen GitHub-remote. Alles staat lokaal op deze computer —
-dat betekent ook dat een backup van deze map je enige backup is.
+De repository is gekoppeld aan een **privé** GitHub-repo:
+`https://github.com/Arfan007-max/optie1hoogeveen.git` (remote `origin`, tak `main`).
+Met `git push` zet je je commits daar ook neer — dat is meteen je backup buiten
+deze computer. Houd de repo privé: er hoeft niemand mee te kunnen kijken in de
+broncode.
