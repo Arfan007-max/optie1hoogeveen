@@ -649,10 +649,14 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--blauw-donker);
 }
 .veld-optioneel { font-weight: 400; color: var(--tekst-zacht); }
+/* Uitleg onder een invoerveld. Bewust bijna zo groot als de lopende tekst en
+   in de gewone tekstkleur: dit is geen kleine lettertjes maar informatie die
+   iemand nodig heeft om het veld goed in te vullen. Op .9rem in --tekst-zacht
+   las het als een voetnoot die je mocht overslaan. */
 .veld-uitleg {
-  font-size: .9rem;
-  color: var(--tekst-zacht);
-  margin: 6px 0 0;
+  font-size: 1.05rem;
+  color: var(--tekst);
+  margin: 8px 0 0;
 }
 /* 16px is hier geen smaakkwestie: op iOS zoomt Safari automatisch in zodra
    een invoerveld kleiner dan 16px scherpstelt, en dan springt de hele
@@ -836,10 +840,13 @@ img { max-width: 100%; height: auto; display: block; }
   color: #7a1a14;
   font-weight: 600;
 }
+/* Toelichting onder de verzendknoppen. Zelfde maat en kleur als .veld-uitleg:
+   hier staat wat er gebeurt als je op de knop drukt en wat er met je gegevens
+   gebeurt, en juist dat moet iemand kunnen lezen voordat hij klikt. */
 .formulier-klein {
-  font-size: .9rem;
-  color: var(--tekst-zacht);
-  margin-top: 16px;
+  font-size: 1.05rem;
+  color: var(--tekst);
+  margin-top: 18px;
 }
 .formulier-gelukt {
   max-width: 34rem;
