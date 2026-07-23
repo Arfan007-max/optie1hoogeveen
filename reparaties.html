@@ -51,45 +51,15 @@
           <li>Geen reparatie zonder uw akkoord</li>
         </ul>
       </div>
-      <div class="hero-beeld" aria-hidden="true">
-        <!-- Bewust een eigen illustratie in plaats van een stockfoto: dan blijft
-             de site zonder externe bestanden werken, net als de rest. -->
-        <svg viewBox="0 0 280 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustratie van een smartphone met gebarsten scherm">
-          <defs>
-            <linearGradient id="scherm" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#eaf7fe"/>
-              <stop offset="1" stop-color="#bfe3f5"/>
-            </linearGradient>
-          </defs>
-          <rect x="46" y="16" width="188" height="368" rx="34" fill="#ffffff"/>
-          <rect x="46" y="16" width="188" height="368" rx="34" fill="none" stroke="#cfe9f7" stroke-width="2"/>
-          <rect x="58" y="30" width="164" height="340" rx="22" fill="url(#scherm)"/>
-          <rect x="120" y="40" width="40" height="9" rx="4.5" fill="#d3e9f6"/>
-          <circle cx="169" cy="44.5" r="3" fill="#bcdcec"/>
-          <!-- Gebroken scherm: barsten die vanuit een inslagpunt uitwaaieren.
-               Donkere lijnen zodat ze op het lichte scherm zichtbaar zijn. -->
-          <g fill="none" stroke="#33566b" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
-            <g stroke-width="2.2">
-              <path d="M138 192 L150 40"/>
-              <path d="M138 192 L82 58"/>
-              <path d="M138 192 L206 54"/>
-              <path d="M138 192 L60 150"/>
-              <path d="M138 192 L216 168"/>
-              <path d="M138 192 L64 300"/>
-              <path d="M138 192 L136 360"/>
-              <path d="M138 192 L206 322"/>
-            </g>
-            <g stroke-width="1.5">
-              <path d="M110 125 L144 116 L172 123 L177 180 L172 257 L137 276 L101 246 L99 171 Z"/>
-              <path d="M120 161 L142 146 L158 146 L161 185 L158 231 L137 242 L116 224 L114 179 Z"/>
-            </g>
-          </g>
-          <circle cx="228" cy="300" r="42" fill="#00adef"/>
-          <circle cx="228" cy="300" r="42" fill="none" stroke="#ffffff" stroke-width="4" opacity=".5"/>
-          <g transform="translate(210 282) scale(1.5)">
-            <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" fill="#ffffff"/>
-          </g>
-        </svg>
+      <div class="hero-beeld">
+        <!-- Foto in plaats van de eerdere eigen illustratie. Het bestand staat
+             lokaal in assets/img, dus de site laadt nog steeds niets extern.
+             De oude SVG-illustratie staat in de Git-geschiedenis.
+             width/height staan erbij zodat de hero niet verspringt terwijl de
+             foto nog laadt. -->
+        <img src="assets/img/gebroken-scherm.jpg"
+             width="2560" height="1458"
+             alt="Twee handen houden een smartphone vast met een zwaar gebarsten scherm.">
       </div>
       <div class="knoppen hero-knoppen">
         <a class="knop knop-rood" href="afspraak.html">Reparatie aanmelden</a>

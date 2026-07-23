@@ -1069,6 +1069,14 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-beeld { display: flex; justify-content: center; }
 /* De illustratie schaalt mee maar wordt nooit onnodig groot. */
 .hero-beeld svg { width: 100%; max-width: 290px; height: auto; }
+/* Staat er een foto in plaats van de illustratie, dan mag die breder: een
+   liggende foto op 290px wordt te klein om de barsten nog te zien. */
+.hero-beeld img {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  border-radius: var(--radius);
+}
 
 @media (max-width: 760px) {
   /* Eén kolom: eerst de tekst, dan de knop, dan de illustratie — zo staan de
@@ -1086,6 +1094,7 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-usp { justify-items: center; }
   /* De illustratie blijft bescheiden van maat onder de knop. */
   .hero-beeld svg { max-width: 210px; }
+  .hero-beeld img { max-width: 320px; }
 }
 
 /* --- 2. Merkkaarten ---
