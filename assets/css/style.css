@@ -1264,23 +1264,26 @@ img { max-width: 100%; height: auto; display: block; }
    de site passen. */
 .merkraster {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 22px;
 }
 .merkkaart {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   text-align: center;
   text-decoration: none;
   background: var(--wit);
-  border: 1px solid var(--lijn);
+  /* 2px in plaats van 1px: op wit was de rand van één pixel in --lijn zo licht
+     dat de kaart eerder zweefde dan dat hij een vlak was. */
+  border: 2px solid var(--lijn);
   border-radius: var(--radius);
-  padding: 26px 18px;
+  padding: 40px 22px;
   box-shadow: var(--schaduw);
   color: var(--blauw-donker);
   font-weight: 700;
+  font-size: 1.2rem;
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .merkkaart:hover,
@@ -1298,17 +1301,21 @@ img { max-width: 100%; height: auto; display: block; }
    de witte letter. De tinten zijn bewust wat donker gekozen, zodat de witte
    letter ook op de gekleurde vlakken goed leesbaar blijft. */
 .merk-badge {
-  width: 60px;
-  height: 60px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--blauw);
   color: var(--wit);
-  font-size: 1.5rem;
+  font-size: 2.1rem;
   font-weight: 800;
   line-height: 1;
 }
+/* De twee merktekens zijn geen los te schalen iconen: Apple vult zijn viewBox
+   helemaal, het Samsung-woordmerk staat met veel lucht eromheen in een vierkant
+   van 100 bij 100. Eén maat voor allebei zou de een te klein en de ander te
+   groot maken, dus staat de maat per stuk in de HTML. */
 
 /* --- 4. Tijdlijn "Zo werkt het" ---
    Vijf stappen naast elkaar, met een verbindingslijn ertussen. Onder 720px
