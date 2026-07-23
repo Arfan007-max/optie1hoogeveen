@@ -215,15 +215,10 @@ img { max-width: 100%; height: auto; display: block; }
   border: 2px solid transparent;
   transition: background .15s ease, color .15s ease;
 }
-/* In de huisstijltint van de hero. De rand is hier geen versiering maar
-   noodzaak: op contact.html en webshop.html staat deze knop ín de hero, dus op
-   exact dezelfde achtergrondkleur. Zonder rand valt hij daar weg. */
-.knop-primair {
-  background: var(--hero-vlak);
-  color: var(--blauw-donker);
-  border-color: var(--blauw);
-}
-.knop-primair:hover { background: var(--blauw); color: var(--wit); border-color: var(--blauw); }
+/* .knop-primair (lichtblauw vlak met donkerblauwe tekst) is hier weggehaald:
+   de laatste twee knoppen die hem gebruikten staan nu op .knop-blauw. Twee
+   knopstijlen die zo op elkaar lijken hield alleen maar de vraag levend welke
+   je waar moest pakken. Terughalen kan uit de Git-geschiedenis. */
 .knop-secundair { background: var(--wit); color: var(--blauw); border-color: var(--blauw); }
 .knop-secundair:hover { background: var(--blauw); color: var(--wit); }
 .knop-whatsapp { background: #25d366; color: var(--wit); }
