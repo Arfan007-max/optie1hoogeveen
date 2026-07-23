@@ -749,6 +749,29 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: start;
 }
 
+/* --- Contactgegevens op contact.html ---
+   Bewust groter dan de lopende tekst elders: dit is waarvoor mensen de pagina
+   openen, en een adres of telefoonnummer moet je in één oogopslag kunnen
+   overnemen — vaak terwijl je al aan het bellen bent. */
+.gegevens p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 1.5em;
+}
+/* Het label op een eigen regel, met lucht eronder. Zo vallen de vier blokjes
+   uit elkaar in plaats van één grijze massa te vormen. De <br> die hier eerst
+   achter stond is uit de HTML gehaald; die zou nu een lege regel geven. */
+.gegevens strong {
+  display: block;
+  margin-bottom: 1px;
+}
+/* Het telefoonnummer is de belangrijkste regel van de pagina: de meeste
+   klanten bellen liever dan dat ze een formulier invullen. */
+.gegevens .nummer {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
 /* --- Oproepblok --- */
 .oproep {
   background: var(--wit);

@@ -81,23 +81,26 @@
   <section class="sectie sectie-wit">
     <div class="container kolommen">
 
-      <div>
+      <div class="gegevens">
         <h2>Gegevens</h2>
+        <!-- De <br> na elk label is weg: het label staat via CSS al op een
+             eigen regel (`.gegevens strong`). Stond hij er wel, dan kwam er
+             een lege regel tussen label en gegeven. -->
         <p>
-          <strong>Adres</strong><br>
+          <strong>Adres</strong>
           Hoofdstraat 96<br>
           7901 JT Hoogeveen
         </p>
         <p>
-          <strong>Telefoon</strong><br>
-          <a href="tel:+31528235734">0528 - 23 57 34</a>
+          <strong>Telefoon</strong>
+          <a class="nummer" href="tel:+31528235734">0528 - 23 57 34</a>
         </p>
         <p>
-          <strong>WhatsApp</strong><br>
+          <strong>WhatsApp</strong>
           <a href="https://wa.me/31528235734">Stuur een bericht</a>
         </p>
         <p>
-          <strong>E-mail</strong><br>
+          <strong>E-mail</strong>
           <a href="mailto:hoogeveen@optie1.nl">hoogeveen@optie1.nl</a>
         </p>
       </div>
