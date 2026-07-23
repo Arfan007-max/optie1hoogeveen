@@ -71,10 +71,64 @@
 
 <main id="hoofd">
 
-  <section class="hero">
+  <!-- Hero-slider. Zonder JavaScript blijft alleen de eerste dia staan en zijn
+       de knoppen verborgen: dan is dit precies de hero die er altijd stond.
+       De dia's liggen via CSS-grid op elkaar, zodat de hoogte gelijk blijft aan
+       de langste dia en de pagina niet opspringt bij het wisselen. -->
+  <section class="hero hero-slider" aria-roledescription="carrousel" aria-label="Wat Optie1 Hoogeveen voor u doet">
     <div class="container">
-      <h1><span class="kop-sterk">Uw eerste keus</span><span class="kop-zacht">in Telecom</span></h1>
-      <p>Persoonlijke aandacht, advies op maat. Voor een nieuwe smartphone, het juiste abonnement of een reparatie bent u bij Optie1 Hoogeveen aan het juiste adres.</p>
+
+      <div class="dias">
+
+        <div class="dia is-actief" role="group" aria-roledescription="dia" aria-label="1 van 4: Welkom">
+          <h1><span class="kop-sterk">Uw eerste keus</span><span class="kop-zacht">in Telecom</span></h1>
+          <p>Persoonlijke aandacht, advies op maat. Voor een nieuwe smartphone, het juiste abonnement of een reparatie bent u bij Optie1 Hoogeveen aan het juiste adres.</p>
+        </div>
+
+        <div class="dia" role="group" aria-roledescription="dia" aria-label="2 van 4: Abonnementen">
+          <h1><span class="kop-sterk">Alle providers</span><span class="kop-zacht">onder één dak</span></h1>
+          <p>KPN, Vodafone, Odido, Ben en Lebara naast elkaar. We vergelijken ze eerlijk en regelen het overzetten van uw nummer.</p>
+          <div class="knoppen hero-knoppen">
+            <a class="knop knop-op-blauw" href="diensten.html">Meer over abonnementen</a>
+          </div>
+        </div>
+
+        <div class="dia" role="group" aria-roledescription="dia" aria-label="3 van 4: Reparatie">
+          <h1><span class="kop-sterk">Kapot scherm?</span><span class="kop-zacht">Vaak dezelfde dag klaar</span></h1>
+          <p>Gratis diagnose en vooraf een duidelijke prijs. Pas als u akkoord geeft, beginnen we aan de reparatie.</p>
+          <div class="knoppen hero-knoppen">
+            <a class="knop knop-op-blauw" href="afspraak.html">Reparatie aanmelden</a>
+          </div>
+        </div>
+
+        <div class="dia" role="group" aria-roledescription="dia" aria-label="4 van 4: Nieuw toestel">
+          <h1><span class="kop-sterk">Een nieuw toestel</span><span class="kop-zacht">dat meteen werkt</span></h1>
+          <p>Wij zetten uw gegevens over en maken het toestel gebruiksklaar. U loopt de winkel uit met een telefoon die het meteen doet.</p>
+          <div class="knoppen hero-knoppen">
+            <a class="knop knop-op-blauw" href="diensten.html">Bekijk het aanbod</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- hidden gaat er via JavaScript af, net als bij de menuknop: knoppen
+           die niets doen omdat het script niet draait, horen er niet te staan. -->
+      <div class="slider-bediening" hidden>
+        <button type="button" class="slider-pijl" data-dia="vorige" aria-label="Vorige dia">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.4 7.4L14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg>
+        </button>
+
+        <div class="slider-stippen"></div>
+
+        <button type="button" class="slider-pauze" aria-label="Diavertoning pauzeren">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="icoon-pauze" d="M6 5h4v14H6zm8 0h4v14h-4z"/><path class="icoon-afspelen" d="M8 5v14l11-7z"/></svg>
+        </button>
+
+        <button type="button" class="slider-pijl" data-dia="volgende" aria-label="Volgende dia">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.6 16.6L10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg>
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -180,6 +234,7 @@
 </footer>
 
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/hero-slider.js" defer></script>
 
 </body>
 </html>

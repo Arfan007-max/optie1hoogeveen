@@ -333,6 +333,122 @@ img { max-width: 100%; height: auto; display: block; }
 .hero h1 .kop-sterk,
 .hero h1 .kop-zacht { display: block; }
 .hero h1 .kop-zacht { margin-top: 0.28em; }
+
+/* --- Hero-slider (alleen op de homepage) ---
+   De dia's liggen alle vier in dezelfde grid-cel, dus op elkaar. Daardoor is
+   het vak altijd zo hoog als de langste dia en springt de pagina niet op bij
+   het wisselen — de klassieke ergernis van een slider.
+   Verbergen gebeurt met visibility en niet met display: zo blijven de dia's
+   meetellen voor de hoogte, terwijl ze wél uit de voorleesvolgorde en uit de
+   tabvolgorde verdwijnen. Een verborgen dia mag geen link bevatten die je met
+   Tab kunt bereiken maar niet kunt zien. */
+.dias { display: grid; }
+.dia {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.dia.is-actief {
+  visibility: visible;
+  opacity: 1;
+}
+/* Wie bewegende beelden heeft uitgezet in zijn systeeminstellingen, krijgt
+   geen overvloeier. Het script zet ook het automatisch doorschuiven uit. */
+@media (prefers-reduced-motion: reduce) {
+  .dia { transition: none; }
+}
+
+.hero-knoppen { justify-content: center; margin-top: 26px; }
+
+/* Witte knop op het blauwe vlak. --blauw-knop als tekstkleur en niet --blauw:
+   op wit haalt die 4,9:1 tegen 3,5:1. Zie de opmerking bij .knop-blauw. */
+.knop-op-blauw {
+  background: var(--wit);
+  color: var(--blauw-knop);
+}
+.knop-op-blauw:hover {
+  background: var(--hero-vlak);
+  color: var(--blauw-donker);
+}
+
+/* --- Bediening onder de dia's --- */
+.slider-bediening {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 32px;
+}
+.slider-bediening[hidden] { display: none; }
+
+/* Ruim bemeten: 44px is de ondergrens voor iets wat je met een vinger moet
+   raken, en dit zijn de kleinste knoppen van de site. */
+.slider-pijl,
+.slider-pauze {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--wit);
+  cursor: pointer;
+}
+.slider-pijl:hover,
+.slider-pauze:hover { background: rgba(255, 255, 255, .18); }
+
+/* Pauze- en afspeelicoon wisselen via een klasse op de knop. Het `hidden`-
+   attribuut werkt niet op elementen binnen een SVG, vandaar deze regels. */
+.slider-pauze .icoon-afspelen { display: none; }
+.slider-pauze.is-gepauzeerd .icoon-pauze { display: none; }
+.slider-pauze.is-gepauzeerd .icoon-afspelen { display: inline; }
+
+/* De stippen zitten in een eigen rij zodat de pijlen ernaast blijven staan,
+   ook als er ooit een dia bij komt. */
+.slider-stippen {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+/* De stip zelf is klein, maar de knop eromheen is 44px: het raakvlak mag niet
+   zo klein zijn als wat je ziet. */
+.slider-stip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.slider-stip::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .45);
+  transition: background .2s ease, transform .2s ease;
+}
+.slider-stip:hover::before { background: rgba(255, 255, 255, .75); }
+.slider-stip[aria-current="true"]::before {
+  background: var(--wit);
+  transform: scale(1.25);
+}
+
+/* Zichtbare focusrand: wie met Tab door de pagina gaat moet kunnen zien waar
+   hij is. Wit, want dit staat allemaal op het blauwe vlak. */
+.slider-pijl:focus-visible,
+.slider-pauze:focus-visible,
+.slider-stip:focus-visible {
+  outline: 3px solid var(--wit);
+  outline-offset: 2px;
+}
 .hero p { font-size: 1.12rem; max-width: 55ch; color: var(--wit); margin-inline: auto; }
 .hero .knoppen { margin-top: 28px; justify-content: center; }
 

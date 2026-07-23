@@ -31,6 +31,7 @@ over-ons.html      Over de winkel
 contact.html       Contactgegevens, openingstijden, route
 assets/css/style.css
 assets/js/site.js
+assets/js/hero-slider.js   Hero-slider op de homepage (4 dia's)
 assets/img/optie1-logo.png                Logo in de header
 assets/fonts/atkinson-hyperlegible-latin.woff2      Lettertype, gewone tekst
 assets/fonts/atkinson-hyperlegible-latin-ext.woff2  Lettertype, accenttekens
