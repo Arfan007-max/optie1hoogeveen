@@ -13,7 +13,7 @@
      formulier een bezoeker niets. De reparatiepagina zelf blijft wel vindbaar. -->
 <meta name="robots" content="noindex, follow">
 </head>
-<body class="pagina-wit">
+<body class="pagina-wit pagina-aanmelden">
 <a class="skiplink" href="#hoofd">Naar hoofdinhoud</a>
 
 <header class="site-header">
@@ -45,8 +45,8 @@
 
   <section class="hero">
     <div class="container">
-      <h1>Maak een afspraak</h1>
-      <p>Vul hieronder in om wat voor toestel het gaat en wat eraan mankeert. Wij nemen contact met u op om een moment af te spreken, en zeggen er meteen bij wat de reparatie ongeveer gaat kosten. Hier zitten geen kosten aan vast.</p>
+      <h1>Reparatie aanmelden</h1>
+      <p>Vertel ons kort om welk toestel het gaat en wat eraan mankeert. We nemen contact met u op voor een afspraak en een prijsindicatie — geheel vrijblijvend.</p>
     </div>
   </section>
 
@@ -61,28 +61,28 @@
       <form class="formulier" id="afspraak-formulier" novalidate>
 
         <div class="veld">
-          <label for="f-naam">Uw naam</label>
+          <label for="f-naam">Naam</label>
           <input type="text" id="f-naam" name="naam" autocomplete="name" required>
         </div>
 
         <div class="veld">
-          <label for="f-telefoon">Uw telefoonnummer</label>
+          <label for="f-telefoon">Telefoonnummer</label>
           <input type="tel" id="f-telefoon" name="telefoon" autocomplete="tel" required>
         </div>
 
         <div class="veld">
-          <label for="f-email">Uw e-mailadres <span class="veld-optioneel">(niet verplicht)</span></label>
+          <label for="f-email">E&#8209;mailadres <span class="veld-optioneel">(optioneel)</span></label>
           <input type="email" id="f-email" name="email" autocomplete="email">
           <p class="veld-uitleg">Laat u dit leeg, dan bellen we u terug op het nummer hierboven.</p>
         </div>
 
         <div class="veld">
-          <label for="f-toestel">Merk en model van uw toestel</label>
+          <label for="f-toestel">Merk en model</label>
           <input type="text" id="f-toestel" name="toestel" placeholder="Bijvoorbeeld: iPhone 13 of Samsung Galaxy A54" required>
         </div>
 
         <div class="veld">
-          <label for="f-probleem">Wat is er met het toestel?</label>
+          <label for="f-probleem">Omschrijving van de klacht</label>
           <textarea id="f-probleem" name="probleem" rows="5" placeholder="Bijvoorbeeld: het scherm is gebarsten na een val, de telefoon doet het verder nog wel" required></textarea>
         </div>
 
@@ -100,7 +100,7 @@
           waar kan maken.
         -->
         <fieldset class="veld veld-groep">
-          <legend>Wanneer komt het u uit? <span class="veld-optioneel">(niet verplicht)</span></legend>
+          <legend>Gewenste afspraak <span class="veld-optioneel">(optioneel)</span></legend>
           <div class="veld-duo">
             <div>
               <label for="f-datum">Dag</label>
@@ -135,7 +135,7 @@
           <button type="button" class="knop knop-whatsapp" id="whatsapp-knop">Verstuur met WhatsApp</button>
         </div>
 
-        <p class="formulier-klein">Met de groene knop opent WhatsApp met uw gegevens er al in; u drukt daar zelf op verzenden. We gebruiken uw gegevens alleen om uw aanvraag te beantwoorden.</p>
+        <p class="formulier-klein">Met de WhatsApp-knop opent WhatsApp met uw gegevens er al in; u drukt daar zelf op verzenden. We gebruiken uw gegevens alleen om uw aanvraag te beantwoorden.</p>
 
       </form>
 

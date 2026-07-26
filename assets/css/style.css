@@ -1651,3 +1651,228 @@ img { max-width: 100%; height: auto; display: block; }
   border-color: var(--merkblauw-diep);
   color: var(--wit);
 }
+
+/* ============================================================
+   REPARATIE-AANMELDPAGINA (afspraak.html) — premium & monochroom
+   ------------------------------------------------------------
+   Een rustige, zakelijke uitstraling in wit/zwart/grijs, geïnspireerd op de
+   eenvoud en typografie van Apple (uitsluitend als inspiratie). Doel: de
+   bezoeker moet direct voelen dat hier zorgvuldig met zijn toestel wordt
+   omgegaan. Kleur wordt alleen functioneel ingezet (validatie/focus).
+
+   Alles staat gescoped onder `.pagina-aanmelden`, zodat de rest van de site
+   zijn blauwe huisstijl behoudt. De paginaklasse staat op de <body>.
+   ============================================================ */
+.pagina-aanmelden {
+  /* Eigen, ingetogen palet — losgekoppeld van het blauwe sitepalet. */
+  --pm-zwart:  #1d1d1f;
+  --pm-grijs:  #3c3c43;
+  --pm-licht:  #f5f5f7;
+  --pm-rand:   #d2d2d7;
+  --pm-plch:   #6e6e73; /* placeholder: lichtgrijs maar goed leesbaar (±4,6:1) */
+  --pm-kolom:  720px;   /* gedeelde kolombreedte voor titel én formulier */
+
+  background: var(--wit);
+  color: var(--pm-zwart);
+  /* Het blauwe balkje bovenaan neutraliseren: een strakke, kleurloze start. */
+  border-top: 0;
+}
+
+/* De menuknop (smalle schermen) meekleuren: geen blauw kader op deze pagina. */
+.pagina-aanmelden .menu-knop {
+  border-color: var(--pm-rand);
+  color: var(--pm-zwart);
+}
+.pagina-aanmelden .menu-knop:hover {
+  background: var(--pm-licht);
+  color: var(--pm-zwart);
+}
+
+/* --- Hero: van blauw vlak naar een rustige, witte kop --- */
+.pagina-aanmelden .hero {
+  background: var(--wit);
+  padding-block: clamp(36px, 6vw, 72px);
+  text-align: left;
+}
+/* Titel en subtitel delen exact dezelfde kolom en linkerrand als het
+   formulier eronder — alles lijnt op één lijn uit. */
+.pagina-aanmelden .hero .container,
+.pagina-aanmelden #afspraak .container { max-width: var(--pm-kolom); }
+
+.pagina-aanmelden .hero h1 {
+  color: var(--pm-zwart);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.5rem + 1.8vw, 2.625rem); /* 32 → 42 px */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: none;
+  margin: 0 0 .35em;
+}
+.pagina-aanmelden .hero p {
+  color: var(--pm-grijs);
+  font-weight: 500;
+  font-size: clamp(1.1875rem, 1.05rem + 0.55vw, 1.375rem); /* 19 → 22 px */
+  line-height: 1.5;
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* --- Formulier: ruime kolom, veel verticale lucht --- */
+.pagina-aanmelden .formulier {
+  max-width: var(--pm-kolom);
+  margin-inline: auto;
+}
+.pagina-aanmelden .veld { margin-bottom: 30px; }
+
+/* --- Labels: één stijl, zwart, met lucht eronder --- */
+.pagina-aanmelden .veld label,
+.pagina-aanmelden .veld-groep legend,
+.pagina-aanmelden .veld-duo label {
+  display: block;
+  color: var(--pm-zwart);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.pagina-aanmelden .veld-groep legend { margin-bottom: 14px; }
+/* "(optioneel)" rustig en terughoudend naast het label. */
+.pagina-aanmelden .veld-optioneel {
+  color: var(--pm-plch);
+  font-weight: 400;
+}
+
+/* --- Invoervelden: wit, zacht afgerond, veel padding, ±56px hoog --- */
+.pagina-aanmelden .veld input,
+.pagina-aanmelden .veld select,
+.pagina-aanmelden .veld textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 18px;
+  color: var(--pm-zwart);
+  background: var(--wit);
+  border: 1px solid var(--pm-rand);
+  border-radius: 12px;
+  box-shadow: none;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.pagina-aanmelden .veld input,
+.pagina-aanmelden .veld select {
+  height: 56px;
+  padding: 0 18px;
+}
+.pagina-aanmelden .veld textarea {
+  min-height: 168px;
+  padding: 16px 18px;
+  line-height: 1.6;
+  resize: vertical;
+}
+/* Placeholder: lichtgrijs en toch leesbaar. */
+.pagina-aanmelden .veld ::placeholder { color: var(--pm-plch); opacity: 1; }
+
+/* --- Focus: rustig en donker, nooit fel blauw --- */
+.pagina-aanmelden .veld input:focus,
+.pagina-aanmelden .veld select:focus,
+.pagina-aanmelden .veld textarea:focus {
+  outline: none;
+  border-color: var(--pm-zwart);
+  box-shadow: 0 0 0 4px rgba(29, 29, 31, 0.10);
+}
+
+/* --- Dag & tijd: premium invoervelden i.p.v. kale browsercontrols --- */
+/* Select met een eigen, subtiele chevron in plaats van de systeempijl. */
+.pagina-aanmelden .veld select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 46px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%233c3c43' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  cursor: pointer;
+}
+/* Nog geen dag gekozen: rustig uitgegrijsd, duidelijk niet-actief. */
+.pagina-aanmelden .veld select:disabled {
+  background-color: var(--pm-licht);
+  color: var(--pm-plch);
+  cursor: not-allowed;
+}
+/* De datumkalender-knop meekleuren met het palet. */
+.pagina-aanmelden .veld input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: .55;
+  cursor: pointer;
+}
+.pagina-aanmelden .veld input[type="date"]:hover::-webkit-calendar-picker-indicator { opacity: .9; }
+/* De twee velden onder de legend met wat meer lucht ertussen. */
+.pagina-aanmelden .veld-duo { gap: 20px; }
+
+/* --- Helptekst: klein, grijs, rustig --- */
+.pagina-aanmelden .veld-uitleg,
+.pagina-aanmelden .formulier-klein {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--pm-grijs);
+  margin-top: 10px;
+}
+.pagina-aanmelden .formulier-klein { margin-top: 20px; }
+
+/* --- Knoppen: premium, ingetogen --- */
+.pagina-aanmelden .knop {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0;
+  border-radius: 12px;
+  padding: 0 28px;
+  min-height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  transition: background-color .2s ease, color .2s ease, transform .15s ease, box-shadow .2s ease;
+}
+/* Primaire actie: zwart vlak, witte tekst, subtiele lift bij hover. */
+.pagina-aanmelden .knop-rood {
+  background: var(--pm-zwart);
+  color: var(--wit);
+  border-color: var(--pm-zwart);
+}
+.pagina-aanmelden .knop-rood:hover {
+  background: #000000;
+  color: var(--wit);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+/* Tweede route (WhatsApp) en de terugknop: rustige, witte secundaire stijl —
+   de knoptekst zelf benoemt WhatsApp, dus felgroen is niet nodig. */
+.pagina-aanmelden .knop-whatsapp,
+.pagina-aanmelden .knop-blauw {
+  background: var(--wit);
+  color: var(--pm-zwart);
+  border-color: var(--pm-rand);
+}
+.pagina-aanmelden .knop-whatsapp:hover,
+.pagina-aanmelden .knop-blauw:hover {
+  background: var(--pm-licht);
+  color: var(--pm-zwart);
+}
+.pagina-aanmelden .knop:focus-visible {
+  outline: 3px solid var(--pm-zwart);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pagina-aanmelden .knop-rood:hover { transform: none; }
+}
+
+/* --- Bevestiging na verzenden: monochroom i.p.v. blauw --- */
+.pagina-aanmelden .formulier-gelukt {
+  max-width: var(--pm-kolom);
+  background: var(--pm-licht);
+  border-left: 4px solid var(--pm-zwart);
+}
+.pagina-aanmelden .formulier-gelukt h2 { color: var(--pm-zwart); }
+.pagina-aanmelden .formulier-gelukt a,
+.pagina-aanmelden .formulier a {
+  color: var(--pm-zwart);
+  text-decoration: underline;
+}
+.pagina-aanmelden .formulier-gelukt a:hover,
+.pagina-aanmelden .formulier a:hover { color: var(--pm-grijs); }
