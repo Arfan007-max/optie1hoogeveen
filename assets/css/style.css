@@ -1,70 +1,43 @@
 /* Optie1 Hoogeveen — basisstijl
-   Geen externe afhankelijkheden: geen CDN, geen tracking. Het lettertype staat
-   bewust in assets/fonts/ en wordt niet bij Google opgehaald: dan gaat het
-   IP-adres van elke bezoeker naar een derde partij. */
+   Geen externe afhankelijkheden: geen CDN, geen tracking.
 
-/* --- Lettertype ---
-   Atkinson Hyperlegible Next, onder de SIL Open Font License, zelf meegeleverd.
-   Getekend door het Braille Institute voor mensen die slecht zien: elke letter
-   is bewust onderscheidend, zodat I/l/1 en b/d niet te verwarren zijn. Dat is
-   waarom deze letter hier staat en niet een mooiere-maar-vagere.
-   Dit is een variabel lettertype: één bestand dekt alle gewichten van 400 tot
-   700, vandaar het bereik in font-weight hieronder in plaats van losse regels.
-   Twee subsets: latin voor gewone tekst, latin-ext voor accenttekens.
-   De unicode-range zorgt dat latin-ext alleen wordt opgehaald als een pagina
-   zo'n teken bevat — anders blijft het bij één bestand van 34 kB.
-   Er is bewust geen cursieve snede meegeleverd: de site gebruikt nergens
-   cursief. Komt dat er ooit, haal dan ook de italic-bestanden op, anders maakt
-   de browser er zelf een scheve variant van en dat oogt slordig.
-   font-display: swap toont direct de systeemletter en wisselt daarna om, zodat
-   tekst nooit onzichtbaar is tijdens het laden. */
-@font-face {
-  font-family: "Atkinson Hyperlegible Next";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url("../fonts/atkinson-hyperlegible-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "Atkinson Hyperlegible Next";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url("../fonts/atkinson-hyperlegible-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
+   --- Lettertype ---
+   De site gebruikt bewust géén webfont, maar een moderne systeem-fontstapel
+   (zie --letter in :root). Elk apparaat toont zo zijn eigen, best leesbare
+   sans-serif: SF Pro op Apple, Segoe UI op Windows, Roboto op Android. Dat
+   scheelt een download (snellere pagina), houdt de privacy schoon (er gaat
+   geen IP-adres naar een lettertype-CDN) en geeft toch de rustige, premium
+   uitstraling die bij een moderne telecomwinkel past.
+
+   De volledige typografie — schaal, gewichten, regelafstand en letterafstand —
+   staat centraal geregeld in het TYPOGRAFIE-blok in :root hieronder. Pas je die
+   variabelen aan, dan verandert de hele site mee. */
 
 :root {
-  /* Huisstijlkleuren, overgenomen van de moedersite optie1.nl.
-     --blauw-accent en --blauw-kop komen daar letterlijk vandaan.
-     --blauw-knop is bewust een tint donkerder: op #00ADEF is witte tekst
-     onleesbaar (contrast 2,4:1). Deze tint haalt de toegankelijkheidsnorm. */
-  --blauw-accent: #00adef;
-  --blauw-kop:    #0193cf;
-  --blauw:        #008bcb;
-  --blauw-knop:   #0077b3;
-  /* Iets donkerder dan --blauw-knop: nodig om ook op de grijze kaartachtergrond
-     (#f4f5f5) de contrastnorm van 4,5:1 te halen voor kleine koppen. */
-  --blauw-kop-klein: #006e9e;
-  --blauw-donker: #005a87;
-  --blauw-zacht:  #effaff;
+  /* Huisstijlblauw op verzoek vervangen door het blauw van de Vodafone-banner
+     (#1976D2, zoals nu op de homepage-hero). Om één toon te houden zonder de
+     leesbaarheid te breken gebruiken we de Material Blue-familie — die deelt
+     exact dezelfde kleurtoon:
+       #2196F3 (500) helder accent · #1976D2 (700) primair · #1565C0 (800) diep.
+     Wit op #1976D2 haalt 4,6:1, boven de norm van 4,5:1 voor lopende tekst. */
+  --blauw-accent: #2196f3;
+  --blauw-kop:    #1976d2;
+  --blauw:        #1976d2;
+  --blauw-knop:   #1976d2;
+  /* Een tint dieper (#1565C0): nodig om op de grijze kaartachtergrond (#f4f5f5)
+     en op de lichtblauwe tinten de 4,5:1 te halen voor kleine koppen en links. */
+  --blauw-kop-klein: #1565c0;
+  --blauw-donker: #1565c0;
+  --blauw-zacht:  #eaf4fe;
   --grijs-zacht:  #f4f5f5;
-  /* Eigen tint voor het herovlak. Bewust géén --blauw-zacht: die wordt ook
-     gebruikt voor menu-hover, de prijzentabel en twee secties — die moeten
-     lichter blijven. */
-  --hero-vlak:    #e2f3fc;
-  /* De merkkleur van optie1.nl: de volle blauwe balk die daar overal
-     terugkomt. Gemeten op de moedersite zelf. Gebruikt als vol vlak met witte
-     tekst (de hero). Voor kleine of lopende tekst op dit blauw is wit net te
-     licht (contrast 3,5:1); daarvoor is --merkblauw-diep, een tint donkerder
-     die met wit wél de leesnorm van 4,5:1 haalt. */
-  --merkblauw:      #0092cf;
-  --merkblauw-diep: #007ab5;
+  /* Eigen lichte tint voor het herovlak en rustige secties. Blijft licht (dit is
+     géén vol vlak): een lichte versie van hetzelfde blauw. */
+  --hero-vlak:    #e3f2fd;
+  /* Voorheen twee aparte merkblauwen; nu allebei het primaire #1976D2. Als vol
+     vlak met witte tekst (hero, seniorenkaart, bovenbalk) haalt wit hierop 4,6:1
+     en dus de leesnorm van 4,5:1. */
+  --merkblauw:      #1976d2;
+  --merkblauw-diep: #1976d2;
 
   --tekst: #333333;
   --tekst-zacht: #5f5f5f;
@@ -73,20 +46,62 @@
   --achtergrond: var(--grijs-zacht);
   --radius: 10px;
   --max: 1100px;
-  /* Twee lettertypestapels, nu allebei Atkinson Hyperlegible Next.
-     Ze blijven gescheiden zodat de hero later weer een eigen letter kan
-     krijgen zonder de rest van de site aan te raken.
-     --letter-hero wees eerder naar "Sinkin Sans" en "Open Sans", maar geen van
-     beide werd met de site meegeleverd: bezoekers kregen dus de systeemletter,
-     en die verschilt per apparaat. De grootste tekst van de site zag er
-     daardoor bij iedereen anders uit. Nu staat er een letter die wél meegaat.
-     De systeemletters blijven als terugval, voor als een bestand niet laadt. */
-  --letter: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --letter-hero: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* ============================================================
+     TYPOGRAFIE — centraal geregeld
+     Eén plek voor lettertype, schaal, gewichten, regelafstand en
+     letterafstand. Alle koppen en tekst op de site erven hiervan, zodat
+     de typografie overal consistent is. Apple dient enkel als inspiratie
+     voor de rustige hiërarchie en leesbaarheid — kleur, layout en merk
+     blijven die van Optie1.
+     ============================================================ */
+
+  /* Moderne systeem-fontstapel. Geen webfont, dus geen download en geen CDN:
+     elk apparaat toont zijn eigen scherpste sans-serif (SF Pro op Apple,
+     Segoe UI op Windows, Roboto op Android). Inter staat erin voor het geval
+     het ooit lokaal wordt meegeleverd. --letter-hero blijft apart zodat de
+     hero later een eigen letter kan krijgen zonder de rest te raken. */
+  --letter: "SF Pro Display", Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --letter-hero: var(--letter);
+
+  /* Typografische schaal. clamp(min, groei, max): de max is de maat op een
+     ruim scherm, de min wat een telefoon te zien krijgt; daartussen schaalt
+     het vloeiend mee met de schermbreedte. In rem, zodat een bezoeker die zijn
+     browser groter zet alles mee ziet groeien. */
+  --fs-hero:     clamp(2.5rem, 1.6rem + 4.0vw, 3.75rem);   /* 40 → 60 px  hero-titel */
+  --fs-pagina:   clamp(2rem,   1.45rem + 2.6vw, 3rem);     /* 32 → 48 px  paginatitel */
+  --fs-sectie:   clamp(1.6rem, 1.25rem + 1.6vw, 2.25rem);  /* 25,6 → 36 px sectietitel */
+  --fs-subtitel: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem); /* 22 → 28 px  subtitel (h3) */
+  --fs-lead:     clamp(1.2rem, 1.1rem + 0.4vw, 1.375rem);  /* 19,2 → 22 px introtekst */
+  --fs-body:     1.125rem;   /* 18 px  lopende tekst */
+  --fs-knop:     1.0625rem;  /* 17 px  knoppen */
+  --fs-nav:      1.125rem;   /* 18 px  navigatie */
+  --fs-klein:    0.9375rem;  /* 15 px  kleine tekst */
+  --fs-footer:   0.9375rem;  /* 15 px  footer */
+
+  /* Gewichten. Zwaar waar het telt (titels), rustig voor de rest. */
+  --gewicht-hero:     700;
+  --gewicht-kop:      600;
+  --gewicht-subtitel: 500;
+  --gewicht-body:     400;
+
+  /* Regelafstand: ruim voor lopende tekst (prettig lezen), strak voor koppen. */
+  --lh-body: 1.65;
+  --lh-kop:  1.15;
+  --lh-hero: 1.07;
+
+  /* Letterafstand. Grote koppen mogen iets dichter op elkaar (oogt strakker en
+     premium); lopende tekst blijft normaal. Subtiel, nooit opvallend. */
+  --ls-hero:     -0.022em;
+  --ls-kop:      -0.014em;
+  --ls-subtitel: -0.006em;
+  --ls-body:     0;
+
   /* Breedte van de openingstijdentabel. Staat hier zodat de tabel en de kop
      erboven niet uit elkaar kunnen lopen. */
   --tijden-max: 420px;
-  --schaduw: 0 2px 12px rgba(0, 139, 203, 0.10);
+  --schaduw: 0 2px 12px rgba(25, 118, 210, 0.10);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -99,22 +114,46 @@ body {
      op de body in plaats van een extra element: scheelt opmaak in zes bestanden. */
   border-top: 6px solid var(--merkblauw-diep);
   font-family: var(--letter);
-  /* Basis-leesgrootte. Bewust ruim gekozen: de site is op leesbaarheid gebouwd
-     (seniorvriendelijk, Atkinson-lettertype). Lopende tekst en de intro-
-     paragrafen erven deze maat; koppen staan in rem en blijven ongemoeid. */
-  font-size: 18px;
-  line-height: 1.65;
+  /* Basis-leesgrootte en regelafstand komen uit de centrale schaal (zie :root).
+     Lopende tekst en de introparagrafen erven deze maat; koppen hebben een eigen
+     maat. */
+  font-size: var(--fs-body);
+  font-weight: var(--gewicht-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
   color: var(--tekst);
   background: var(--achtergrond);
+  /* Rondere, gelijkmatige letters op scherpe schermen — geeft de rustige,
+     premium uitstraling die bij deze systeem-fontstapel hoort. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Koppen op gewicht 600 en in de huisstijlblauwe tint, net als op optie1.nl. */
-h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; font-weight: 600; }
-h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); color: var(--blauw-kop); }
-h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--blauw-kop); }
-/* h3 is te klein om als "grote tekst" te gelden en heeft daarom een donkerder
-   blauw nodig om leesbaar te blijven (contrast 4,5:1 in plaats van 3:1). */
-h3 { font-size: 1.15rem; color: var(--blauw-kop-klein); }
+/* Koppen in de huisstijlblauwe tint. Maat, gewicht, regel- en letterafstand
+   komen uit de centrale schaal, zodat de hiërarchie overal gelijk loopt:
+   paginatitel (h1) → sectietitel (h2) → subtitel (h3). */
+h1, h2, h3 { line-height: var(--lh-kop); margin: 0 0 .5em; }
+h1 {
+  font-size: var(--fs-pagina);
+  font-weight: var(--gewicht-hero);
+  letter-spacing: var(--ls-kop);
+  color: var(--blauw-kop);
+}
+h2 {
+  font-size: var(--fs-sectie);
+  font-weight: var(--gewicht-kop);
+  letter-spacing: var(--ls-kop);
+  color: var(--blauw-kop);
+}
+/* h3 dient als subtitel. In een iets donkerder blauw zodat de kleinere kop op
+   de grijze en lichtblauwe vlakken de leesnorm (4,5:1) blijft halen. */
+h3 {
+  font-size: var(--fs-subtitel);
+  font-weight: var(--gewicht-subtitel);
+  letter-spacing: var(--ls-subtitel);
+  color: var(--blauw-kop-klein);
+}
 p { margin: 0 0 1em; }
 
 a { color: var(--blauw-knop); }
@@ -201,9 +240,12 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--tekst);
   text-decoration: none;
   font-weight: 600;
-  font-size: .95rem;
+  font-size: var(--fs-nav);
+  /* Kapitalen lezen kleiner dan gewone letters; op de navigatiematen halen ze
+     nét niet dezelfde optische grootte, dus houden we een lichte letterafstand
+     aan zodat de menu-items rustig en leesbaar blijven. */
   text-transform: uppercase;
-  letter-spacing: .04em;
+  letter-spacing: .03em;
 }
 .site-nav a:hover { background: var(--blauw-zacht); color: var(--blauw-knop); }
 .site-nav a[aria-current="page"] { background: var(--blauw-knop); color: var(--wit); }
@@ -213,7 +255,11 @@ img { max-width: 100%; height: auto; display: block; }
   display: inline-block;
   padding: 13px 24px;
   border-radius: var(--radius);
-  font-weight: 700;
+  font-size: var(--fs-knop);
+  /* 600 in plaats van 700: op de nieuwe fontstapel oogt 700 wat schreeuwerig.
+     600 houdt de knop duidelijk maar rustig — passend bij de premium look. */
+  font-weight: 600;
+  letter-spacing: -0.005em;
   text-decoration: none;
   border: 2px solid transparent;
   transition: background .15s ease, color .15s ease;
@@ -233,12 +279,12 @@ img { max-width: 100%; height: auto; display: block; }
    is nauwelijks te zien, het leesbaarheidsverschil wel. */
 .knop-blauw { background: var(--blauw-knop); color: var(--wit); }
 .knop-blauw:hover { background: var(--blauw-donker); color: var(--wit); }
-/* Rood met witte tekst. Bewust hetzelfde rood als `.tijden .gesloten`
+/* Merkrood van Vodafone (#E60000), hetzelfde rood als `.tijden .gesloten`
    verderop, zodat de site niet twee net iets verschillende roden krijgt.
-   Wit op #b3261e haalt 6,4:1, ruim boven de norm van 4,5:1 voor gewone
-   tekst; de hovertint is donkerder en haalt dus meer. */
-.knop-rood { background: #b3261e; color: var(--wit); }
-.knop-rood:hover { background: #8f1e18; color: var(--wit); }
+   Wit op #E60000 haalt 4,8:1, boven de norm van 4,5:1 voor gewone tekst;
+   de hovertint #BD0000 is donkerder en haalt 6,6:1. */
+.knop-rood { background: #e60000; color: var(--wit); }
+.knop-rood:hover { background: #bd0000; color: var(--wit); }
 
 /* Zwevende contactknop, rechtsonder in beeld. Blijft staan tijdens het
    scrollen, als vaste snelkoppeling naar de contactpagina. Kleur en hover
@@ -305,7 +351,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .cirkel-whatsapp { background: #25d366; }
 .cirkel-bellen   { background: #29aae1; }
-.cirkel-email    { background: #c0392b; }
+.cirkel-email    { background: #e60000; }
 .icoon-label {
   font-size: clamp(12px, 3vw, 14px);
   font-weight: 700;
@@ -315,24 +361,22 @@ img { max-width: 100%; height: auto; display: block; }
 
 .knoppen { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* --- Hero --- */
-.hero {
-  /* Licht en luchtig, zoals de moedersite. Geen donker vlak meer. */
-  background: var(--hero-vlak);
-  padding-block: clamp(48px, 8vw, 88px);
-}
-/* Gecentreerd: zonder afbeelding ernaast leest links uitgelijnde tekst als
-   een halfleeg vlak. Gecentreerd vult de hero zichzelf optisch op. */
-.hero { text-align: center; }
-/* De volle merkblauwe balk, zoals op optie1.nl. --merkblauw-diep en niet
+/* --- Hero ---
+   De volle merkblauwe balk, zoals op optie1.nl. --merkblauw-diep en niet
    --merkblauw: op de diepe tint haalt witte lopende tekst 4,7:1, ruim boven de
-   norm. Op de lichtere merkblauw zou de introtekst maar 3,5:1 halen. De koppen
-   zijn groot genoeg om ook op de lichtere tint te kunnen, maar één tint voor de
-   hele balk oogt rustiger dan een kop in een net iets ander blauw. */
+   norm. Op de lichtere merkblauw zou de introtekst maar 3,5:1 halen. Eén tint
+   voor de hele balk oogt rustiger dan een kop in een net iets ander blauw.
+   Gecentreerd: zonder afbeelding ernaast leest links uitgelijnde tekst als een
+   halfleeg vlak; gecentreerd vult de hero zichzelf optisch op. */
 .hero {
   background: var(--merkblauw-diep);
   border-bottom: 0;
+  padding-block: clamp(48px, 8vw, 88px);
+  text-align: center;
 }
+/* Standaard krijgt een hero-titel de paginatitel-maat (48px): rustig en
+   passend voor de secundaire pagina's (Contact, Over ons, Senioren …). De
+   homepage-hero hieronder gaat naar de volle hero-maat (60px). */
 .hero h1 {
   color: var(--wit);
   max-width: 20ch;
@@ -341,13 +385,17 @@ img { max-width: 100%; height: auto; display: block; }
      Zo blijft het één plek om aan te draaien als de hero ooit een eigen
      letter moet krijgen. */
   font-family: var(--letter-hero);
-  /* Displayformaat, alleen in de hero — de h1 op de andere pagina's blijft de
-     maat van regel 56. Regelafstand en letterafstand gaan mee omlaag: op 70px
-     oogt 1.25 met normale spatiëring slap. De ondergrens blijft bewust laag,
-     want dat is wat een telefoonscherm te zien krijgt. */
-  font-size: clamp(2.05rem, 7.5vw, 4.6rem);
-  line-height: 1.06;
-  letter-spacing: -0.022em;
+  font-size: var(--fs-pagina);
+  font-weight: var(--gewicht-hero);
+  line-height: var(--lh-hero);
+  letter-spacing: var(--ls-hero);
+}
+/* Alleen de homepage-hero (de slider zónder split-layout) krijgt de grootste
+   maat van de site: dat is de etalage. De reparatiepagina deelt de slider maar
+   heeft een split-layout en houdt daarom de rustiger paginatitel-maat. */
+.hero-slider:not(.hero-split) h1 {
+  font-size: var(--fs-hero);
+  max-width: 16ch;
 }
 /* Tweekleurige kop op de homepage, nu op de blauwe balk: het sterke deel vol
    wit, het zachte deel een lichte blauwtint zodat het onderscheid blijft
@@ -478,14 +526,17 @@ img { max-width: 100%; height: auto; display: block; }
   outline: 3px solid var(--wit);
   outline-offset: 2px;
 }
-.hero p { font-size: 1.12rem; max-width: 55ch; color: var(--wit); margin-inline: auto; }
+.hero p { font-size: var(--fs-lead); line-height: 1.5; max-width: 55ch; color: var(--wit); margin-inline: auto; }
 .hero .knoppen { margin-top: 28px; justify-content: center; }
 
 /* --- Secties --- */
 .sectie { padding-block: clamp(40px, 6vw, 72px); }
 .sectie-wit { background: var(--wit); }
 .sectie-kop { max-width: 60ch; margin-bottom: 32px; }
-.sectie-kop p { color: var(--tekst-zacht); }
+/* Introtekst onder een sectietitel: iets groter dan de lopende tekst (lead),
+   in de zachtere tekstkleur. Geeft lucht en leidt rustig het onderwerp in. */
+.sectie-kop p,
+.sectie-kop-midden p { font-size: var(--fs-lead); line-height: 1.55; color: var(--tekst-zacht); }
 
 /* --- Kaartenraster --- */
 .raster {
@@ -535,7 +586,7 @@ img { max-width: 100%; height: auto; display: block; }
 .kaart-dienst:hover,
 .kaart-dienst:focus-within {
   transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(0, 139, 203, .22);
+  box-shadow: 0 10px 24px rgba(25, 118, 210, .22);
 }
 /* Beweging uitzetten voor wie daar in de systeeminstellingen om vraagt. De
    schaduw blijft wel: dat is geen beweging en houdt de kaart aanwijsbaar. */
@@ -551,12 +602,20 @@ img { max-width: 100%; height: auto; display: block; }
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--blauw);
+  /* Witte cirkel met een zwart symbool. Een subtiele rand tekent de witte
+     cirkel af, ook op de lichtblauwe tintkaarten (waar wit-op-tint anders te
+     zwak zou zijn). Op een eventueel blauw vlak valt de lichte rand weg. */
+  background: var(--wit);
+  border: 1px solid var(--lijn);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 14px;
 }
+/* De iconen dragen inline `fill="white"`; deze regel overschrijft dat naar
+   zwart (CSS wint van het presentatie-attribuut), zodat het symbool op de
+   witte cirkel leesbaar is. */
+.dienst-icoon svg { fill: #000000; }
 .sectie-kop-midden {
   text-align: center;
   max-width: 55ch;
@@ -639,7 +698,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* Zelfde gewicht én kleur als de dagen ernaast, zodat de twee kolommen even
    zwaar wegen. `.tijden .gesloten` verderop is specifieker en houdt zijn rood. */
 .tijden td { text-align: right; color: var(--tekst); font-weight: 600; }
-.tijden .gesloten { color: #b3261e; }
+.tijden .gesloten { color: #e60000; }
 
 /* --- Lijst met vinkjes --- */
 .vinklijst { list-style: none; padding: 0; margin: 0 0 1em; }
@@ -781,7 +840,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .toestel-specs {
-  font-size: .9rem;
+  font-size: var(--fs-klein);
   color: var(--tekst-zacht);
   margin-bottom: 10px;
 }
@@ -862,7 +921,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .formulier-fout {
   background: #fdecea;
-  border-left: 5px solid #b3261e;
+  border-left: 5px solid #e60000;
   border-radius: var(--radius);
   padding: 14px 16px;
   margin-bottom: 20px;
@@ -968,7 +1027,7 @@ img { max-width: 100%; height: auto; display: block; }
   /* Smalle balk: er staat alleen nog het webadres in. */
   padding-block: 10px;
   margin-top: 40px;
-  font-size: .95rem;
+  font-size: var(--fs-footer);
 }
 .site-footer h3 { color: var(--wit); font-size: 1rem; }
 .site-footer a { color: var(--wit); }
@@ -987,7 +1046,7 @@ img { max-width: 100%; height: auto; display: block; }
 .copyright {
   margin: 0;
   text-align: right;
-  font-size: .88rem;
+  font-size: var(--fs-footer);
   color: var(--wit);
 }
 
@@ -1025,9 +1084,9 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid #cfe9f7;
   border-radius: 999px;
   padding: 7px 18px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--blauw-kop-klein);
-  font-size: .95rem;
+  font-size: var(--fs-klein);
 }
 
 /* Merken op de homepage: dezelfde pil-vorm als .provider, maar als lijst zodat
@@ -1128,8 +1187,14 @@ img { max-width: 100%; height: auto; display: block; }
   background: currentColor;
 }
 
-@media (max-width: 860px) {
-  /* Blijft `wrap` (net als op breed scherm). Met `nowrap` kan het uitgeklapte
+@media (max-width: 992px) {
+  /* Omslagpunt naar het hamburger-menu. Op 992px in plaats van 860px: de
+     navigatie staat nu op 18px (grotere, rustiger letter) en heeft samen met
+     het logo ruim 990px nodig om op één regel te passen. Zou het menu pas bij
+     860px inklappen, dan viel de navigatie er net boven op een tweede regel —
+     een rommelige, tweeregelige header. Nu blijft de kop boven 992px strak op
+     één regel en verschijnt eronder het nette uitklapmenu.
+     Blijft `wrap` (net als op breed scherm). Met `nowrap` kan het uitgeklapte
      menu niet naar een eigen regel: het blijft dan naast de knop staan op
      dezelfde rij en drukt het logo samen tot een paar pixels breed. De
      `width: 100%` en `order: 3` op .site-nav hieronder rekenen op wrap. */
@@ -1156,7 +1221,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
   .js-menu .site-nav a {
     padding: 13px 14px;
-    font-size: .95rem;
+    font-size: var(--fs-nav);
   }
 
   .logo img { height: 52px; }
@@ -1173,7 +1238,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 640px) {
-  body { font-size: 17px; }
+  /* Lopende tekst blijft ook op de telefoon de volle 18px (--fs-body): rustig
+     en goed leesbaar, ook voor de seniorendoelgroep. De koppen schalen al
+     vloeiend mee via clamp(). */
   .knoppen .knop { flex: 1 1 auto; text-align: center; }
   .providerbalk p { width: 100%; text-align: center; }
 
@@ -1263,7 +1330,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: #9fe3ff;
   font-weight: 800;
 }
-.hero-beeld { display: flex; justify-content: center; }
+.hero-beeld { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 /* De illustratie schaalt mee maar wordt nooit onnodig groot. */
 .hero-beeld svg { width: 100%; max-width: 290px; height: auto; }
 /* Staat er een foto in plaats van de illustratie, dan mag die breder: een
@@ -1274,6 +1341,24 @@ img { max-width: 100%; height: auto; display: block; }
   height: auto;
   border-radius: var(--radius);
 }
+
+/* Afbeeldingslider in de reparatie-hero. De dia's liggen via de bestaande
+   .dias/.dia-regels op elkaar (grid-cel 1/1), zodat het vak niet verspringt bij
+   het wisselen. De beelden hebben verschillende verhoudingen (van 1,6:1 tot bijna
+   5:1); een vast 3:2-kader met object-fit:cover trekt ze gelijk. De kern van elk
+   beeld zit in het midden, dus center-crop houdt het belangrijkste in beeld. Wil
+   je een andere kaderverhouding, pas dan alleen de aspect-ratio hieronder aan. */
+.hero-beeld .dias { width: 100%; max-width: 440px; }
+.hero-beeld .dia img {
+  max-width: none;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+/* Vierkante logo's (transparante achtergrond) niet bijsnijden maar volledig
+   tonen: het kader blijft 3:2, het logo past er gecentreerd in. */
+.hero-beeld .dia-logo img { object-fit: contain; }
 
 @media (max-width: 760px) {
   /* Eén kolom: eerst de tekst, dan de knop, dan de illustratie — zo staan de
@@ -1325,7 +1410,7 @@ img { max-width: 100%; height: auto; display: block; }
 .merkkaart:hover,
 .merkkaart:focus-visible {
   transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(0, 139, 203, .22);
+  box-shadow: 0 10px 24px rgba(25, 118, 210, .22);
 }
 @media (prefers-reduced-motion: reduce) {
   .merkkaart { transition: box-shadow .15s ease; }
@@ -1483,7 +1568,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .review figcaption {
   margin-top: 12px;
-  font-size: .9rem;
+  font-size: var(--fs-klein);
   color: var(--tekst-zacht);
 }
 
@@ -1553,25 +1638,10 @@ img { max-width: 100%; height: auto; display: block; }
   outline-offset: 2px;
 }
 
-/* --- Dienstkaarten in vol merkblauw (homepage) ---
-   Zelfde volle blauwe vlak als de seniorenkaart en de hero. --merkblauw-diep
-   omdat witte lopende tekst daarop 4,7:1 haalt, ruim boven de leesnorm.
-   Drie klassen (.sectie-wit .kaart-dienst.kaart-vol) omdat `.sectie-wit
-   .kaart-dienst` de kaart anders in de lichte tint houdt. */
-.sectie-wit .kaart-dienst.kaart-vol {
-  background: var(--merkblauw-diep);
-  border-color: var(--merkblauw-diep);
-}
-.kaart-vol h3,
-.kaart-vol p { color: var(--wit); }
-/* De link op de kaart wit en onderstreept, zodat hij ook op het blauw als
-   link herkenbaar blijft. */
-.kaart-vol a { color: var(--wit); }
-/* Het ronde icoon wordt wit met een blauw symbool: op het blauwe vlak zou het
-   oude blauwe rondje wegvallen. De inline `fill="white"` op de SVG wordt door
-   deze CSS-regel overschreven. */
-.kaart-vol .dienst-icoon { background: var(--wit); }
-.kaart-vol .dienst-icoon svg { fill: var(--merkblauw-diep); }
+/* De volle-blauwe kaartvariant (.kaart-vol) is verwijderd: de dienstkaarten op
+   de homepage gebruiken nu dezelfde lichtblauwe tint (via `.sectie-wit
+   .kaart-dienst`) als de reparatiekaarten, met een witte cirkel en een zwart
+   symbool. Terughalen kan uit de Git-geschiedenis. */
 
 /* Merkpillen op de homepage in vol merkblauw met witte tekst. Alleen binnen
    de merkenlijst; de providerbalk (dezelfde .provider-klasse) houdt zijn

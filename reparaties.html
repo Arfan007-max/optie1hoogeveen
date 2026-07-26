@@ -39,10 +39,10 @@
   <!-- ============================================================
        1. Hero
        ============================================================ -->
-  <section class="hero hero-split">
+  <section class="hero hero-split hero-slider" aria-roledescription="carrousel" aria-label="Voorbeelden van onze reparaties">
     <div class="container">
       <div class="hero-tekst">
-        <h1>Smartphone of tablet kapot?</h1>
+        <h1><span class="titel-groep">Service en Reparatie</span> voor Smartphones &amp; Tablets</h1>
         <p>Wij repareren Apple, Samsung, OPPO, Motorola en vrijwel alle andere merken.</p>
         <ul class="hero-usp">
           <li>Gratis diagnose</li>
@@ -52,14 +52,44 @@
         </ul>
       </div>
       <div class="hero-beeld">
-        <!-- Foto in plaats van de eerdere eigen illustratie. Het bestand staat
-             lokaal in assets/img, dus de site laadt nog steeds niets extern.
-             De oude SVG-illustratie staat in de Git-geschiedenis.
-             width/height staan erbij zodat de hero niet verspringt terwijl de
-             foto nog laadt. -->
-        <img src="assets/img/gebroken-scherm.jpg"
-             width="1200" height="741"
-             alt="Een opengemaakte smartphone met daarop een losgehaald scherm dat helemaal gebarsten is.">
+        <!-- Afbeeldingslider. Elke <div class="dia"> is één beeld. Wil je er een
+             toevoegen? Kopieer een .dia-blok, wijzig de src en de alt-tekst en
+             tel de aria-labels op ("1 van 3" -> "1 van 4", enz.). De eerste dia
+             houdt de klasse is-actief. Draait de JavaScript niet, dan blijft die
+             eerste dia staan en zijn de knoppen verborgen — precies de oude,
+             enkele foto. Alle beelden staan lokaal in assets/img; er wordt niets
+             extern geladen. width/height staan erbij zodat de hero niet
+             verspringt terwijl een beeld nog laadt. -->
+        <div class="dias">
+          <div class="dia is-actief" role="group" aria-roledescription="dia" aria-label="1 van 3: Apple- en Samsung-service">
+            <img src="assets/img/apple-service-wit.svg"
+                 width="600" height="400"
+                 alt="Een Apple-logo, de naam Samsung en een schroevendraaier in drie blauwe cirkels op een witte achtergrond.">
+          </div>
+          <div class="dia" role="group" aria-roledescription="dia" aria-label="2 van 3: onderzoek en reparatie">
+            <img src="assets/img/Repair-Why-Choose-Apple.image.large_2x.png"
+                 width="1960" height="738"
+                 alt="Illustratie van twee monteurs met gereedschap, een vergrootglas en een Apple-logo.">
+          </div>
+          <div class="dia" role="group" aria-roledescription="dia" aria-label="3 van 3: reparatie in de winkel">
+            <img src="assets/img/telefoon-glas-reparatie-scherm.webp"
+                 width="800" height="450"
+                 alt="Handen met werkhandschoenen houden een telefoon met gebarsten scherm vast, naast reparatiegereedschap.">
+          </div>
+        </div>
+
+        <div class="slider-bediening" hidden>
+          <button type="button" class="slider-pijl" data-dia="vorige" aria-label="Vorige afbeelding">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.4 7.4L14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg>
+          </button>
+          <div class="slider-stippen"></div>
+          <button type="button" class="slider-pauze" aria-label="Diavertoning pauzeren">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="icoon-pauze" d="M6 5h4v14H6zm8 0h4v14h-4z"/><path class="icoon-afspelen" d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button type="button" class="slider-pijl" data-dia="volgende" aria-label="Volgende afbeelding">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.6 16.6L10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg>
+          </button>
+        </div>
       </div>
       <div class="knoppen hero-knoppen">
         <a class="knop knop-rood" href="afspraak.html">Reparatie aanmelden</a>
@@ -89,7 +119,7 @@
           <span class="merk-badge" style="background:#12299c">
             <!-- Samsung heeft geen beeldmerk, alleen het woordmerk. Als SVG-tekst
                  op maat gepast, zodat het in het ronde vlak past. -->
-            <svg width="78" height="78" viewBox="0 0 100 100" aria-hidden="true"><text x="50" y="57" text-anchor="middle" font-family="'Atkinson Hyperlegible Next', sans-serif" font-weight="700" font-size="22" fill="#ffffff" textLength="86" lengthAdjust="spacingAndGlyphs">SAMSUNG</text></svg>
+            <svg width="78" height="78" viewBox="0 0 100 100" aria-hidden="true"><text x="50" y="57" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22" fill="#ffffff" textLength="86" lengthAdjust="spacingAndGlyphs">SAMSUNG</text></svg>
           </span>
           <span>Samsung</span>
         </a>
@@ -398,6 +428,7 @@
 </footer>
 
 <script src="assets/js/site.js" defer></script>
+<script src="assets/js/hero-slider.js" defer></script>
 
 </body>
 </html>

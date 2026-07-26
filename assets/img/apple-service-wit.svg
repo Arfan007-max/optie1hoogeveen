@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Een Apple-logo, de naam Samsung en gereedschap in drie witte cirkels met een blauwe rand.">
+  <!-- Zelfgebouwde servicegrafiek: drie witte cirkels met een rand in de
+       huisstijltint #1976D2, op een witte achtergrond. Apple-logo en
+       Samsung-naam tonen de merken die we repareren; het gereedschap (een
+       gekruiste schroevendraaier en moersleutel) staat voor de service zelf.
+       Alle inhoud is zwart, gelijk gehouden over de drie cirkels. Schaalt scherp
+       op elk formaat. -->
+  <rect width="600" height="400" fill="#ffffff"/>
+
+  <!-- Ondercirkel met het gereedschap. Witte cirkel met blauwe rand, gelijk aan
+       de andere twee. Het zwarte gereedschap-icoon staat onderaan getekend (ná
+       de andere cirkels) en past binnen het vrije, onderste deel van deze
+       cirkel. -->
+  <circle cx="300" cy="275" r="112" fill="#ffffff"/>
+  <circle cx="300" cy="275" r="112" fill="none" stroke="#1976d2" stroke-width="3"/>
+
+  <!-- Rechtercirkel met de Samsung-naam: witte cirkel met blauwe rand en zwarte
+       tekst, gelijk aan de Apple-cirkel. -->
+  <circle cx="400" cy="132" r="112" fill="#ffffff"/>
+  <circle cx="400" cy="132" r="112" fill="none" stroke="#1976d2" stroke-width="3"/>
+  <text x="400" y="132" fill="#000000" font-family="Arial, Helvetica, sans-serif" font-weight="700"
+        font-size="34" letter-spacing="1.5" text-anchor="middle" dominant-baseline="central">SAMSUNG</text>
+
+  <!-- Linkercirkel met het echte, zwarte Apple-logo. Witte cirkel met blauwe
+       rand, gelijk aan de andere twee. -->
+  <circle cx="200" cy="132" r="112" fill="#ffffff"/>
+  <circle cx="200" cy="132" r="112" fill="none" stroke="#1976d2" stroke-width="3"/>
+  <svg x="108" y="55" width="160" height="160" viewBox="0 0 24 24">
+    <path fill="#000000" d="M17.543 12.607c-.02-2.02 1.65-2.99 1.724-3.036-.94-1.375-2.402-1.563-2.922-1.583-1.244-.126-2.429.732-3.06.732-.63 0-1.606-.714-2.64-.695-1.359.02-2.61.79-3.31 2.006-1.41 2.446-.36 6.067 1.014 8.055.67.97 1.47 2.06 2.52 2.02 1.01-.04 1.39-.654 2.61-.654 1.22 0 1.56.654 2.63.633 1.086-.02 1.774-.99 2.44-1.965.769-1.126 1.086-2.216 1.104-2.272-.024-.01-2.118-.813-2.14-3.226z"/>
+    <path fill="#000000" d="M15.53 6.5c.556-.674.93-1.61.827-2.543-.8.033-1.77.533-2.345 1.206-.515.596-.966 1.55-.845 2.466.893.069 1.805-.454 2.363-1.129z"/>
+  </svg>
+
+  <!-- Gereedschap-icoon: zelfgebouwde, strakke schroevendraaier ("\") gekruist
+       met een steeksleutel ("/"). Als láátste getekend, dus bovenop alle
+       cirkels. Zwart, gelijk aan de andere twee cirkels, en zo geschaald dat het
+       volledig binnen het vrije, onderste deel van de ondercirkel valt.
+       De schroevendraaier heeft een dunne witte rand: waar hij over de sleutel
+       kruist ontstaat zo een heldere scheiding, zodat beide gereedschappen
+       duidelijk herkenbaar blijven. Op de witte cirkel valt die rand weg. -->
+  <svg x="243" y="253" width="114" height="114" viewBox="0 0 100 100">
+    <!-- Steeksleutel: open kop rechtsboven, handvat linksonder -->
+    <g transform="translate(50,50) rotate(45)" fill="#000000">
+      <path d="M -14,-9 L -14,-31 Q -14,-35 -10,-35 L -6,-35 L -6,-23 L 6,-23
+               L 6,-35 L 10,-35 Q 14,-35 14,-31 L 14,-9 Z"/>
+      <rect x="-6" y="-11" width="12" height="46" rx="6"/>
+    </g>
+    <!-- Schroevendraaier: handvat linksboven, platte kop rechtsonder -->
+    <g transform="translate(50,50) rotate(-45)"
+       fill="#000000" stroke="#ffffff" stroke-width="2.6" stroke-linejoin="round">
+      <rect x="-13" y="-44" width="26" height="30" rx="10"/>
+      <rect x="-6" y="-15" width="12" height="6" rx="1.5"/>
+      <rect x="-4.5" y="-10" width="9" height="38"/>
+      <polygon points="-4.5,28 4.5,28 7,44 -7,44"/>
+    </g>
+  </svg>
+</svg>
