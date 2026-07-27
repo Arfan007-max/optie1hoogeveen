@@ -1,0 +1,8 @@
+# Optie1 Hoogeveen — robots.txt
+# Alles mag geïndexeerd worden; formulier-vervolgpagina's staan zelf op
+# noindex via een meta-tag (afspraak.html, reserveren.html, webshop.html).
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.optie1hoogeveen.nl/sitemap.xml
