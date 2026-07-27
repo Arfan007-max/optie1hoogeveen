@@ -19,6 +19,9 @@ out/
 !.env.example
 *.pem
 *.key
+# SMTP-inloggegevens voor de klantbevestiging; hoort alleen op de server te
+# staan, nooit in git. Het voorbeeldbestand (smtp-config.voorbeeld.php) mag wel.
+smtp-config.php
 
 # --- Logs ---
 logs/

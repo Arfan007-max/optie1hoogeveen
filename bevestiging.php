@@ -10,19 +10,22 @@
   Zo blijft de winkelmelding altijd werken, ook als het versturen van deze
   bevestiging mislukt — de twee paden raken elkaar nergens.
 
-  Draait op de Plesk-hosting via de standaard PHP mail()-functie. Er zijn geen
-  wachtwoorden of sleutels nodig; die staan dus ook nergens in de code.
+  VERSTUREN VIA GMAIL (SMTP)
+  De bevestiging gaat niet via de website-server, maar via het Gmail-account
+  van de winkel. Google's servers worden door Outlook en andere providers
+  vertrouwd, dus komt de mail netjes aan in plaats van in de spam. Er is
+  hiervoor geen externe library nodig: onderaan dit bestand staat een compacte,
+  zelfstandige SMTP-verzender.
+
+  De inloggegevens (het Gmail-app-wachtwoord) staan BEWUST NIET in dit bestand.
+  Ze horen in smtp-config.php, dat je apart op de server plaatst en dat niet in
+  de broncode of git terechtkomt. Zie smtp-config.voorbeeld.php.
 */
 
 // ---------------------------------------------------------------------------
-// Instellingen. Pas het afzenderadres aan als je een ander bestaand
-// mailadres op het domein wilt gebruiken. Het adres hoort bij het domein
-// optie1hoogeveen.nl, zodat de mail langs SPF/DMARC komt en niet als spam
-// wordt gezien. Antwoorden van de klant gaan naar de Gmail van de winkel.
+// Instellingen.
 // ---------------------------------------------------------------------------
-const AFZENDER_NAAM   = 'Optie1 Hoogeveen';
-const AFZENDER_EMAIL  = 'info@optie1hoogeveen.nl';
-const ANTWOORD_NAAR   = 'optie1hoogeveen@gmail.com';
+const ANTWOORD_NAAR   = 'optie1hoogeveen@gmail.com'; // waar antwoorden van de klant heen gaan
 const WEBSITE         = 'https://www.optie1hoogeveen.nl';
 const ONDERWERP       = 'Bevestiging van uw reparatieaanvraag - Optie1 Hoogeveen';
 
@@ -40,6 +43,23 @@ header('Content-Type: application/json; charset=utf-8');
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Methode niet toegestaan.']);
+    exit;
+}
+
+// De SMTP-inloggegevens uit het aparte configbestand laden. Ontbreekt dat
+// bestand (bijvoorbeeld omdat het nog niet op de server staat), dan kan er
+// niet verstuurd worden — we melden dat netjes en stoppen. De winkelmelding
+// via Web3Forms staat hier los van en is dan al onderweg.
+$configPad = __DIR__ . '/smtp-config.php';
+if (!is_file($configPad)) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'E-mailinstellingen ontbreken.']);
+    exit;
+}
+$config = require $configPad;
+if (!is_array($config) || empty($config['gebruiker']) || empty($config['wachtwoord'])) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'E-mailinstellingen onvolledig.']);
     exit;
 }
 
@@ -281,32 +301,51 @@ $regels[] = 'Website: ' . WEBSITE;
 $tekst = implode("\r\n", $regels);
 
 // ---------------------------------------------------------------------------
-// Versturen als multipart/alternative: e-mailprogramma's die geen HTML tonen
-// vallen dan terug op de platte tekst.
+// Het complete mailbericht opbouwen: eerst de kopregels, dan een lege regel,
+// dan de inhoud als multipart/alternative (platte tekst én HTML). Bij versturen
+// via SMTP moeten From/To/Subject in het bericht zelf staan; anders dan bij
+// mail() geeft de server ze niet vanzelf mee.
+//
+// De inhoud wordt quoted-printable gecodeerd. Dat houdt regels kort (zodat ook
+// een lange klachtomschrijving binnen de SMTP-regellimiet blijft) en zorgt dat
+// accenten en bijzondere tekens overal goed aankomen.
 // ---------------------------------------------------------------------------
-$grens = 'grens_' . bin2hex(random_bytes(16));
+$vanNaam  = !empty($config['van_naam'])  ? $config['van_naam']  : 'Optie1 Hoogeveen';
+$vanEmail = !empty($config['van_email']) ? $config['van_email'] : $config['gebruiker'];
 
-$headers = '';
-$headers .= 'From: ' . AFZENDER_NAAM . ' <' . AFZENDER_EMAIL . '>' . "\r\n";
-$headers .= 'Reply-To: ' . ANTWOORD_NAAR . "\r\n";
-$headers .= 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-Type: multipart/alternative; boundary="' . $grens . '"' . "\r\n";
+$grens = 'grens_' . bin2hex(random_bytes(16));
+$onderwerp = '=?UTF-8?B?' . base64_encode(ONDERWERP) . '?=';
+$hostDeel = substr((string)strrchr($vanEmail, '@'), 1);
+$messageId = '<' . bin2hex(random_bytes(16)) . '@' . ($hostDeel !== '' ? $hostDeel : 'localhost') . '>';
+
+$kop  = 'From: ' . $vanNaam . ' <' . $vanEmail . '>' . "\r\n";
+$kop .= 'To: ' . $email . "\r\n";
+$kop .= 'Reply-To: ' . ANTWOORD_NAAR . "\r\n";
+$kop .= 'Subject: ' . $onderwerp . "\r\n";
+$kop .= 'Date: ' . date('r') . "\r\n";
+$kop .= 'Message-ID: ' . $messageId . "\r\n";
+$kop .= 'MIME-Version: 1.0' . "\r\n";
+$kop .= 'Content-Type: multipart/alternative; boundary="' . $grens . '"' . "\r\n";
+
+// Regeleindes gelijktrekken naar CRLF, zodat de quoted-printable-codering
+// overal dezelfde harde regelovergangen ziet (los van of het bronbestand
+// met \n of \r\n is opgeslagen).
+$tekstCrlf = preg_replace('/\r\n|\r|\n/', "\r\n", $tekst);
+$htmlCrlf  = preg_replace('/\r\n|\r|\n/', "\r\n", $html);
 
 $body  = '--' . $grens . "\r\n";
 $body .= 'Content-Type: text/plain; charset=UTF-8' . "\r\n";
-$body .= 'Content-Transfer-Encoding: 8bit' . "\r\n\r\n";
-$body .= $tekst . "\r\n\r\n";
+$body .= 'Content-Transfer-Encoding: quoted-printable' . "\r\n\r\n";
+$body .= quoted_printable_encode($tekstCrlf) . "\r\n";
 $body .= '--' . $grens . "\r\n";
 $body .= 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-$body .= 'Content-Transfer-Encoding: 8bit' . "\r\n\r\n";
-$body .= $html . "\r\n\r\n";
+$body .= 'Content-Transfer-Encoding: quoted-printable' . "\r\n\r\n";
+$body .= quoted_printable_encode($htmlCrlf) . "\r\n";
 $body .= '--' . $grens . '--';
 
-// Het onderwerp bevat geen bijzondere tekens, maar we coderen het toch netjes
-// als UTF-8 zodat het altijd goed weergegeven wordt.
-$onderwerp = '=?UTF-8?B?' . base64_encode(ONDERWERP) . '?=';
+$bericht = $kop . "\r\n" . $body;
 
-$gelukt = mail($email, $onderwerp, $body, $headers);
+$gelukt = stuurViaSmtp($config, $vanEmail, $email, $bericht);
 
 // Geen klantgegevens loggen. We melden alleen of het versturen lukte.
 if ($gelukt) {
@@ -314,4 +353,83 @@ if ($gelukt) {
 } else {
     http_response_code(502);
     echo json_encode(['success' => false, 'message' => 'Verzenden mislukt.']);
+}
+
+// ---------------------------------------------------------------------------
+// Compacte SMTP-verzender, zonder externe library.
+//
+// Speciaal voor Gmail: verbinden op poort 587, dan met STARTTLS de verbinding
+// versleutelen en inloggen met AUTH LOGIN. Elke stap controleert de
+// antwoordcode van de server; klopt die niet, dan stopt de functie en geeft
+// false terug. Geeft true terug zodra de server het bericht heeft aangenomen.
+// ---------------------------------------------------------------------------
+function stuurViaSmtp(array $config, string $van, string $naar, string $bericht): bool {
+    $host       = !empty($config['host']) ? $config['host'] : 'smtp.gmail.com';
+    $poort      = (int)(!empty($config['port']) ? $config['port'] : 587);
+    $gebruiker  = (string)$config['gebruiker'];
+    $wachtwoord = (string)$config['wachtwoord'];
+
+    $fp = @stream_socket_client(
+        'tcp://' . $host . ':' . $poort,
+        $errno, $errstr, 20, STREAM_CLIENT_CONNECT
+    );
+    if (!$fp) {
+        return false;
+    }
+    stream_set_timeout($fp, 20);
+
+    // Leest een volledig serverantwoord. Bij een meerregelig antwoord staat op
+    // elke tussenregel een '-' na de code; op de laatste regel een spatie.
+    $lees = function () use ($fp) {
+        $antwoord = '';
+        while (($regel = fgets($fp, 515)) !== false) {
+            $antwoord .= $regel;
+            if (strlen($regel) < 4 || $regel[3] !== '-') {
+                break;
+            }
+        }
+        return $antwoord;
+    };
+
+    // Stuurt een commando (leeg = niets sturen, alleen lezen) en controleert of
+    // het antwoord met de verwachte driecijferige code begint.
+    $stuur = function (string $commando, string $verwacht) use ($fp, $lees) {
+        if ($commando !== '') {
+            fwrite($fp, $commando . "\r\n");
+        }
+        return strncmp($lees(), $verwacht, 3) === 0;
+    };
+
+    $ok = $stuur('', '220');
+    $ok = $ok && $stuur('EHLO optie1hoogeveen.nl', '250');
+    $ok = $ok && $stuur('STARTTLS', '220');
+    if ($ok) {
+        $ok = @stream_socket_enable_crypto(
+            $fp, true,
+            STREAM_CRYPTO_METHOD_TLS_CLIENT
+                | STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
+                | STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT
+        );
+    }
+    // Na STARTTLS opnieuw EHLO, nu over de versleutelde verbinding.
+    $ok = $ok && $stuur('EHLO optie1hoogeveen.nl', '250');
+    $ok = $ok && $stuur('AUTH LOGIN', '334');
+    $ok = $ok && $stuur(base64_encode($gebruiker), '334');
+    $ok = $ok && $stuur(base64_encode($wachtwoord), '235');
+    $ok = $ok && $stuur('MAIL FROM:<' . $van . '>', '250');
+    $ok = $ok && $stuur('RCPT TO:<' . $naar . '>', '250');
+    $ok = $ok && $stuur('DATA', '354');
+
+    if ($ok) {
+        // Puntbescherming: een regel die met '.' begint krijgt er een tweede
+        // punt bij, anders ziet de server die als einde van het bericht.
+        $veilig = preg_replace('/^\./m', '..', $bericht);
+        fwrite($fp, $veilig . "\r\n.\r\n");
+        $ok = strncmp($lees(), '250', 3) === 0;
+    }
+
+    @fwrite($fp, "QUIT\r\n");
+    fclose($fp);
+
+    return $ok;
 }
