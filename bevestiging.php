@@ -289,9 +289,6 @@ $grens = 'grens_' . bin2hex(random_bytes(16));
 $headers = '';
 $headers .= 'From: ' . AFZENDER_NAAM . ' <' . AFZENDER_EMAIL . '>' . "\r\n";
 $headers .= 'Reply-To: ' . ANTWOORD_NAAR . "\r\n";
-// Stille kopie naar de winkel, zodat elke verstuurde bevestiging ook op de
-// eigen Gmail binnenkomt. De klant ziet dit adres niet (Bcc, geen Cc).
-$headers .= 'Bcc: ' . ANTWOORD_NAAR . "\r\n";
 $headers .= 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-Type: multipart/alternative; boundary="' . $grens . '"' . "\r\n";
 
