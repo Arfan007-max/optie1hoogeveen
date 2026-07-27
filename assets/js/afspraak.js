@@ -265,6 +265,47 @@
     });
   }
 
+  /* Een kort, leesbaar referentienummer, bijvoorbeeld OPT-20260727-4F9K.
+     De datum maakt het herkenbaar, de vier tekens erachter houden aanvragen
+     van dezelfde dag uit elkaar. Dit nummer gaat mee naar zowel de melding aan
+     de winkel als de bevestiging aan de klant, zodat beide over hetzelfde
+     nummer praten. Het is geen boeking en reserveert niets — het is een
+     kenmerk om de aanvraag makkelijk terug te vinden. */
+  function maakReferentie() {
+    var nu = new Date();
+    var datum = '' + nu.getFullYear() +
+      ('0' + (nu.getMonth() + 1)).slice(-2) +
+      ('0' + nu.getDate()).slice(-2);
+    var toevallig = Math.random().toString(36).slice(2, 6).toUpperCase();
+    return 'OPT-' + datum + '-' + toevallig;
+  }
+
+  /* Best-effort bevestiging aan de klant, via het PHP-bestand op de eigen
+     hosting. Dit staat bewust LOS van de melding aan de winkel: die is via
+     Web3Forms al verstuurd op het moment dat we dit aanroepen. Mislukt de
+     bevestiging, dan merkt de klant daar niets van — hij ziet de bevestiging
+     al op het scherm en de winkel heeft de aanvraag al binnen. Daarom vangen
+     we fouten stil op en laten we de rest van de afhandeling ongemoeid.
+
+     Alleen versturen als de klant een e-mailadres invulde; zonder adres is er
+     niets om naartoe te sturen. */
+  function stuurBevestiging(gegevens, referentie) {
+    if (!gegevens.email) { return; }
+    fetch('bevestiging.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        naam: gegevens.naam,
+        telefoon: gegevens.telefoon,
+        email: gegevens.email,
+        toestel: gegevens.toestel,
+        probleem: gegevens.probleem,
+        moment: gegevens.moment,
+        referentie: referentie
+      })
+    }).catch(function () { /* stil: bevestiging is een extra service */ });
+  }
+
   formulier.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -277,6 +318,7 @@
     var toestel = gegevens.toestel;
     var probleem = gegevens.probleem;
     var moment = gegevens.moment;
+    var referentie = maakReferentie();
 
     if (WEB3FORMS_SLEUTEL === 'SLEUTEL-INVULLEN') {
       toonFout('Het formulier is nog niet actief. Belt u ons gerust op ' + TELEFOON + '.');
@@ -302,12 +344,17 @@
         'E-mail': email || '(niet ingevuld)',
         Toestel: toestel,
         Klacht: probleem,
-        Voorkeursmoment: moment || '(geen voorkeur opgegeven)'
+        Voorkeursmoment: moment || '(geen voorkeur opgegeven)',
+        Referentienummer: referentie
       })
     })
       .then(function (r) { return r.json(); })
       .then(function (resultaat) {
         if (resultaat.success) {
+          // De melding aan de winkel is binnen. Pas nu de bevestiging aan de
+          // klant versturen — best-effort, het resultaat verandert niets aan
+          // wat de bezoeker te zien krijgt.
+          stuurBevestiging(gegevens, referentie);
           formulier.hidden = true;
           gelukt.hidden = false;
           gelukt.scrollIntoView({ behavior: 'smooth', block: 'center' });
