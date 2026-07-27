@@ -1893,3 +1893,97 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .pagina-aanmelden .formulier-gelukt a:hover,
 .pagina-aanmelden .formulier a:hover { color: var(--pm-grijs); }
+
+/* ============================================================
+   TOEVOEGINGEN — SEO/UX-ronde
+   Rijke NAW-footer, breadcrumbs, mobiele actiebalk en de
+   ondersteunende stukjes voor de dienst-landingspagina's.
+   ============================================================ */
+
+/* --- Rijke footer met bedrijfsgegevens en interne links ---
+   .footer-raster stond al klaar; hier alleen de ruimte en de
+   afsluitende regel eromheen. Elke pagina toont nu deze footer,
+   dus de vroegere smalle balk (padding 10px) mag ruimer. */
+.site-footer { padding-block: 34px; }
+.footer-raster { margin-bottom: 24px; }
+.footer-kolom h3 { margin: 0 0 12px; }
+.footer-kolom p { margin: 0; line-height: 1.75; }
+.footer-kolom a { text-decoration: none; }
+.footer-kolom a:hover { text-decoration: underline; }
+.site-footer .copyright {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  padding-top: 16px;
+  margin: 0;
+}
+
+/* --- Breadcrumbs (kruimelpad) ---
+   Klein, rustig, boven de hero. Ook als BreadcrumbList in JSON-LD. */
+.kruimels { padding: 16px 0 0; font-size: 0.85rem; }
+.kruimels ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+.kruimels li { display: flex; align-items: center; gap: 6px; color: var(--tekst-zacht); }
+.kruimels li:not(:last-child)::after { content: "\203A"; color: var(--tekst-zacht); }
+.kruimels a { color: var(--blauw-kop-klein); text-decoration: none; }
+.kruimels a:hover { text-decoration: underline; }
+.kruimels [aria-current="page"] { color: var(--tekst-zacht); }
+
+/* --- Mobiele actiebalk: vast onderin op smartphones ---
+   80% van de bezoekers is mobiel; Bellen/WhatsApp/Afspraak/Route
+   altijd binnen duimbereik. Op desktop verborgen. */
+.mobiele-balk { display: none; }
+@media (max-width: 640px) {
+  .mobiele-balk {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    background: var(--wit);
+    border-top: 1px solid var(--lijn);
+    box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.09);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobiele-balk a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 9px 4px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    min-height: 56px;
+  }
+  .mobiele-balk a + a { border-left: 1px solid var(--lijn); }
+  .mobiele-balk svg { width: 22px; height: 22px; }
+  .mobiele-balk .mb-bellen svg { color: var(--blauw-kop); }
+  .mobiele-balk .mb-whatsapp svg { color: #1eb455; }
+  .mobiele-balk .mb-afspraak svg { color: #e60000; }
+  .mobiele-balk .mb-route svg { color: var(--tekst); }
+  /* Ruimte onderaan zodat de balk niets afdekt. */
+  body { padding-bottom: 68px; }
+  /* De zwevende homepage-knop botst met de balk: op mobiel weg. */
+  .knop-zwevend { display: none; }
+}
+
+/* --- Dienst-landingspagina's ---
+   Hergebruiken zoveel mogelijk bestaande klassen. Deze paar
+   extra's houden de knoppenrij in de hero netjes en geven de
+   "omgeving"-regel een rustige toon. */
+.hero-cta { margin-top: 22px; }
+.hero-cta.knoppen { flex-wrap: wrap; }
+.omgeving-tekst { color: var(--tekst-zacht); }
+.dienst-uitleg { max-width: 68ch; }
+.dienst-uitleg p { margin-bottom: 1em; }
