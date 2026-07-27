@@ -386,7 +386,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* Standaard krijgt een hero-titel de paginatitel-maat (48px): rustig en
    passend voor de secundaire pagina's (Contact, Over ons, Senioren …). De
    homepage-hero hieronder gaat naar de volle hero-maat (60px). */
-.hero h1 {
+.hero :is(h1, h2.dia-kop) {
   color: var(--wit);
   max-width: 20ch;
   margin-inline: auto;
@@ -402,7 +402,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* Alleen de homepage-hero (de slider zónder split-layout) krijgt de grootste
    maat van de site: dat is de etalage. De reparatiepagina deelt de slider maar
    heeft een split-layout en houdt daarom de rustiger paginatitel-maat. */
-.hero-slider:not(.hero-split) h1 {
+.hero-slider:not(.hero-split) :is(h1, h2.dia-kop) {
   font-size: var(--fs-hero);
   max-width: 16ch;
 }
@@ -410,15 +410,15 @@ img { max-width: 100%; height: auto; display: block; }
    wit, het zachte deel een lichte blauwtint zodat het onderscheid blijft
    zonder de leesbaarheid te schaden. #cfe9f7 op --merkblauw-diep haalt 3,6:1,
    ruim boven de 3:1 voor deze grote tekst. */
-.hero h1 .kop-sterk { color: var(--wit); }
-.hero h1 .kop-zacht { color: #cfe9f7; }
+.hero :is(h1, h2.dia-kop) .kop-sterk { color: var(--wit); }
+.hero :is(h1, h2.dia-kop) .kop-zacht { color: #cfe9f7; }
 /* De twee delen staan op eigen regels zonder <br>: dat laat de tussenruimte
    hieronder los instellen. Met een <br> zou die vastzitten aan line-height, en
    dan schuift de regelafstand bínnen een deel net zo hard mee. In em, zodat de
    ruimte meeschaalt met de kopgrootte. */
-.hero h1 .kop-sterk,
-.hero h1 .kop-zacht { display: block; }
-.hero h1 .kop-zacht { margin-top: 0.28em; }
+.hero :is(h1, h2.dia-kop) .kop-sterk,
+.hero :is(h1, h2.dia-kop) .kop-zacht { display: block; }
+.hero :is(h1, h2.dia-kop) .kop-zacht { margin-top: 0.28em; }
 
 /* --- Hero-slider (alleen op de homepage) ---
    De dia's liggen alle vier in dezelfde grid-cel, dus op elkaar. Daardoor is
