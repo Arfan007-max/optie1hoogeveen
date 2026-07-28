@@ -419,6 +419,10 @@ img { max-width: 100%; height: auto; display: block; }
 .hero :is(h1, h2.dia-kop) .kop-sterk,
 .hero :is(h1, h2.dia-kop) .kop-zacht { display: block; }
 .hero :is(h1, h2.dia-kop) .kop-zacht { margin-top: 0.28em; }
+/* "Uw eerste keus" (de sterke regel van de eerste dia, het enige <h1>) in
+   hoofdletters. Via text-transform blijft de bron gewoon "Uw eerste keus", zodat
+   schermlezers en zoekmachines de normale tekst houden. */
+.hero h1 .kop-sterk { text-transform: uppercase; }
 
 /* --- Hero-slider (alleen op de homepage) ---
    De dia's liggen alle vier in dezelfde grid-cel, dus op elkaar. Daardoor is
@@ -575,6 +579,14 @@ img { max-width: 100%; height: auto; display: block; }
    deze ondergrond: de kopjes halen 5,0:1 en de lopende tekst 11:1. */
 .raster-klachten .kaart { background: var(--hero-vlak); text-align: center; }
 .kaart h3 { color: var(--ink); }
+/* De dienstkaarten zijn smal (±248px). Een lang woord als "Softwareproblemen"
+   liep bij de grote koptekst buiten de kaart. Een iets kleinere kop plus het
+   afbreken van te lange woorden houdt de tekst altijd binnen de box. */
+.kaart-dienst h3 {
+  font-size: 1.2rem;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
 .kaart p:last-child { margin-bottom: 0; }
 
 /* --- Dienstkaarten ---
