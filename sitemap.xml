@@ -1,90 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Optie1 Hoogeveen — sitemap.
      Alleen indexeerbare pagina's. afspraak.html, reserveren.html en
-     webshop.html staan op noindex en horen hier dus niet in. -->
+     webshop.html staan op noindex en horen hier dus niet in.
+     lastmod = datum van de laatste structurele wijziging; bijwerken zodra
+     een pagina inhoudelijk verandert. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
     <loc>https://www.optie1hoogeveen.nl/</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://www.optie1hoogeveen.nl/reparaties.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.optie1hoogeveen.nl/iphone-reparatie-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/samsung-reparatie-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/scherm-vervangen-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/batterij-vervangen-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/oplaadpoort-reparatie-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/ipad-reparatie-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/tablet-reparatie-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/data-overzetten-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.optie1hoogeveen.nl/diensten.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/telefoon-abonnement-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/sim-only-hoogeveen.html</loc>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.optie1hoogeveen.nl/senioren.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/over-ons.html</loc>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.optie1hoogeveen.nl/contact.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
