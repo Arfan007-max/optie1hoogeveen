@@ -1992,9 +1992,10 @@ img { max-width: 100%; height: auto; display: block; }
   body { padding-bottom: 68px; }
   /* De zwevende homepage-knop botst met de balk: op mobiel weg. */
   .knop-zwevend { display: none; }
-  /* Behalve op de homepage: die heeft geen mobiele onderbalk, dus daar blijft
-     de rode Direct Contact-knop ook op de telefoon staan. */
-  .home .knop-zwevend { display: inline-block; }
+  /* Behalve op de homepage en de contactpagina: die hebben geen mobiele
+     onderbalk, dus daar blijft de rode zwevende knop ook op de telefoon staan. */
+  .home .knop-zwevend,
+  .contact .knop-zwevend { display: inline-block; }
 }
 
 /* --- Dienst-landingspagina's ---
