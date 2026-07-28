@@ -1751,8 +1751,8 @@ img { max-width: 100%; height: auto; display: block; }
 .pagina-aanmelden .veld-duo label {
   display: block;
   color: var(--pm-zwart);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   line-height: 1.3;
   margin-bottom: 10px;
 }
@@ -1772,7 +1772,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 18px;
   color: var(--pm-zwart);
   background: var(--wit);
-  border: 1px solid var(--pm-rand);
+  border: 2px solid var(--pm-rand);
   border-radius: 12px;
   box-shadow: none;
   transition: border-color .18s ease, box-shadow .18s ease;
@@ -1823,6 +1823,9 @@ img { max-width: 100%; height: auto; display: block; }
   cursor: pointer;
 }
 .pagina-aanmelden .veld input[type="date"]:hover::-webkit-calendar-picker-indicator { opacity: .9; }
+/* Datumtekst (dd-mm-jjjj) vet weergeven. */
+.pagina-aanmelden .veld input[type="date"] { font-weight: 700; }
+.pagina-aanmelden .veld input[type="date"]::-webkit-datetime-edit { font-weight: 700; }
 /* De twee velden onder de legend met wat meer lucht ertussen. */
 .pagina-aanmelden .veld-duo { gap: 20px; }
 
@@ -1873,15 +1876,16 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--wit);
   border-color: #1eb455;
 }
-/* Terugknop: rustige, witte secundaire stijl. */
+/* Terugknop: blauw vlak met witte tekst. */
 .pagina-aanmelden .knop-blauw {
-  background: var(--wit);
-  color: var(--pm-zwart);
-  border-color: var(--pm-rand);
+  background: var(--blauw-knop);
+  color: var(--wit);
+  border-color: var(--blauw-knop);
 }
 .pagina-aanmelden .knop-blauw:hover {
-  background: var(--pm-licht);
-  color: var(--pm-zwart);
+  background: var(--blauw-donker);
+  color: var(--wit);
+  border-color: var(--blauw-donker);
 }
 .pagina-aanmelden .knop:focus-visible {
   outline: 3px solid var(--pm-zwart);
