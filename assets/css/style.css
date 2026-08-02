@@ -2115,3 +2115,65 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .opties-terug { margin-top: 18px; }
 .opties-terug a { color: var(--wit); }
+
+/* ============================================================
+   Reparatiekeuze — tegels met icoon
+   Grid van veelvoorkomende reparaties op de reparatiekeuze-pagina.
+   Line-iconen (Lucide, ISC) in merkblauw op een lichtblauwe cirkel in
+   de huisstijltint. Nieuwe klassen; raken geen andere pagina.
+   ============================================================ */
+.rep-raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 16px;
+}
+.rep-kaart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--wit);
+  border: 2px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 20px 12px;
+  color: var(--ink);
+  box-shadow: var(--schaduw);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.rep-kaart:hover,
+.rep-kaart:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--blauw);
+  box-shadow: 0 10px 24px rgba(25, 118, 210, .22);
+}
+.rep-kaart:focus-visible {
+  outline: 3px solid var(--blauw);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rep-kaart { transition: box-shadow .15s ease, border-color .15s ease; }
+  .rep-kaart:hover,
+  .rep-kaart:focus-visible { transform: none; }
+}
+.rep-icoon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--hero-vlak);
+  color: var(--blauw);
+}
+.rep-icoon svg {
+  width: 32px;
+  height: 32px;
+}
+.rep-naam {
+  font-weight: 600;
+  font-size: .95rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
