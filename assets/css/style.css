@@ -2007,3 +2007,111 @@ img { max-width: 100%; height: auto; display: block; }
 .omgeving-tekst { color: var(--tekst-zacht); }
 .dienst-uitleg { max-width: 68ch; }
 .dienst-uitleg p { margin-bottom: 1em; }
+
+/* ============================================================
+   iPhone-modelselectie
+   Alleen gebruikt op iphone-reparatie-hoogeveen.html (modelkeuze) en
+   op de reparatietype-keuze. Nieuwe klassen; raken geen andere pagina.
+   Bouwt voort op de bestaande .merkkaart-uitstraling: witte kaart,
+   zachte rand, rustige hover en een duidelijke focus-state.
+   ============================================================ */
+.model-raster {
+  display: grid;
+  /* Vult automatisch bij: op desktop meerdere kaarten naast elkaar, op
+     tablet minder kolommen en op de telefoon twee per rij — nooit een
+     horizontale scroll. */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+}
+.model-kaart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--wit);
+  border: 2px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  color: var(--ink);
+  box-shadow: var(--schaduw);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.model-kaart:hover,
+.model-kaart:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--blauw);
+  box-shadow: 0 10px 24px rgba(25, 118, 210, .22);
+}
+.model-kaart:focus-visible {
+  outline: 3px solid var(--blauw);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .model-kaart { transition: box-shadow .15s ease, border-color .15s ease; }
+  .model-kaart:hover,
+  .model-kaart:focus-visible { transform: none; }
+}
+.model-foto {
+  width: 100%;
+  height: 160px;
+}
+/* Vaste hoogte + object-fit:contain begrenst de afbeelding betrouwbaar
+   (een percentage-max-height op een grid-item groeit anders met de rij mee).
+   De portret-render wordt netjes passend geschaald, gecentreerd, zonder
+   vervorming en zonder over de modelnaam heen te lopen. */
+.model-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.model-naam {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.model-hint {
+  margin-top: 22px;
+  text-align: center;
+  color: var(--tekst-zacht);
+}
+/* Verplichte CC BY-SA-bronvermelding bij de modelafbeeldingen. Bewust klein
+   en rustig, maar wel zichtbaar en met werkende links. */
+.model-credit {
+  margin-top: 10px;
+  text-align: center;
+  font-size: var(--fs-klein);
+  color: var(--tekst-zacht);
+}
+
+/* Klikbare dienstkaart (reparatietype-keuze). Neemt de bestaande
+   .kaart/.kaart-dienst-opmaak over, maar gedraagt zich als link:
+   geen onderstreping, wel een rustige hover en duidelijke focus. */
+.kaart-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.kaart-link:hover,
+.kaart-link:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--blauw);
+  box-shadow: 0 10px 24px rgba(25, 118, 210, .22);
+}
+.kaart-link:focus-visible {
+  outline: 3px solid var(--blauw);
+  outline-offset: 3px;
+}
+.kaart-link h3 { color: var(--ink); }
+.kaart-link p { color: var(--tekst-zacht); margin-bottom: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .kaart-link { transition: box-shadow .15s ease, border-color .15s ease; }
+  .kaart-link:hover,
+  .kaart-link:focus-visible { transform: none; }
+}
+.opties-terug { margin-top: 18px; }
+.opties-terug a { color: var(--wit); }
