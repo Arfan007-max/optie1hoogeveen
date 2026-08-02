@@ -83,31 +83,18 @@
     return new Date(Number(delen[0]), Number(delen[1]) - 1, Number(delen[2]));
   }
 
-  function vulTijden() {
-    var datum = gekozenDatum();
+  /* De beschikbare tijdstippen voor een gekozen dag, als lijst van "HH:MM".
+     Dit is de enige plek waar de tijdslotlogica leeft: zowel het vullen van de
+     keuzelijst als de controle bij het versturen gebruiken deze functie, zodat
+     scherm en validatie nooit uit elkaar kunnen lopen.
 
-    // Alles wissen en opnieuw opbouwen; zo blijft er nooit een tijd van een
-    // vorige dag staan die vandaag niet meer kan.
-    tijdveld.innerHTML = '';
-
-    function zetMelding(tekst) {
-      var optie = document.createElement('option');
-      optie.value = '';
-      optie.textContent = tekst;
-      tijdveld.appendChild(optie);
-      tijdveld.disabled = true;
-    }
-
-    if (datum === null) {
-      zetMelding('Kies eerst een dag');
-      return;
-    }
-
+     Geeft terug:
+       null       als de winkel die dag gesloten is (staat niet in OPENINGSTIJDEN);
+       []         als het vandaag te laat is voor nog een tijdslot;
+       [...tijden] anders, van de eerste tot en met de laatste starttijd. */
+  function beschikbareTijden(datum) {
     var tijden = OPENINGSTIJDEN[datum.getDay()];
-    if (!tijden) {
-      zetMelding('Op deze dag zijn we gesloten');
-      return;
-    }
+    if (!tijden) { return null; }
 
     var vanaf = naarMinuten(tijden.eerste);
     var tot = naarMinuten(tijden.laatste);
@@ -124,22 +111,55 @@
       if (vroegstMogelijk > vanaf) { vanaf = vroegstMogelijk; }
     }
 
-    if (vanaf > tot) {
+    var lijst = [];
+    for (var m = vanaf; m <= tot; m += STAP_MINUTEN) {
+      lijst.push(naarTijd(m));
+    }
+    return lijst;
+  }
+
+  function vulTijden() {
+    var datum = gekozenDatum();
+
+    // Alles wissen en opnieuw opbouwen; zo blijft er nooit een tijd van een
+    // vorige dag staan die vandaag niet meer kan, en wist het kiezen van een
+    // andere dag automatisch het eerder gekozen tijdstip.
+    tijdveld.innerHTML = '';
+
+    function zetMelding(tekst) {
+      var optie = document.createElement('option');
+      optie.value = '';
+      optie.textContent = tekst;
+      tijdveld.appendChild(optie);
+      tijdveld.disabled = true;
+    }
+
+    if (datum === null) {
+      zetMelding('Kies een dag');
+      return;
+    }
+
+    var lijst = beschikbareTijden(datum);
+    if (lijst === null) {
+      zetMelding('Op deze dag zijn we gesloten');
+      return;
+    }
+    if (lijst.length === 0) {
       zetMelding('Vandaag lukt niet meer — kies een andere dag');
       return;
     }
 
     var leeg = document.createElement('option');
     leeg.value = '';
-    leeg.textContent = 'Maakt niet uit';
+    leeg.textContent = 'Kies een tijdstip';
     tijdveld.appendChild(leeg);
 
-    for (var m = vanaf; m <= tot; m += STAP_MINUTEN) {
+    lijst.forEach(function (t) {
       var optie = document.createElement('option');
-      optie.value = naarTijd(m);
-      optie.textContent = naarTijd(m);
+      optie.value = t;
+      optie.textContent = t;
       tijdveld.appendChild(optie);
-    }
+    });
     tijdveld.disabled = false;
   }
 
@@ -194,7 +214,7 @@
       email: waarde('email'),
       toestel: waarde('toestel'),
       probleem: waarde('probleem'),
-      moment: '(geen voorkeur opgegeven)'
+      moment: ''
     };
 
     if (gegevens.naam === '' || gegevens.telefoon === '' ||
@@ -203,29 +223,45 @@
       return null;
     }
 
-    /* Het voorkeursmoment is niet verplicht, maar is er wél een dag gekozen,
-       dan moet die kloppen. De kalender van de browser houdt een gesloten dag
-       niet tegen — min en max gaan alleen over het bereik, niet over welke
-       weekdagen open zijn. Zonder deze controle kan iemand met het toetsenbord
-       een zondag intikken en toch versturen. */
+    /* Dag én tijdstip zijn verplicht en moeten allebei kloppen. De kalender van
+       de browser houdt een gesloten dag niet tegen — min en max gaan alleen
+       over het bereik, niet over welke weekdagen open zijn. Zonder deze
+       controles kan iemand met het toetsenbord een zondag of een tijd buiten de
+       openingstijden intikken en toch versturen. */
     var datum = gekozenDatum();
-    if (datum !== null) {
-      if (!OPENINGSTIJDEN[datum.getDay()]) {
-        toonFout('Op de gekozen dag is de winkel gesloten. Kiest u een dag van maandag tot en met zaterdag.');
-        return null;
-      }
-      if (alsDatumwaarde(datum) < alsDatumwaarde(new Date())) {
-        toonFout('De gekozen dag ligt in het verleden. Kiest u een dag vanaf vandaag.');
-        return null;
-      }
-      // Bijvoorbeeld: "zaterdag 25 juli 2026 om 14:30". Voluit geschreven,
-      // want in een bericht leest 2026-07-25 een stuk minder prettig.
-      gegevens.moment = datum.toLocaleDateString('nl-NL', {
-        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-      });
-      var tijd = waarde('tijd');
-      gegevens.moment += tijd === '' ? ' (tijd maakt niet uit)' : ' om ' + tijd;
+    if (datum === null) {
+      toonFout('Kies een datum voor de afspraak.');
+      return null;
     }
+    if (!OPENINGSTIJDEN[datum.getDay()]) {
+      toonFout('Op zondag is de winkel gesloten. Kies een andere dag.');
+      return null;
+    }
+    if (alsDatumwaarde(datum) < alsDatumwaarde(new Date())) {
+      toonFout('De gekozen dag ligt in het verleden. Kiest u een dag vanaf vandaag.');
+      return null;
+    }
+
+    var tijd = waarde('tijd');
+    if (tijd === '') {
+      toonFout('Kies een tijdstip voor de afspraak.');
+      return null;
+    }
+    // Het tijdstip moet een echt beschikbaar slot van die dag zijn — dezelfde
+    // lijst als in de keuzelijst. Zo glipt een met de hand ingetikte of
+    // achterhaalde tijd (bv. inmiddels binnen het uur) er niet doorheen.
+    var slots = beschikbareTijden(datum);
+    if (!slots || slots.indexOf(tijd) === -1) {
+      toonFout('Dit tijdstip valt buiten onze openingstijden.');
+      return null;
+    }
+
+    // Altijd datum én exacte 24-uurs tijd, bijvoorbeeld
+    // "maandag 3 augustus 2026 om 14:30". Voluit geschreven, want in een
+    // bericht leest 2026-08-03 een stuk minder prettig.
+    gegevens.moment = datum.toLocaleDateString('nl-NL', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+    }) + ' om ' + tijd;
 
     return gegevens;
   }
@@ -344,7 +380,7 @@
         'E-mail': email || '(niet ingevuld)',
         Toestel: toestel,
         Klacht: probleem,
-        Voorkeursmoment: moment || '(geen voorkeur opgegeven)',
+        Voorkeursmoment: moment,
         Referentienummer: referentie
       })
     })

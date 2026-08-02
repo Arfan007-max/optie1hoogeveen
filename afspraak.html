@@ -95,11 +95,13 @@
         </div>
 
         <!--
-          KEUZE VAN DAG EN TIJD
-          De kalender laat alleen kiezen wat kán: geen zondag, geen dag in het
-          verleden, en per dag alleen tijden binnen de openingstijden (maandag
-          vanaf 12:00, dinsdag t/m zaterdag vanaf 10:00). De lijst met tijden
-          wordt door assets/js/afspraak.js gevuld zodra er een dag gekozen is.
+          KEUZE VAN DAG EN TIJD (verplicht)
+          Dag én tijdstip moeten allebei gekozen worden. De kalender laat alleen
+          kiezen wat kán: geen zondag, geen dag in het verleden, en per dag
+          alleen tijden binnen de openingstijden (maandag vanaf 12:00, dinsdag
+          t/m zaterdag vanaf 10:00). De lijst met tijden wordt door
+          assets/js/afspraak.js gevuld zodra er een dag gekozen is; kiest de
+          klant een andere dag, dan wordt het eerder gekozen tijdstip gewist.
 
           Let op: dit reserveert niets. De winkel werkt niet met een agenda die
           hieraan vastzit, dus dit blijft een voorkeur die we telefonisch
@@ -108,20 +110,20 @@
           waar kan maken.
         -->
         <fieldset class="veld veld-groep">
-          <legend>Gewenste afspraak <span class="veld-optioneel">(optioneel)</span></legend>
+          <legend>Gewenste afspraak</legend>
           <div class="veld-duo">
             <div>
               <label for="f-datum">Dag</label>
-              <input type="date" id="f-datum" name="datum">
+              <input type="date" id="f-datum" name="datum" required>
             </div>
             <div>
               <label for="f-tijd">Tijdstip</label>
-              <select id="f-tijd" name="tijd" disabled>
-                <option value="">Kies eerst een dag</option>
+              <select id="f-tijd" name="tijd" required disabled>
+                <option value="">Kies een dag</option>
               </select>
             </div>
           </div>
-          <p class="veld-uitleg" id="moment-uitleg">De winkel is dinsdag t/m zaterdag open van 10:00 tot 17:00, maandag vanaf 12:00. Zondag zijn we gesloten. We bevestigen het moment altijd even met u; uw keuze is nog geen vaste reservering.</p>
+          <p class="veld-uitleg" id="moment-uitleg">Openingstijden: maandag 12:00&#8211;17:00, dinsdag t/m zaterdag 10:00&#8211;17:00. Zondag gesloten. We bevestigen het gekozen moment altijd even met u; uw keuze is nog geen vaste reservering.</p>
         </fieldset>
 
         <!-- Honeypot: onzichtbaar voor bezoekers, ingevuld door spambots.
