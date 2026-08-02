@@ -2192,7 +2192,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* "Ander model kiezen": omlijnde pill-knop in merkblauw met terugpijl.
    Hover/focus vult hem licht in de huisstijltint. */
-.terug-wrap { margin-top: 4px; }
+.terug-wrap { margin-top: 28px; text-align: center; }
 .terug-knop {
   display: inline-flex;
   align-items: center;
@@ -2200,17 +2200,19 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 9px 18px;
   border: 2px solid var(--blauw);
   border-radius: 999px;
-  color: var(--blauw);
+  background: var(--blauw);
+  color: var(--wit);
   font-weight: 600;
   text-decoration: none;
-  transition: background .15s ease, box-shadow .15s ease;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 .terug-knop svg { width: 18px; height: 18px; }
 .terug-knop:hover,
 .terug-knop:focus-visible {
-  background: var(--hero-vlak);
+  background: var(--blauw-donker);
+  border-color: var(--blauw-donker);
 }
 .terug-knop:focus-visible {
-  outline: 3px solid var(--blauw);
+  outline: 3px solid var(--blauw-accent);
   outline-offset: 2px;
 }
