@@ -61,24 +61,12 @@
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="container">
-      <h1 id="opties-titel">iPhone reparatie</h1>
-      <p id="opties-intro">Kies hieronder welke reparatie uw iPhone nodig heeft. We kijken er kosteloos naar en u hoort vooraf wat het kost — pas na uw akkoord beginnen we.</p>
-      <div class="knoppen hero-cta">
-        <a class="knop knop-rood" href="afspraak.html" id="cta-afspraak">Afspraak maken</a>
-        <a class="knop knop-blauw" href="tel:+31528235734">Bel 0528 - 23 57 34</a>
-        <a class="knop knop-whatsapp" href="https://wa.me/31528235734">WhatsApp</a>
-      </div>
-      <p class="opties-terug"><a href="iphone-reparatie-hoogeveen.html">&larr; Ander iPhone-model kiezen</a></p>
-    </div>
-  </section>
-
   <section class="sectie sectie-wit">
     <div class="container">
       <div class="dienst-uitleg">
-        <h2>Welke reparatie heeft uw iPhone nodig?</h2>
-        <p>De meest gevraagde reparaties op een rij. Weet u het niet zeker? Loop binnen voor een gratis diagnose, dan zoeken we het samen uit.</p>
+        <h1 id="opties-titel">Welke reparatie heeft uw iPhone nodig?</h1>
+        <p id="opties-intro">Kies hieronder de reparatie. We kijken er kosteloos naar en u hoort vooraf wat het kost — pas na uw akkoord beginnen we. Weet u het niet zeker? Kies &ldquo;Overig probleem&rdquo; of loop binnen voor een gratis diagnose.</p>
+        <p class="terug-link"><a href="iphone-reparatie-hoogeveen.html">&larr; Ander iPhone-model kiezen</a></p>
       </div>
       <!-- Reparatie-iconen: Lucide (https://lucide.dev), ISC-licentie.
            Inline line-iconen in de huisstijltint; elke tegel gaat naar het
@@ -294,13 +282,11 @@
 
   document.title = naam + ' reparatie | Optie1 Hoogeveen';
   var titel = document.getElementById('opties-titel');
-  if (titel) titel.textContent = naam + ' reparatie';
+  if (titel) titel.textContent = 'Welke reparatie heeft uw ' + naam + ' nodig?';
   var intro = document.getElementById('opties-intro');
-  if (intro) intro.textContent = 'Kies hieronder welke reparatie uw ' + naam + ' nodig heeft. We kijken er kosteloos naar en u hoort vooraf wat het kost — pas na uw akkoord beginnen we.';
+  if (intro) intro.textContent = 'Kies hieronder de reparatie voor uw ' + naam + '. We kijken er kosteloos naar en u hoort vooraf wat het kost — pas na uw akkoord beginnen we. Weet u het niet zeker? Kies “Overig probleem” of loop binnen voor een gratis diagnose.';
   var kruimel = document.getElementById('kruimel-model');
   if (kruimel) kruimel.textContent = naam;
-  var kop = document.querySelector('.dienst-uitleg h2');
-  if (kop) kop.textContent = 'Welke reparatie heeft uw ' + naam + ' nodig?';
 
   /* Geef het toestel mee aan het aanmeldformulier, zodat de klant het niet
      opnieuw hoeft in te vullen. afspraak.html kan de parameter later uitlezen;
