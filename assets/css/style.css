@@ -978,6 +978,29 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .aanvraag-uitleg p { margin: 0; }
 
+/* Samenvatting van het bij de reparatiekeuze gekozen toestel + reparatie. */
+.aanvraag-keuze {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 30px;
+  padding: 14px 18px;
+  background: var(--wit);
+  border: 2px solid #dddddd;
+  border-radius: var(--radius);
+}
+.aanvraag-keuze-kop {
+  display: block;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--tekst-zacht);
+  margin-bottom: 2px;
+}
+.aanvraag-keuze-waarde { display: block; font-size: 1.1rem; }
+.aanvraag-keuze-wijzig { flex: none; font-size: .9rem; }
+
 /* --- Twee kolommen --- */
 .kolommen {
   display: grid;
@@ -1917,6 +1940,25 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 16px;
   line-height: 1.6;
 }
+
+.pagina-aanmelden .aanvraag-keuze {
+  border-color: var(--pm-rand);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.pagina-aanmelden .aanvraag-keuze-kop { color: var(--pm-grijs); }
+.pagina-aanmelden .aanvraag-keuze-waarde {
+  color: var(--pm-zwart);
+  font-weight: 700;
+  font-size: 18px;
+}
+.pagina-aanmelden .aanvraag-keuze-wijzig {
+  color: var(--pm-zwart);
+  text-decoration: underline;
+  font-size: 15px;
+  font-weight: 600;
+}
+.pagina-aanmelden .aanvraag-keuze-wijzig:hover { color: var(--pm-grijs); }
 
 .pagina-aanmelden .formulier-gelukt {
   max-width: var(--pm-kolom);

@@ -22,25 +22,25 @@
   var formulier = document.getElementById('afspraak-formulier');
   if (!formulier) { return; }
 
-  /* --- Voorvullen vanaf de reparatiekeuze ----------------------------------
+  /* --- Kwam de bezoeker via een reparatiekeuze-tegel? -----------------------
 
-     Kwam de bezoeker via een reparatie-tegel (iPhone of iPad), dan staan het
-     gekozen toestel en de reparatie in de URL:
+     Dan staan het gekozen toestel en de reparatie al in de URL:
        afspraak.html?reparatie=<slug>&toestel=<modelnaam>
-     We vullen die alvast in, zodat niemand hoeft over te typen. Alleen als het
-     veld nog leeg is — een door de browser onthouden waarde gaat vóór. Staat er
-     niets in de URL (bv. iemand komt rechtstreeks), dan gebeurt er niets. */
-  (function voorvullenUitUrl() {
+     De klant heeft die keuze net gemaakt, dus vragen we er niet nóg een keer
+     naar: we tonen ze als een korte samenvatting bovenaan en verbergen de
+     bijbehorende invulvelden. De waarden gaan wél mee in de aanvraag (verborgen,
+     niet leeg), zodat de winkel ze gewoon in de e-mail/WhatsApp ziet. De klant
+     hoeft dan enkel de contactgegevens en het gewenste moment nog in te vullen.
+
+     Komt iemand rechtstreeks (geen keuze in de URL), dan verandert er niets en
+     blijft het volledige formulier staan — handig om los een vraag te stellen
+     of een prijsindicatie te vragen. Is alleen het toestel bekend en niet de
+     reparatie, dan blijft het klachtveld staan zodat men die kan omschrijven. */
+  (function keuzeUitUrl() {
     var params = new URLSearchParams(window.location.search);
     var toestel = params.get('toestel');
     var reparatie = params.get('reparatie');
-
-    var toestelveld = document.getElementById('f-toestel');
-    if (toestel && toestelveld && toestelveld.value.trim() === '') {
-      toestelveld.value = toestel;
-    }
-
-    if (!reparatie) { return; }
+    if (!toestel && !reparatie) { return; }
 
     /* Slug → leesbare naam, gelijk aan de labels op de reparatiekeuze-tegels.
        Onbekende slug (bv. een nieuwe iPad-reparatie): nette terugval waarbij
@@ -59,13 +59,49 @@
       volumeknop: 'Volumeknop', trilmotor: 'Trilmotor', moederbord: 'Moederbord',
       software: 'Software herstel', flitser: 'Flitser', overig: 'Overig probleem'
     };
-    var label = LABELS[reparatie] ||
-      reparatie.charAt(0).toUpperCase() + reparatie.slice(1).replace(/-/g, ' ');
+    var label = reparatie
+      ? (LABELS[reparatie] ||
+         reparatie.charAt(0).toUpperCase() + reparatie.slice(1).replace(/-/g, ' '))
+      : '';
 
-    var probleemveld = document.getElementById('f-probleem');
-    if (probleemveld && probleemveld.value.trim() === '') {
-      probleemveld.value = 'Gekozen reparatie: ' + label + '. ';
+    // Vul een veld vast in en verberg het hele .veld-blok eromheen.
+    function zetVastEnVerberg(inputId, waarde) {
+      var input = document.getElementById(inputId);
+      if (!input) { return; }
+      input.value = waarde;
+      var blok = input.closest('.veld');
+      if (blok) { blok.hidden = true; }
     }
+
+    if (toestel) { zetVastEnVerberg('f-toestel', toestel); }
+    if (reparatie) { zetVastEnVerberg('f-probleem', 'Gekozen reparatie: ' + label + '.'); }
+
+    // Korte samenvatting van de keuze bovenaan het formulier.
+    var onderdelen = [];
+    if (toestel) { onderdelen.push(toestel); }
+    if (label) { onderdelen.push(label); }
+
+    var keuze = document.createElement('div');
+    keuze.className = 'aanvraag-keuze';
+
+    var tekst = document.createElement('div');
+    var kop = document.createElement('span');
+    kop.className = 'aanvraag-keuze-kop';
+    kop.textContent = 'Uw keuze';
+    var waarde = document.createElement('strong');
+    waarde.className = 'aanvraag-keuze-waarde';
+    waarde.textContent = onderdelen.join(' — ');
+    tekst.appendChild(kop);
+    tekst.appendChild(waarde);
+
+    var wijzig = document.createElement('a');
+    wijzig.className = 'aanvraag-keuze-wijzig';
+    wijzig.href = 'reparaties.html';
+    wijzig.textContent = 'Wijzigen';
+
+    keuze.appendChild(tekst);
+    keuze.appendChild(wijzig);
+    formulier.insertBefore(keuze, formulier.firstChild);
   }());
 
   /* --- Dag en tijd ---------------------------------------------------------
