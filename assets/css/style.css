@@ -2177,3 +2177,15 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.25;
   color: var(--ink);
 }
+
+/* Kop op één regel houden. De lettergrootte schaalt mee met het venster,
+   zodat de zin bij elke breedte binnen de container blijft. Op smalle
+   telefoons (<=420px) mag hij alsnog over twee regels breken, zodat hij
+   nooit van het scherm loopt. */
+.kop-inline {
+  white-space: nowrap;
+  font-size: clamp(1.4rem, 5.4vw, 2.6rem);
+}
+@media (max-width: 420px) {
+  .kop-inline { white-space: normal; }
+}
