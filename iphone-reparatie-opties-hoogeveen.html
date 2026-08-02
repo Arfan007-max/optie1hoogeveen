@@ -64,8 +64,8 @@
   <section class="sectie sectie-wit">
     <div class="container">
       <div class="dienst-uitleg">
-        <h1 id="opties-titel">Welke reparatie heeft uw iPhone nodig?</h1>
-        <p id="opties-intro">Kies hieronder de reparatie. We kijken er kosteloos naar en u hoort vooraf wat het kost — pas na uw akkoord beginnen we. Weet u het niet zeker? Kies &ldquo;Overig probleem&rdquo; of loop binnen voor een gratis diagnose.</p>
+        <h1>Welk probleem heeft uw iPhone?</h1>
+        <p>Kies hieronder het probleem. We kijken er kosteloos naar en u hoort vooraf wat het kost — pas na uw akkoord beginnen we. Weet u het niet zeker? Kies &ldquo;Overig probleem&rdquo; of loop binnen voor een gratis diagnose.</p>
         <p class="terug-link"><a href="iphone-reparatie-hoogeveen.html">&larr; Ander iPhone-model kiezen</a></p>
       </div>
       <!-- Reparatie-iconen: Lucide (https://lucide.dev), ISC-licentie.
@@ -281,10 +281,6 @@
   if (!naam) return;
 
   document.title = naam + ' reparatie | Optie1 Hoogeveen';
-  var titel = document.getElementById('opties-titel');
-  if (titel) titel.textContent = 'Welke reparatie heeft uw ' + naam + ' nodig?';
-  var intro = document.getElementById('opties-intro');
-  if (intro) intro.textContent = 'Kies hieronder de reparatie voor uw ' + naam + '. We kijken er kosteloos naar en u hoort vooraf wat het kost — pas na uw akkoord beginnen we. Weet u het niet zeker? Kies “Overig probleem” of loop binnen voor een gratis diagnose.';
   var kruimel = document.getElementById('kruimel-model');
   if (kruimel) kruimel.textContent = naam;
 
