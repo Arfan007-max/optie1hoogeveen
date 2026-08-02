@@ -1935,7 +1935,10 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* --- Breadcrumbs (kruimelpad) ---
    Klein, rustig, boven de hero. Ook als BreadcrumbList in JSON-LD. */
-.kruimels { padding: 16px 0 0; font-size: 0.85rem; }
+/* Broodkruimel-navigatie bewust verborgen op alle pagina's. De markup en de
+   BreadcrumbList-structured-data blijven in de HTML staan (voor zoekmachines);
+   alleen de zichtbare balk is uit. Weer tonen? Verwijder de display: none. */
+.kruimels { display: none; padding: 16px 0 0; font-size: 0.85rem; }
 .kruimels ol {
   list-style: none;
   display: flex;
