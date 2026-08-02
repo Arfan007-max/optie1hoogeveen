@@ -2189,3 +2189,28 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 420px) {
   .kop-inline { white-space: normal; }
 }
+
+/* "Ander model kiezen": omlijnde pill-knop in merkblauw met terugpijl.
+   Hover/focus vult hem licht in de huisstijltint. */
+.terug-wrap { margin-top: 4px; }
+.terug-knop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 2px solid var(--blauw);
+  border-radius: 999px;
+  color: var(--blauw);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .15s ease, box-shadow .15s ease;
+}
+.terug-knop svg { width: 18px; height: 18px; }
+.terug-knop:hover,
+.terug-knop:focus-visible {
+  background: var(--hero-vlak);
+}
+.terug-knop:focus-visible {
+  outline: 3px solid var(--blauw);
+  outline-offset: 2px;
+}
