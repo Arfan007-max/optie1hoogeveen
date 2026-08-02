@@ -22,6 +22,52 @@
   var formulier = document.getElementById('afspraak-formulier');
   if (!formulier) { return; }
 
+  /* --- Voorvullen vanaf de reparatiekeuze ----------------------------------
+
+     Kwam de bezoeker via een reparatie-tegel (iPhone of iPad), dan staan het
+     gekozen toestel en de reparatie in de URL:
+       afspraak.html?reparatie=<slug>&toestel=<modelnaam>
+     We vullen die alvast in, zodat niemand hoeft over te typen. Alleen als het
+     veld nog leeg is — een door de browser onthouden waarde gaat vóór. Staat er
+     niets in de URL (bv. iemand komt rechtstreeks), dan gebeurt er niets. */
+  (function voorvullenUitUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var toestel = params.get('toestel');
+    var reparatie = params.get('reparatie');
+
+    var toestelveld = document.getElementById('f-toestel');
+    if (toestel && toestelveld && toestelveld.value.trim() === '') {
+      toestelveld.value = toestel;
+    }
+
+    if (!reparatie) { return; }
+
+    /* Slug → leesbare naam, gelijk aan de labels op de reparatiekeuze-tegels.
+       Onbekende slug (bv. een nieuwe iPad-reparatie): nette terugval waarbij
+       koppeltekens spaties worden en de eerste letter een hoofdletter krijgt. */
+    var LABELS = {
+      scherm: 'Scherm', batterij: 'Batterij', oplaadpoort: 'Oplaadpoort',
+      'draadloos-opladen': 'Draadloos opladen', waterschade: 'Waterschade',
+      diagnose: 'Diagnose', oorspeaker: 'Oorspeaker', luidspreker: 'Luidspreker',
+      koptelefoon: 'Koptelefoonaansluiting', microfoon: 'Microfoon',
+      'camera-achter': 'Camera achter', 'camera-glas': 'Camera glas',
+      'camera-voor': 'Camera voor', achterkant: 'Achterkant glas',
+      behuizing: 'Behuizing', wifi: 'Wifi', bluetooth: 'Bluetooth',
+      netwerk: 'Netwerk', gps: 'GPS', nfc: 'NFC',
+      vingerafdruk: 'Vingerafdrukscanner', gezichtsherkenning: 'Gezichtsherkenning',
+      nabijheidssensor: 'Nabijheidssensor', aanuitknop: 'Aan-uitknop',
+      volumeknop: 'Volumeknop', trilmotor: 'Trilmotor', moederbord: 'Moederbord',
+      software: 'Software herstel', flitser: 'Flitser', overig: 'Overig probleem'
+    };
+    var label = LABELS[reparatie] ||
+      reparatie.charAt(0).toUpperCase() + reparatie.slice(1).replace(/-/g, ' ');
+
+    var probleemveld = document.getElementById('f-probleem');
+    if (probleemveld && probleemveld.value.trim() === '') {
+      probleemveld.value = 'Gekozen reparatie: ' + label + '. ';
+    }
+  }());
+
   /* --- Dag en tijd ---------------------------------------------------------
 
      OPENINGSTIJDEN per weekdag, zoals JavaScript ze nummert: 0 is zondag,

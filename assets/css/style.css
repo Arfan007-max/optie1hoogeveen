@@ -968,6 +968,16 @@ img { max-width: 100%; height: auto; display: block; }
 .formulier-gelukt h3 { margin-top: 0; }
 .formulier-gelukt p:last-child { margin-bottom: 0; }
 
+/* Korte uitleg boven het aanmeldformulier: hoe de aanvraag verloopt. */
+.aanvraag-uitleg {
+  max-width: 34rem;
+  margin: 0 auto 32px;
+  background: var(--blauw-zacht);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+.aanvraag-uitleg p { margin: 0; }
+
 /* --- Twee kolommen --- */
 .kolommen {
   display: grid;
@@ -1896,6 +1906,18 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* --- Bevestiging na verzenden: monochroom i.p.v. blauw --- */
+.pagina-aanmelden .aanvraag-uitleg {
+  max-width: var(--pm-kolom);
+  background: var(--pm-licht);
+  border-left: 4px solid var(--pm-zwart);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 0 auto 34px;
+  color: var(--pm-grijs);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
 .pagina-aanmelden .formulier-gelukt {
   max-width: var(--pm-kolom);
   background: var(--pm-licht);
