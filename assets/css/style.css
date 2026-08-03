@@ -2,16 +2,27 @@
    Geen externe afhankelijkheden: geen CDN, geen tracking.
 
    --- Lettertype ---
-   De site gebruikt bewust géén webfont, maar een moderne systeem-fontstapel
-   (zie --letter in :root). Elk apparaat toont zo zijn eigen, best leesbare
-   sans-serif: SF Pro op Apple, Segoe UI op Windows, Roboto op Android. Dat
-   scheelt een download (snellere pagina), houdt de privacy schoon (er gaat
-   geen IP-adres naar een lettertype-CDN) en geeft toch de rustige, premium
-   uitstraling die bij een moderne telecomwinkel past.
+   De site gebruikt Manrope (SIL Open Font License 1.1), lokaal gehost als
+   één variable .woff2-bestand dat de gewichten 400–700 dekt — dus geen
+   aparte download per gewicht. Licentietekst staat naast het fontbestand in
+   assets/fonts/manrope-OFL.txt. Geen CDN: er gaat geen IP-adres naar een
+   externe lettertype-server.
 
    De volledige typografie — schaal, gewichten, regelafstand en letterafstand —
    staat centraal geregeld in het TYPOGRAFIE-blok in :root hieronder. Pas je die
    variabelen aan, dan verandert de hele site mee. */
+
+/* Eén variable font-bestand voor alle gewichten (400–700): de browser kiest
+   zelf het juiste punt op de gewichtsas, dus geen vier losse bestanden nodig.
+   font-display: swap voorkomt onzichtbare tekst tijdens het laden — de
+   systeemletter toont meteen en wisselt door zodra Manrope klaar is. */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/manrope-variable.woff2") format("woff2");
+}
 
 :root {
   /* Huisstijlblauw op verzoek vervangen door het blauw van de Vodafone-banner
@@ -62,13 +73,13 @@
      blijven die van Optie1.
      ============================================================ */
 
-  /* Moderne systeem-fontstapel. Geen webfont, dus geen download en geen CDN:
-     elk apparaat toont zijn eigen scherpste sans-serif (SF Pro op Apple,
-     Segoe UI op Windows, Roboto op Android). Inter staat erin voor het geval
-     het ooit lokaal wordt meegeleverd. --letter-hero blijft apart zodat de
-     hero later een eigen letter kan krijgen zonder de rest te raken. */
-  --letter: "SF Pro Display", Inter, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Manrope als primaire letter, met dezelfde robuuste systeem-fallback als
+     voorheen: als het font-bestand om wat voor reden dan ook niet laadt, valt
+     elk apparaat terug op zijn eigen scherpste sans-serif. --letter-hero
+     blijft apart zodat de hero later een eigen letter kan krijgen zonder de
+     rest te raken. */
+  --letter: "Manrope", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
   --letter-hero: var(--letter);
 
   /* Typografische schaal. clamp(min, groei, max): de max is de maat op een
@@ -82,19 +93,27 @@
   --fs-lead:     clamp(1.2rem, 1.1rem + 0.4vw, 1.375rem);  /* 19,2 → 22 px introtekst */
   --fs-body:     1.125rem;   /* 18 px  lopende tekst */
   --fs-knop:     1.0625rem;  /* 17 px  knoppen */
-  --fs-nav:      1.125rem;   /* 18 px  navigatie */
+  /* Verlaagd van 18px: de navigatie stond in hoofdletters, die optisch kleiner
+     lezen dan gewone tekst — vandaar de hogere maat. Nu de navigatie in
+     gewone schrijfwijze staat (zie .site-nav a), leest dezelfde 16px even
+     duidelijk zonder de balk onnodig groot te maken. */
+  --fs-nav:      1rem;       /* 16 px  navigatie */
   --fs-klein:    0.9375rem;  /* 15 px  kleine tekst */
   --fs-footer:   0.9375rem;  /* 15 px  footer */
 
   /* Gewichten. Zwaar waar het telt (titels), rustig voor de rest. */
   --gewicht-hero:     700;
-  --gewicht-kop:      600;
-  --gewicht-subtitel: 500;
+  --gewicht-kop:      700;
+  --gewicht-subtitel: 600;
   --gewicht-body:     400;
 
-  /* Regelafstand: ruim voor lopende tekst (prettig lezen), strak voor koppen. */
+  /* Regelafstand: ruim voor lopende tekst (prettig lezen), strak voor koppen.
+     H1 het strakst, H3 het ruimst — elke kop krijgt zo de regelhoogte die bij
+     zijn plek in de hiërarchie past in plaats van één gedeelde waarde. */
   --lh-body: 1.65;
+  --lh-h1:   1.1;
   --lh-kop:  1.15;
+  --lh-h3:   1.25;
   --lh-hero: 1.07;
 
   /* Letterafstand. Grote koppen mogen iets dichter op elkaar (oogt strakker en
@@ -139,16 +158,18 @@ body {
 /* Koppen in de huisstijlblauwe tint. Maat, gewicht, regel- en letterafstand
    komen uit de centrale schaal, zodat de hiërarchie overal gelijk loopt:
    paginatitel (h1) → sectietitel (h2) → subtitel (h3). */
-h1, h2, h3 { line-height: var(--lh-kop); margin: 0 0 .5em; }
+h1, h2, h3 { margin: 0 0 .5em; }
 h1 {
   font-size: var(--fs-pagina);
   font-weight: var(--gewicht-hero);
+  line-height: var(--lh-h1);
   letter-spacing: var(--ls-kop);
   color: var(--ink);
 }
 h2 {
   font-size: var(--fs-sectie);
   font-weight: var(--gewicht-kop);
+  line-height: var(--lh-kop);
   letter-spacing: var(--ls-kop);
   color: var(--ink);
 }
@@ -157,6 +178,7 @@ h2 {
 h3 {
   font-size: var(--fs-subtitel);
   font-weight: var(--gewicht-subtitel);
+  line-height: var(--lh-h3);
   letter-spacing: var(--ls-subtitel);
   color: var(--ink);
 }
@@ -238,8 +260,9 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0;
   padding: 0;
 }
-/* Kapitalen in het menu, zoals op de moedersite. Kapitalen lezen kleiner dan
-   gewone letters, dus staat de maat hier hoger dan je zou verwachten. De
+/* Gewone schrijfwijze in het menu ("Abonnementen" i.p.v. "ABONNEMENTEN"): dat
+   leest voor iedereen net iets rustiger en vertrouwder, ook voor oudere
+   bezoekers — en dat past bij Optie1's toegankelijke, persoonlijke toon. De
    ruimere padding is geen versiering: zo wordt elk menu-item ruim 44px hoog en
    dus goed raakbaar op een telefoon. */
 .site-nav a {
@@ -250,11 +273,6 @@ img { max-width: 100%; height: auto; display: block; }
   text-decoration: none;
   font-weight: 600;
   font-size: var(--fs-nav);
-  /* Kapitalen lezen kleiner dan gewone letters; op de navigatiematen halen ze
-     nét niet dezelfde optische grootte, dus houden we een lichte letterafstand
-     aan zodat de menu-items rustig en leesbaar blijven. */
-  text-transform: uppercase;
-  letter-spacing: .03em;
 }
 .site-nav a:hover { background: var(--blauw-zacht); color: var(--blauw-knop); }
 .site-nav a[aria-current="page"] { background: var(--blauw-knop); color: var(--wit); }
@@ -1525,6 +1543,16 @@ img { max-width: 100%; height: auto; display: block; }
    helemaal, het Samsung-woordmerk staat met veel lucht eromheen in een vierkant
    van 100 bij 100. Eén maat voor allebei zou de een te klein en de ander te
    groot maken, dus staat de maat per stuk in de HTML. */
+/* Korte omschrijving onder de merknaam op een merkkaart (bijv. "Kies uw
+   iPhone en bekijk de reparatiemogelijkheden."). Was op vier plekken
+   (apple-/samsung-reparatie-hoogeveen.html) als identieke inline style
+   herhaald; nu één centrale regel. */
+.merkkaart-omschrijving {
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--tekst-zacht);
+  max-width: 34ch;
+}
 
 /* --- 4. Tijdlijn "Zo werkt het" ---
    Vijf stappen naast elkaar, met een verbindingslijn ertussen. Onder 720px
