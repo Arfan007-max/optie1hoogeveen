@@ -697,10 +697,12 @@ img { max-width: 100%; height: auto; display: block; }
    ook gebruikt op zes andere pagina's (reparaties, batterij-vervangen,
    scherm-vervangen, oplaadpoort-reparatie, data-overzetten,
    tablet-reparatie) en mochten niet meeveranderen. Vervangt de lichtblauwe
-   kaarten door rustige witte servicekaarten op een zeer lichte grijze
-   sectie-achtergrond — hetzelfde contrast-principe als moderne, heldere
-   servicesecties, maar met de bestaande Optie1-kleuren. */
-.diensten-sectie { background: var(--grijs-zacht); }
+   kaarten door rustige grijze servicekaarten op een witte sectie-achtergrond
+   (zelfde grijstint als de openingstijden-kaart) — hetzelfde contrast-
+   principe als AMAC's kaarten, maar met de bestaande Optie1-kleuren. Geldt
+   ook voor reparaties.html en senioren.html, die dezelfde klassen
+   hergebruiken voor een consistente uitstraling. */
+.diensten-sectie { background: var(--wit); }
 .diensten-raster {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -709,7 +711,7 @@ img { max-width: 100%; height: auto; display: block; }
 .diensten-kaart {
   display: flex;
   flex-direction: column;
-  background: var(--wit);
+  background: #f2f4f7;
   border: 1px solid var(--lijn);
   border-top: 4px solid var(--blauw);
   border-radius: 12px;
@@ -742,6 +744,10 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 18px;
 }
 .diensten-icoon svg { width: 24px; height: 24px; }
+/* Reparatie-icoon op de homepage in omgekeerde kleuren: zwart vlak, witte
+   steeksleutel — op verzoek, ter onderscheid van de andere twee (lichtblauw
+   vlak, blauw icoon). */
+.diensten-icoon--zwart { background: #000000; color: var(--wit); }
 .diensten-kaart h3 { margin-bottom: .4em; }
 /* De beschrijving vult de ruimte op, zodat de knop op alle drie de kaarten
    op dezelfde hoogte staat, ook als de teksten iets in lengte verschillen. */
