@@ -2208,10 +2208,27 @@ img { max-width: 100%; height: auto; display: block; }
    Line-iconen (Lucide, ISC) in merkblauw op een lichtblauwe cirkel in
    de huisstijltint. Nieuwe klassen; raken geen andere pagina.
    ============================================================ */
+/* Reparatiekeuze-pagina's mogen — net als de modelpagina's — breder dan de
+   standaard leesbreedte (1100px), zodat de tegelwand de volle schermbreedte
+   benut en de lege randen links/rechts verdwijnen. Alleen containers mét een
+   reparatieraster worden verbreed. */
+.container:has(.rep-raster) {
+  max-width: 1760px;
+}
 .rep-raster {
   display: grid;
+  /* 148px-ondergrens houdt op smalle telefoons twee tegels per rij. */
   grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
-  gap: 16px;
+  /* Ruimere tussenruimte die meeschaalt met het scherm. */
+  gap: clamp(16px, 2.4vw, 36px);
+}
+/* Vanaf tablet/desktop grotere tegels (bredere ondergrens), zodat ze met de
+   extra schermbreedte meer lucht krijgen zonder dat de telefoonweergave naar
+   één kolom terugvalt. */
+@media (min-width: 700px) {
+  .rep-raster {
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  }
 }
 .rep-kaart {
   display: flex;
