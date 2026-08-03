@@ -97,8 +97,8 @@
   <section class="sectie sectie-wit">
     <div class="container kolommen">
 
-      <div class="gegevens">
-        <h2>Gegevens</h2>
+      <div class="gegevens openingstijden-kaart openingstijden-kaart--onder-uitgelijnd">
+        <h2>Optie1 Hoogeveen</h2>
         <!-- De <br> na elk label is weg: het label staat via CSS al op een
              eigen regel (`.gegevens strong`). Stond hij er wel, dan kwam er
              een lege regel tussen label en gegeven. -->
@@ -121,9 +121,9 @@
         </p>
       </div>
 
-      <div>
+      <div class="openingstijden-kaart openingstijden-kaart--onder-uitgelijnd">
         <h2>Openingstijden</h2>
-        <table class="tijden">
+        <table class="openingstijden-tabel">
           <tbody>
             <tr><th scope="row">Maandag</th><td>12:00 – 17:00</td></tr>
             <tr><th scope="row">Dinsdag</th><td>10:00 – 17:00</td></tr>
@@ -134,26 +134,27 @@
             <tr><th scope="row">Zondag</th><td class="gesloten">Gesloten</td></tr>
           </tbody>
         </table>
-        <p style="margin-top:1.2em"><small>Op feestdagen kunnen de tijden afwijken.</small></p>
+        <p class="openingstijden-noot">Op feestdagen kunnen de tijden afwijken.</p>
       </div>
 
-    </div>
-  </section>
-
-  <!--
-    ROUTEKAART
-    Bewust géén Google Maps-kaart ingesloten: die zet trackingcookies en vereist dan
-    een cookiemelding. Onderstaande knop opent Maps pas ná een klik van de bezoeker.
-  -->
-  <section class="sectie sectie-wit">
-    <div class="container">
-      <div class="oproep">
-        <h2>Route naar de winkel</h2>
-        <p>U vindt ons aan de Hoofdstraat 96, midden in het centrum van Hoogeveen. Klik hieronder voor een routebeschrijving vanaf uw locatie.</p>
-        <div class="knoppen">
-          <a class="knop knop-blauw" href="https://www.google.com/maps/search/?api=1&amp;query=Hoofdstraat+96%2C+7901+JT+Hoogeveen" rel="noopener">Open in Google Maps</a>
-        </div>
+      <!--
+        Live Google Maps-insluiting (op verzoek). Let op: dit laadt bij elk
+        paginabezoek een Google-iframe en zet daarmee Google-cookies, vóór
+        enige toestemming — zie het gesprek over de privacyafweging. De H2
+        staat er nog wél (kopvolgorde/schermlezers), maar is visueel
+        verborgen: de kaart moet de hele box vullen. De link "Open in Google
+        Maps" ligt als kleine, toegankelijke knop over de kaart heen. -->
+      <div class="openingstijden-kaart openingstijden-kaart--kaart-route">
+        <h2 class="route-kaart-titel">Route naar de winkel</h2>
+        <iframe
+          class="route-kaart"
+          src="https://www.google.com/maps?q=Hoofdstraat+96,+7901+JT+Hoogeveen&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Kaart met de locatie van Optie1 Hoogeveen aan de Hoofdstraat 96"></iframe>
+        <a class="route-kaart-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hoofdstraat+96%2C+7901+JT+Hoogeveen" rel="noopener">Open in Google Maps</a>
       </div>
+
     </div>
   </section>
 
