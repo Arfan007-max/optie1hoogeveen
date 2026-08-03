@@ -541,6 +541,36 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .hero p { font-size: var(--fs-lead); line-height: 1.5; max-width: 55ch; color: var(--wit); margin-inline: auto; }
 .hero .knoppen { margin-top: 28px; justify-content: center; }
+/* Bovenregel boven een hero-h1 (bijv. "iPad-reparatie in Hoogeveen"): kleiner
+   dan de H1, in de zachte blauwtint die elders in de hero al wordt gebruikt
+   (#cfe9f7 op --merkblauw-diep haalt 3,6:1, ruim boven de 3:1-norm voor deze
+   tekstgrootte). Hoofdletters + lichte letterafstand geven het label-gevoel
+   van een "eyebrow", los van de gewone lopende hero-tekst (.hero p). */
+.hero p.hero-eyebrow {
+  display: block;
+  color: #cfe9f7;
+  font-size: var(--fs-klein);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  max-width: none;
+  margin-bottom: 10px;
+}
+/* Modifier: dezelfde bovenregel, maar visueel verborgen (standaard "visually
+   hidden"-techniek — niet display:none). De tekst blijft zo in de broncode
+   staan voor schermlezers en zoekmachines, maar toont niet aan bezoekers.
+   Alleen de iPhone-reparatiepagina gebruikt dit vandaag. */
+.hero p.hero-eyebrow.hero-eyebrow--verborgen {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* --- Secties --- */
 .sectie { padding-block: clamp(40px, 6vw, 72px); }
