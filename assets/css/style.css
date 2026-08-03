@@ -753,6 +753,7 @@ img { max-width: 100%; height: auto; display: block; }
    op dezelfde hoogte staat, ook als de teksten iets in lengte verschillen. */
 .diensten-kaart p { flex: 1; color: var(--tekst-zacht); }
 .diensten-kaart p a { color: var(--ink); }
+.diensten-link-zonder-streep { text-decoration: none; }
 .diensten-knop {
   align-self: flex-start;
   min-height: 44px;
