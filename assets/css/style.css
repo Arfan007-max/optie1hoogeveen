@@ -691,6 +691,73 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 auto 32px;
 }
 
+/* --- "Waarmee kunnen we u helpen?" (homepage) ---
+   Eigen, aan deze sectie gebonden klassen (diensten-*) in plaats van de
+   gedeelde .kaart-dienst/.dienst-icoon/.raster: die gedeelde klassen worden
+   ook gebruikt op zes andere pagina's (reparaties, batterij-vervangen,
+   scherm-vervangen, oplaadpoort-reparatie, data-overzetten,
+   tablet-reparatie) en mochten niet meeveranderen. Vervangt de lichtblauwe
+   kaarten door rustige witte servicekaarten op een zeer lichte grijze
+   sectie-achtergrond — hetzelfde contrast-principe als moderne, heldere
+   servicesecties, maar met de bestaande Optie1-kleuren. */
+.diensten-sectie { background: var(--grijs-zacht); }
+.diensten-raster {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.diensten-kaart {
+  display: flex;
+  flex-direction: column;
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-top: 4px solid var(--blauw);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: var(--schaduw);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.diensten-kaart:hover,
+.diensten-kaart:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(25, 118, 210, .16);
+}
+@media (prefers-reduced-motion: reduce) {
+  .diensten-kaart { transition: box-shadow .15s ease; }
+  .diensten-kaart:hover,
+  .diensten-kaart:focus-within { transform: none; }
+}
+/* Zacht lichtblauw vierkant met afgeronde hoeken (geen volle cirkel): rustiger
+   en zakelijker dan de oude ronde iconen. currentColor + --blauw laat het
+   lijn-icoon in dezelfde tint als de bovenrand van de kaart mee-kleuren. */
+.diensten-icoon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--hero-vlak);
+  color: var(--blauw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.diensten-icoon svg { width: 24px; height: 24px; }
+.diensten-kaart h3 { margin-bottom: .4em; }
+/* De beschrijving vult de ruimte op, zodat de knop op alle drie de kaarten
+   op dezelfde hoogte staat, ook als de teksten iets in lengte verschillen. */
+.diensten-kaart p { flex: 1; color: var(--tekst-zacht); }
+.diensten-kaart p a { color: var(--ink); }
+.diensten-knop {
+  align-self: flex-start;
+  min-height: 44px;
+}
+@media (max-width: 860px) {
+  .diensten-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .diensten-raster { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* Providerkaarten blijven wit, ook in een witte sectie. De algemene regel
    `.sectie-wit .kaart` maakt kaarten daar juist grijs, maar dat werkt hier
    averechts: hollandsnieuwe is een JPG en heeft dus een witte achtergrond
