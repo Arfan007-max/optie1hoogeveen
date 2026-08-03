@@ -53,3 +53,9 @@ $RECYCLE.BIN/
 
 # --- Claude Code (lokale, machinegebonden instellingen) ---
 .claude/settings.local.json
+
+# --- Ongebruikte modelfoto's ---
+# Gescrapete Samsung-plaatjes met kryptische namen die (nog) niet aan een
+# model gekoppeld zijn. Blijven lokaal staan om modellen terug te kunnen
+# halen, maar horen niet in de repo of op de live site.
+assets/img/**/_ongebruikt/

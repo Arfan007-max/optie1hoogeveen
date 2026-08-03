@@ -2082,13 +2082,32 @@ img { max-width: 100%; height: auto; display: block; }
    Bouwt voort op de bestaande .merkkaart-uitstraling: witte kaart,
    zachte rand, rustige hover en een duidelijke focus-state.
    ============================================================ */
+/* Modelpagina's mogen breder dan de standaard leesbreedte (1100px): met
+   tientallen toestellen is de kaartenwand gebaat bij de volle schermbreedte,
+   zodat er meer kolommen naast elkaar passen en de lege randen links/rechts
+   verdwijnen. Alleen containers mét een modelraster worden verbreed, dus de
+   gewone tekstpagina's blijven ongemoeid. */
+.container:has(.model-raster) {
+  max-width: 1760px;
+}
 .model-raster {
   display: grid;
   /* Vult automatisch bij: op desktop meerdere kaarten naast elkaar, op
      tablet minder kolommen en op de telefoon twee per rij — nooit een
-     horizontale scroll. */
+     horizontale scroll. De 150px-ondergrens houdt op smalle telefoons
+     precies twee kaarten per rij. */
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 18px;
+  /* Ruimere tussenruimte die meeschaalt met het scherm: rustig op de telefoon,
+     veel lucht op een breed beeldscherm. */
+  gap: clamp(18px, 2.4vw, 36px);
+}
+/* Vanaf tablet/desktop grotere kaarten (bredere ondergrens), zodat de
+   toestellen met de extra schermbreedte meer lucht krijgen zonder dat de
+   telefoonweergave naar één kolom terugvalt. */
+@media (min-width: 700px) {
+  .model-raster {
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  }
 }
 .model-kaart {
   display: flex;
