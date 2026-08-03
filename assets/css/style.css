@@ -751,11 +751,37 @@ img { max-width: 100%; height: auto; display: block; }
   align-self: flex-start;
   min-height: 44px;
 }
+/* Voor langere knopteksten (bijv. "iPhone reparatie in Hoogeveen"): volle
+   kaartbreedte in plaats van content-breedte, zodat de tekst rustig op één
+   of twee gelijke regels past in plaats van willekeurig af te breken. Een
+   vaste hoogte van twee regels + gecentreerde tekst houdt alle knoppen op
+   dezelfde rij even hoog, ook als de ene tekst wél en de andere niet
+   afbreekt (bijv. "iPad reparatie in Hoogeveen" past op één regel,
+   "iPhone reparatie in Hoogeveen" op twee). */
+.diensten-knop--breed {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* 114px dekt het langste label op drie regels (bijv. "Samsung reparatie in
+     Hoogeveen" in de vier-koloms variant); kortere labels worden door
+     align-items: center netjes verticaal gecentreerd binnen dezelfde hoogte,
+     zodat alle knoppen op een rij altijd even hoog blijven. */
+  min-height: 114px;
+}
 @media (max-width: 860px) {
   .diensten-raster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
   .diensten-raster { grid-template-columns: minmax(0, 1fr); }
+}
+/* Modifier voor secties met vier kaarten in plaats van drie (bijv. "Welk
+   toestel heeft u?" op reparaties.html: iPhone/Samsung/iPad/Tablet). Alleen
+   op ruime schermen vier naast elkaar; de 860px/560px-afbraak hierboven
+   geldt via de gedeelde `.diensten-raster`-klasse al net zo goed. */
+@media (min-width: 1000px) {
+  .diensten-raster--vier { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 /* Providerkaarten blijven wit, ook in een witte sectie. De algemene regel
@@ -800,17 +826,18 @@ img { max-width: 100%; height: auto; display: block; }
   object-fit: contain;
 }
 /* Losse kaart onder het raster: valt op als afsluiter en niet als zevende
-   provider. Vandaar de huisstijltint van de hero, dezelfde als de
-   klachtenkaarten op reparaties.html. */
+   provider. Witte kaart met een blauwe rand, zodat hij opvalt zonder de
+   lichtblauwe vlaktint te gebruiken. */
 .kaart-overstap {
   margin-top: 22px;
-  background: var(--hero-vlak);
+  background: var(--wit);
+  border: 2px solid var(--blauw);
 }
 /* Nodig omdat `.sectie-wit .kaart` twee klassen telt en `.kaart-overstap`
    maar één: die regel is specifieker en wint dus altijd, ongeacht de volgorde
    in dit bestand. Deze selector is even specifiek én staat erna, en houdt de
-   kaart daarmee blauw in een witte sectie. */
-.sectie-wit .kaart-overstap { background: var(--hero-vlak); }
+   kaart daarmee wit met een blauwe rand in een witte sectie. */
+.sectie-wit .kaart-overstap { background: var(--wit); }
 
 /* --- Openingstijden --- */
 .tijden {
