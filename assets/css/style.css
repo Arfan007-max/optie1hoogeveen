@@ -617,6 +617,16 @@ img { max-width: 100%; height: auto; display: block; }
    3 x 2 — bij elke breedte dus een volle rij. minmax(0, 1fr) en niet 1fr:
    anders kan een brede afbeelding de kolom oprekken. */
 .raster-drie { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Vier kolommen voor een dichter productraster (toestellenoverzicht per merk,
+   naar het voorbeeld van grote telecomwinkels). Zelfde auto-fit-redenering
+   als raster-drie hierboven, maar dan met vier. */
+.raster-vier { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 56px; }
+@media (max-width: 900px) {
+  .raster-vier { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .raster-vier { grid-template-columns: minmax(0, 1fr); }
+}
 .kaart {
   background: var(--wit);
   border: 1px solid var(--lijn);
@@ -1196,6 +1206,45 @@ img { max-width: 100%; height: auto; display: block; }
 .toestel-foto:has(img) {
   border: 0;
 }
+
+/* Fotoslider: staan er meerdere <img>'s in één .toestel-foto, dan worden ze
+   op elkaar gestapeld en zet toestel-slider.js er twee pijlknoppen bij
+   waarmee de bezoeker zelf wisselt. Bij precies één foto verandert er niets
+   — position: static houdt het grid-centreren van hierboven dan intact. */
+.toestel-foto:has(img + img) {
+  position: relative;
+}
+.toestel-foto:has(img + img) img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.toestel-foto:has(img + img) img.foto-actief {
+  opacity: 1;
+}
+
+/* Pijlknoppen die toestel-slider.js toevoegt bij meerdere foto's. */
+.foto-pijl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+  color: var(--ink);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.foto-pijl:hover { background: var(--wit); }
+.foto-pijl-vorige { left: -14px; }
+.foto-pijl-volgende { right: -14px; }
 
 .toestel-specs {
   font-size: var(--fs-klein);

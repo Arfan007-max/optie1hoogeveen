@@ -44,6 +44,7 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="diensten.html">Abonnementen</a></li>
+        <li><a href="webshop.html">Smartphones</a></li>
         <li><a href="reparaties.html">Reparaties</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -83,87 +84,29 @@
     De alt-tekst mag leeg: het model staat al als tekst in de kop, en een
     schermlezer zou het anders twee keer voorlezen.
   -->
-  <section class="sectie sectie-wit">
+  <section class="sectie sectie-wit" id="merken">
     <div class="container">
       <div class="sectie-kop-midden">
-        <h2>Toestellen</h2>
-        <p>Wat er nu in de winkel ligt. Staat het toestel dat u zoekt er niet bij? Vraag het gerust — we bestellen ook.</p>
+        <h2>Welk merk zoekt u?</h2>
+        <p>Kies Apple of Samsung en bekijk de toestellen die nu in de winkel liggen.</p>
       </div>
-
-      <div class="raster raster-drie">
-
-        <article class="kaart kaart-toestel">
-          <h3 class="toestel-naam">
-            <span class="toestel-merk"><span class="invullen">MERK</span></span>
-            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
-          </h3>
-          <div class="toestel-foto">Foto</div>
-          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
-          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
-          <p class="toestel-vraag">Weten wat bij u past?</p>
-          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
-        </article>
-
-        <article class="kaart kaart-toestel">
-          <h3 class="toestel-naam">
-            <span class="toestel-merk"><span class="invullen">MERK</span></span>
-            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
-          </h3>
-          <div class="toestel-foto">Foto</div>
-          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
-          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
-          <p class="toestel-vraag">Weten wat bij u past?</p>
-          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
-        </article>
-
-        <article class="kaart kaart-toestel">
-          <h3 class="toestel-naam">
-            <span class="toestel-merk"><span class="invullen">MERK</span></span>
-            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
-          </h3>
-          <div class="toestel-foto">Foto</div>
-          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
-          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
-          <p class="toestel-vraag">Weten wat bij u past?</p>
-          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
-        </article>
-
-        <article class="kaart kaart-toestel">
-          <h3 class="toestel-naam">
-            <span class="toestel-merk"><span class="invullen">MERK</span></span>
-            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
-          </h3>
-          <div class="toestel-foto">Foto</div>
-          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
-          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
-          <p class="toestel-vraag">Weten wat bij u past?</p>
-          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
-        </article>
-
-        <article class="kaart kaart-toestel">
-          <h3 class="toestel-naam">
-            <span class="toestel-merk"><span class="invullen">MERK</span></span>
-            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
-          </h3>
-          <div class="toestel-foto">Foto</div>
-          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
-          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
-          <p class="toestel-vraag">Weten wat bij u past?</p>
-          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
-        </article>
-
-        <article class="kaart kaart-toestel">
-          <h3 class="toestel-naam">
-            <span class="toestel-merk"><span class="invullen">MERK</span></span>
-            <span class="toestel-model"><span class="invullen">MODEL INVULLEN</span></span>
-          </h3>
-          <div class="toestel-foto">Foto</div>
-          <p class="toestel-specs">Kleuren en opslag <span class="invullen">INVULLEN</span></p>
-          <p class="toestel-prijs"><span class="invullen">PRIJS INVULLEN</span></p>
-          <p class="toestel-vraag">Weten wat bij u past?</p>
-          <p><a class="knop knop-rood knop-reserveer" href="reserveren.html">Reserveer dit toestel</a></p>
-        </article>
-
+      <!-- Merkkaarten met een logo/merkteken als inline SVG of tekst. De
+           merken zijn eigendom van de fabrikanten; hier alleen ter verwijzing. -->
+      <div class="merkraster">
+        <a class="merkkaart" href="apple-toestellen-hoogeveen.html">
+          <span class="merk-badge" style="background:#3a3a3c">
+            <svg width="54" height="54" viewBox="1.16 0.03 24 24" fill="#ffffff" aria-hidden="true"><path d="M17.543 12.607c-.02-2.02 1.65-2.99 1.724-3.036-.94-1.375-2.402-1.563-2.922-1.583-1.244-.126-2.429.732-3.06.732-.63 0-1.606-.714-2.64-.695-1.359.02-2.61.79-3.31 2.006-1.41 2.446-.36 6.067 1.014 8.055.67.97 1.47 2.06 2.52 2.02 1.01-.04 1.39-.654 2.61-.654 1.22 0 1.56.654 2.63.633 1.086-.02 1.774-.99 2.44-1.965.769-1.126 1.086-2.216 1.104-2.272-.024-.01-2.118-.813-2.14-3.226z"/><path d="M15.53 6.5c.556-.674.93-1.61.827-2.543-.8.033-1.77.533-2.345 1.206-.515.596-.966 1.55-.845 2.466.893.069 1.805-.454 2.363-1.129z"/></svg>
+          </span>
+          <span>Apple</span>
+        </a>
+        <a class="merkkaart" href="samsung-toestellen-hoogeveen.html">
+          <span class="merk-badge" style="background:#12299c">
+            <!-- Samsung heeft geen beeldmerk, alleen het woordmerk. Als SVG-tekst
+                 op maat gepast, zodat het in het ronde vlak past. -->
+            <svg width="78" height="78" viewBox="0 0 100 100" aria-hidden="true"><text x="50" y="57" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22" fill="#ffffff" textLength="86" lengthAdjust="spacingAndGlyphs">SAMSUNG</text></svg>
+          </span>
+          <span>Samsung</span>
+        </a>
       </div>
     </div>
   </section>
