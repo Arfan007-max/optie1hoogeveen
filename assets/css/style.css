@@ -91,7 +91,7 @@
   --fs-sectie:   clamp(1.6rem, 1.25rem + 1.6vw, 2.25rem);  /* 25,6 → 36 px sectietitel */
   --fs-subtitel: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem); /* 22 → 28 px  subtitel (h3) */
   --fs-lead:     clamp(1.2rem, 1.1rem + 0.4vw, 1.375rem);  /* 19,2 → 22 px introtekst */
-  --fs-body:     1.125rem;   /* 18 px  lopende tekst */
+  --fs-body:     1.25rem;    /* 20 px  lopende tekst (o.a. tekst in kaarten/boxen) */
   --fs-knop:     1.0625rem;  /* 17 px  knoppen */
   /* Verlaagd van 18px: de navigatie stond in hoofdletters, die optisch kleiner
      lezen dan gewone tekst — vandaar de hogere maat. Nu de navigatie in
