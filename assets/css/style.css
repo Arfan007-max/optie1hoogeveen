@@ -714,7 +714,11 @@ img { max-width: 100%; height: auto; display: block; }
   background: #f2f4f7;
   border: 1px solid var(--lijn);
   border-top: 4px solid var(--blauw);
-  border-radius: 12px;
+  /* Zelfde grote radius als .openingstijden-kaart (contactpagina): bij 12px
+     was de curve zo klein dat de bovenhoek, waar de blauwe rand een andere
+     kleur heeft dan de zijranden, als een rechte naad oogde. Bij 40px domineert
+     de curve zichtbaar over die naad, zoals op de contactpagina. */
+  border-radius: 40px;
   padding: 28px;
   box-shadow: var(--schaduw);
   transition: transform .15s ease, box-shadow .15s ease;
