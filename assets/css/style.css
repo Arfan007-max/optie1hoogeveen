@@ -224,6 +224,10 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 50;
 }
 .site-header .container {
+  /* Header mag breder dan de 1100px van de rest van de site: het menu komt
+     zo dichter bij de rand van het scherm te staan, los van de leesbreedte
+     die de rest van de pagina's inhoud wél moet houden. */
+  max-width: 1500px;
   display: flex;
   align-items: center;
   justify-content: space-between;
