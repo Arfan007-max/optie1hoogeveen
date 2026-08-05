@@ -2149,8 +2149,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 /* Apple en Samsung linken door naar hun toestellenpagina. De link vult de
    hele pil, zodat je niet precies op de tekst hoeft te klikken, en oogt
-   verder hetzelfde als de niet-klikbare merken ernaast. */
-.merkenlijst .provider:has(a) { padding: 0; }
+   verder hetzelfde als de niet-klikbare merken ernaast. Eigen klasse in
+   plaats van `:has(a)`: die pseudoklasse werkt niet in browsers van vóór
+   eind 2023 (bijv. Safari <15.4, Firefox <121). */
+.merkenlijst .provider--klikbaar { padding: 0; }
 .merkenlijst .provider a {
   display: block;
   padding: 7px 18px;
