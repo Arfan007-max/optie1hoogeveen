@@ -2297,19 +2297,27 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0;
 }
 
-/* --- Formulier: ruime kolom, veel verticale lucht --- */
+/* --- Formulier: blauwe kaart, ruime kolom, veel verticale lucht ---
+   Op verzoek: het formulier zelf als gekleurd, afgerond vlak (huisstijlblauw)
+   met witte tekst en pil-vormige invoervelden — de titel/subtitel erboven
+   (in .hero) blijft wit/zwart, alleen het formulier zelf wordt de kaart. */
 .pagina-aanmelden .formulier {
   max-width: var(--pm-kolom);
   margin-inline: auto;
+  background: var(--blauw);
+  color: var(--wit);
+  border-radius: 24px;
+  padding: clamp(28px, 5vw, 44px);
+  box-shadow: 0 12px 32px -12px rgba(25, 118, 210, 0.35);
 }
 .pagina-aanmelden .veld { margin-bottom: 30px; }
 
-/* --- Labels: één stijl, zwart, met lucht eronder --- */
+/* --- Labels: wit, met lucht eronder --- */
 .pagina-aanmelden .veld label,
 .pagina-aanmelden .veld-groep legend,
 .pagina-aanmelden .veld-duo label {
   display: block;
-  color: var(--pm-zwart);
+  color: var(--wit);
   font-size: 20px;
   font-weight: 700;
   line-height: 1.3;
@@ -2318,11 +2326,13 @@ img { max-width: 100%; height: auto; display: block; }
 .pagina-aanmelden .veld-groep legend { margin-bottom: 14px; }
 /* "(optioneel)" rustig en terughoudend naast het label. */
 .pagina-aanmelden .veld-optioneel {
-  color: var(--pm-plch);
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 400;
 }
 
-/* --- Invoervelden: wit, zacht afgerond, veel padding, ±56px hoog --- */
+/* --- Invoervelden: ondoorzichtig wit, pil-vormig, veel padding, ±56px hoog ---
+   Bewust géén doorzichtig "glas"-effect: volledig witte velden met donkere
+   tekst lezen het best tijdens het typen, ook in fel licht op een telefoon. */
 .pagina-aanmelden .veld input,
 .pagina-aanmelden .veld select,
 .pagina-aanmelden .veld textarea {
@@ -2331,32 +2341,35 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 18px;
   color: var(--pm-zwart);
   background: var(--wit);
-  border: 2px solid var(--pm-rand);
-  border-radius: 12px;
+  border: 2px solid transparent;
+  border-radius: 999px;
   box-shadow: none;
   transition: border-color .18s ease, box-shadow .18s ease;
 }
 .pagina-aanmelden .veld input,
 .pagina-aanmelden .veld select {
   height: 56px;
-  padding: 0 18px;
+  padding: 0 22px;
 }
+/* Een volledige pil werkt niet voor meerdere regels tekst; de klachtomschrijving
+   krijgt daarom een ruime, maar geen volledig ronde, afronding. */
 .pagina-aanmelden .veld textarea {
   min-height: 168px;
-  padding: 16px 18px;
+  padding: 16px 22px;
   line-height: 1.6;
   resize: vertical;
+  border-radius: 24px;
 }
-/* Placeholder: lichtgrijs en toch leesbaar. */
+/* Placeholder: lichtgrijs en toch leesbaar op de witte velden. */
 .pagina-aanmelden .veld ::placeholder { color: var(--pm-plch); opacity: 1; }
 
-/* --- Focus: rustig en donker, nooit fel blauw --- */
+/* --- Focus: donkere rand, geen felblauwe systeemrand --- */
 .pagina-aanmelden .veld input:focus,
 .pagina-aanmelden .veld select:focus,
 .pagina-aanmelden .veld textarea:focus {
   outline: none;
   border-color: var(--pm-zwart);
-  box-shadow: 0 0 0 4px rgba(29, 29, 31, 0.10);
+  box-shadow: 0 0 0 4px rgba(29, 29, 31, 0.18);
 }
 
 /* --- Dag & tijd: premium invoervelden i.p.v. kale browsercontrols --- */
@@ -2388,22 +2401,22 @@ img { max-width: 100%; height: auto; display: block; }
 /* De twee velden onder de legend met wat meer lucht ertussen. */
 .pagina-aanmelden .veld-duo { gap: 20px; }
 
-/* --- Helptekst: klein, grijs, rustig --- */
+/* --- Helptekst: klein, rustig wit op het blauw --- */
 .pagina-aanmelden .veld-uitleg,
 .pagina-aanmelden .formulier-klein {
   font-size: 15px;
   line-height: 1.55;
-  color: var(--pm-grijs);
+  color: rgba(255, 255, 255, 0.82);
   margin-top: 10px;
 }
 .pagina-aanmelden .formulier-klein { margin-top: 20px; }
 
-/* --- Knoppen: premium, ingetogen --- */
+/* --- Knoppen: pil-vormig, zelfde ronding als de invoervelden --- */
 .pagina-aanmelden .knop {
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0;
-  border-radius: 12px;
+  border-radius: 999px;
   padding: 0 28px;
   min-height: 56px;
   display: inline-flex;
@@ -2467,24 +2480,27 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.6;
 }
 
+/* Zit ín het blauwe formulier (afspraak.js zet 'm als eerste kind van
+   .formulier), dus wit-op-blauw i.p.v. het donker-op-licht van elders. */
 .pagina-aanmelden .aanvraag-keuze {
-  border-color: var(--pm-rand);
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 16px 18px;
 }
-.pagina-aanmelden .aanvraag-keuze-kop { color: var(--pm-grijs); }
+.pagina-aanmelden .aanvraag-keuze-kop { color: rgba(255, 255, 255, 0.75); }
 .pagina-aanmelden .aanvraag-keuze-waarde {
-  color: var(--pm-zwart);
+  color: var(--wit);
   font-weight: 700;
   font-size: 18px;
 }
 .pagina-aanmelden .aanvraag-keuze-wijzig {
-  color: var(--pm-zwart);
+  color: var(--wit);
   text-decoration: underline;
   font-size: 15px;
   font-weight: 600;
 }
-.pagina-aanmelden .aanvraag-keuze-wijzig:hover { color: var(--pm-grijs); }
+.pagina-aanmelden .aanvraag-keuze-wijzig:hover { color: rgba(255, 255, 255, 0.75); }
 
 .pagina-aanmelden .formulier-gelukt {
   max-width: var(--pm-kolom);
