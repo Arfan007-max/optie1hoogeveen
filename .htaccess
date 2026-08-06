@@ -1,0 +1,3 @@
+# Homepage stuurt door naar de reparatiepagina.
+# 301 = permanent: zoekmachines en browsers onthouden deze doorverwijzing.
+RedirectMatch 301 ^/$ /reparaties.html
