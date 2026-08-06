@@ -2268,9 +2268,9 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--pm-zwart);
 }
 
-/* --- Hero: van blauw vlak naar een rustige, witte kop --- */
+/* --- Hero: zelfde huisstijlblauw als de formulierkaart eronder, witte tekst --- */
 .pagina-aanmelden .hero {
-  background: var(--wit);
+  background: var(--blauw);
   padding-block: clamp(36px, 6vw, 72px);
   text-align: left;
 }
@@ -2280,7 +2280,7 @@ img { max-width: 100%; height: auto; display: block; }
 .pagina-aanmelden #afspraak .container { max-width: var(--pm-kolom); }
 
 .pagina-aanmelden .hero h1 {
-  color: var(--pm-zwart);
+  color: var(--wit);
   font-weight: 700;
   font-size: clamp(2rem, 1.5rem + 1.8vw, 2.625rem); /* 32 → 42 px */
   line-height: 1.1;
@@ -2289,7 +2289,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 0 .35em;
 }
 .pagina-aanmelden .hero p {
-  color: var(--pm-grijs);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
   font-size: clamp(1.1875rem, 1.05rem + 0.55vw, 1.375rem); /* 19 → 22 px */
   line-height: 1.5;
