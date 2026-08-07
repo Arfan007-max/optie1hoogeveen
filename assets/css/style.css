@@ -1659,13 +1659,28 @@ img { max-width: 100%; height: auto; display: block; }
    de leesnorm. Met de sectie-prefix omdat `.sectie-wit .kaart` twee klassen
    telt en die anders wint (net als bij .kaart-dienst en .kaart-provider). */
 .sectie-wit .kaart-senioren {
-  background: var(--merkblauw-diep);
-  border-color: var(--merkblauw-diep);
+  background: var(--wit);
+  border-color: var(--lijn);
 }
-.kaart-senioren h3,
-.kaart-senioren p { color: var(--wit); }
-.kaart-senioren h3 { margin-bottom: .4em; }
-.kaart-senioren p:last-child { margin-bottom: 0; }
+.kaart-senioren + .kaart-senioren { margin-top: 16px; }
+
+/* Logo's van de gevoerde merken, in een witte kaart. */
+.merklogos {
+  list-style: none;
+  margin: 0;
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 28px 20px;
+}
+.merklogos img {
+  height: 56px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
 
 /* --- Uitgelichte band (donkere sectie voor ritme in de pagina) --- */
 .band {
@@ -2272,7 +2287,7 @@ img { max-width: 100%; height: auto; display: block; }
 .pagina-aanmelden .hero {
   background: var(--blauw);
   padding-block: clamp(36px, 6vw, 72px);
-  text-align: left;
+  text-align: center;
 }
 /* Titel en subtitel delen exact dezelfde kolom en linkerrand als het
    formulier eronder — alles lijnt op één lijn uit. */
